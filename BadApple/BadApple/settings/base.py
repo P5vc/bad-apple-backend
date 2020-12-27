@@ -86,7 +86,7 @@ DATABASES = {
 		'NAME': 'badappledb',
 		'USER': 'badappleuser',
 		'PASSWORD': env('DATABASE_PASSWORD'),
-		'HOST': 'localhost',
+		'HOST': '127.0.0.1',
 		'PORT': '',
     }
 }
