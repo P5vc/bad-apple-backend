@@ -7,7 +7,7 @@ class PRATemplate(models.Model):
 	technology = models.CharField('Technology' , max_length = 50 , blank = True)
 
 	# Template Contents:
-	letterBody = models.CharField('Letter Body' , max_length = 500 , blank = True)
+	letterBody = models.TextField('Letter Body' , max_length = 10000 , blank = True)
 
 	# Administrative:
 	createdOn = models.DateTimeField('Template Created On (Auto-Filled)' , auto_now_add = True)
