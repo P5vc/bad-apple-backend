@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import path , include
 
 urlpatterns = [
-    path('dataTransferZone/', admin.site.urls),
+    path('AdminPortal/', admin.site.urls),
 	path('' , include('mainSite.urls')),
 ]
