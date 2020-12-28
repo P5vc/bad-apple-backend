@@ -40,7 +40,7 @@ class DatabaseManagerPermissionsAdmin(admin.ModelAdmin):
 @admin.register(PRATemplate , site = customAdminSite)
 class PRATemplateAdmin(admin.ModelAdmin):
 	list_display = ['subject' , 'state' , 'public' , 'approved']
-	exclude = ['createdOn' , 'updatedOn' , 'lastChangedBy' , 'daysUntilDeletion']
+	exclude = ['createdOn' , 'updatedOn']
 
 
 	# Custom save behavior:
@@ -55,6 +55,8 @@ class PRATemplateAdmin(admin.ModelAdmin):
 				dbManagerObj.changesThisWeek += 1
 				dbManagerObj.save()
 
+				request.POST.__setitem__('daysUntilDeletion' , 30)
+
 		return super().changeform_view(request, None, form_url, extra_context)
 
 	def change_view(self, request, object_id, form_url='', extra_context=None):
@@ -67,6 +69,8 @@ class PRATemplateAdmin(admin.ModelAdmin):
 					raise PermissionDenied
 				dbManagerObj.changesThisWeek += 1
 				dbManagerObj.save()
+
+				request.POST.__setitem__('daysUntilDeletion' , 30)
 
 		return super().changeform_view(request, object_id, form_url, extra_context)
 
@@ -75,7 +79,7 @@ class PRATemplateAdmin(admin.ModelAdmin):
 @admin.register(OversightCommission , site = customAdminSite)
 class OversightCommissionAdmin(admin.ModelAdmin):
 	list_display = ['name' , 'stateProvince' , 'cityTown' , 'public' , 'approved']
-	exclude = ['createdOn' , 'updatedOn' , 'lastChangedBy' , 'daysUntilDeletion']
+	exclude = ['createdOn' , 'updatedOn']
 
 
 	# Custom save behavior:
@@ -90,6 +94,8 @@ class OversightCommissionAdmin(admin.ModelAdmin):
 				dbManagerObj.changesThisWeek += 1
 				dbManagerObj.save()
 
+				request.POST.__setitem__('daysUntilDeletion' , 30)
+
 		return super().changeform_view(request, None, form_url, extra_context)
 
 	def change_view(self, request, object_id, form_url='', extra_context=None):
@@ -102,5 +108,7 @@ class OversightCommissionAdmin(admin.ModelAdmin):
 					raise PermissionDenied
 				dbManagerObj.changesThisWeek += 1
 				dbManagerObj.save()
+
+				request.POST.__setitem__('daysUntilDeletion' , 30)
 
 		return super().changeform_view(request, object_id, form_url, extra_context)

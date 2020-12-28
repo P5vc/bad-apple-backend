@@ -45,7 +45,7 @@ class PRATemplate(models.Model):
 	updatedOn = models.DateTimeField('Template Last Updated On (Auto-Filled)' , auto_now = True)
 	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
 	delete = models.BooleanField('Delete' , default = False)
-	daysUntilDeletion = models.IntegerField('Days Until Deletion' , default = 30)
+	daysUntilDeletion = models.IntegerField('Days Until Deletion (When Marked For Deletion)' , default = 30)
 
 	# Permissions:
 	approved = models.BooleanField('Template Approved' , default = False)
