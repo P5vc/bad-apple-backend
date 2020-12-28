@@ -178,3 +178,6 @@ CELERY_TASK_TIME_LIMIT = 3600
 
 # Tor
 HOST_SCHEME_ALWAYS_HTTPS = ['badapplesifsmfpeetrmnfdk7jbvgidfcy7f3m64c53mccljw4efisad.onion']
+
+# Database management limitations:
+WEEKLY_TOUCH_LIMIT = 10
