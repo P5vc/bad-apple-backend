@@ -19,29 +19,25 @@ class DatabaseManagerPermissions(models.Model):
 
 class PRATemplate(models.Model):
 	# Choices:
-	ENTITIES = [
-				('PD' , 'Police Department'),
-				('SD' , 'Sheriff\'s Department')
-				]
 	SUBJECTS = [
-					('0' , 'Body Cameras'),
-					('1' , 'Drones'),
+					('0' , 'Body Worn Cameras'),
+					('1' , 'Unmanned Aerial Vehicles (Drones)'),
 					('2' , 'Facial Recognition'),
-					('3' , 'Thermographic Cameras'),
+					('3' , 'Thermographic Cameras (FLIR)'),
 					('4' , 'License Plate Readers'),
-					('5' , 'Memorandas of Understanding'),
+					('5' , 'Memoranda of Understanding'),
 					('6' , 'Predictive Policing'),
-					('7' , 'ShotSpotter'),
+					('7' , 'Gunshot Detection Microphones (ShotSpotter)'),
 					('8' , 'Social Media Monitoring'),
-					('9' , 'Stingray')
+					('9' , 'IMSI-Catcher Equipment (Stingray)')
 					]
 
 	# Filters:
 	state = models.CharField('State' , max_length = 30)
-	entity = models.CharField('Entity' , max_length = 2 , choices = ENTITIES , default = 'PD')
 	subject = models.CharField('Subject' , max_length = 4 , choices = SUBJECTS , default = '0')
 
 	# Template Contents:
+	title = models.CharField('Title' , max_length = 250 , blank = True)
 	letterBody = models.TextField('Letter Body' , max_length = 10000 , blank = True)
 
 	# Administrative:

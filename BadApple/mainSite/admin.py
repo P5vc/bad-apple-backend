@@ -39,7 +39,7 @@ class DatabaseManagerPermissionsAdmin(admin.ModelAdmin):
 
 @admin.register(PRATemplate , site = customAdminSite)
 class PRATemplateAdmin(admin.ModelAdmin):
-	list_display = ['subject' , 'state' , 'entity' , 'public' , 'approved']
+	list_display = ['subject' , 'state' , 'public' , 'approved']
 	exclude = ['createdOn' , 'updatedOn' , 'lastChangedBy' , 'daysUntilDeletion']
 
 
