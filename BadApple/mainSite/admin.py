@@ -14,9 +14,20 @@ class CustomAdminSite(admin.AdminSite):
 
 # Use custom, admin site:
 customAdminSite = CustomAdminSite(name = 'customAdminSite')
+from django.contrib.auth.admin import UserAdmin , GroupAdmin
 
-customAdminSite.register(User)
-customAdminSite.register(Group)
+
+# Add user administration:
+@admin.register(User , site = customAdminSite)
+class CustomUserAdmin(UserAdmin):
+    pass
+
+
+
+# Add group administration:
+@admin.register(Group , site = customAdminSite)
+class CustomGroupAdmin(GroupAdmin):
+    pass
 
 
 
