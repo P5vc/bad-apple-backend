@@ -39,7 +39,7 @@ class DatabaseManagerPermissionsAdmin(admin.ModelAdmin):
 
 @admin.register(PRATemplate , site = customAdminSite)
 class PRATemplateAdmin(admin.ModelAdmin):
-	list_display = ['subject' , 'state' , 'public' , 'approved']
+	list_display = ['subject' , 'stateTerritoryProvince' , 'public' , 'approved']
 	exclude = ['createdOn' , 'updatedOn']
 
 
@@ -78,7 +78,7 @@ class PRATemplateAdmin(admin.ModelAdmin):
 
 @admin.register(OversightCommission , site = customAdminSite)
 class OversightCommissionAdmin(admin.ModelAdmin):
-	list_display = ['name' , 'stateProvince' , 'cityTown' , 'public' , 'approved']
+	list_display = ['name' , 'stateTerritoryProvince' , 'cityTown' , 'type' , 'public' , 'approved']
 	exclude = ['createdOn' , 'updatedOn']
 
 
