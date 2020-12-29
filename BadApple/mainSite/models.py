@@ -1,5 +1,8 @@
 from django.db import models
 from django.conf import settings
+from .modelCodes import *
+
+
 
 class DatabaseManagerPermissions(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete = models.CASCADE)
@@ -30,10 +33,11 @@ class PRATemplate(models.Model):
 					('7' , 'Gunshot Detection Microphones (ShotSpotter)'),
 					('8' , 'Social Media Monitoring'),
 					('9' , 'IMSI-Catcher Equipment (Stingray)')
-					]
+				]
 
 	# Filters:
-	state = models.CharField('State' , max_length = 30)
+	country = models.CharField('Country' , max_length = 3 , choices = COUNTRIES , default = 'USA')
+	stateTerritoryProvince = models.CharField('State/Territory/Province' , max_length = 6 , choices = STATES_TERRITORIES_PROVINCES , default = 'USA-CA')
 	subject = models.CharField('Subject' , max_length = 4 , choices = SUBJECTS , default = '0')
 
 	# Template Contents:
@@ -61,20 +65,32 @@ class PRATemplate(models.Model):
 
 
 class OversightCommission(models.Model):
+	# Choices:
+	TYPES = [
+					('0' , 'Citizen Board/Panel/Commission/Committee'),
+					('1' , 'Independent Auditor/Monitor/Ombudsman'),
+					('2' , 'Office/Board/Council/Divison of Elected Officials'),
+					('3' , 'Office/Board/Council/Divison of Appointed Officials'),
+					('4' , 'Board of Police Commissionors'),
+					('5' , 'Interdepartmental Entity (H.R./Office of Complaints)')
+			]
+
 	# Profile:
 	name = models.CharField('Name' , max_length = 60 , blank = True)
-	type = models.CharField('Type' , max_length = 60 , blank = True)
-	website = models.URLField('Website URL' , max_length = 250 , blank = True)
+	type = models.CharField('Type' , max_length = 4 , choices = TYPES , default = '0')
+	website = models.URLField('Website URL—https whenever possible)' , max_length = 250 , blank = True)
 
 	# Location:
-	country = models.CharField('Country' , max_length = 60 , blank = True , default = 'United States of America')
-	stateProvince = models.CharField('State/Province' , max_length = 60 , blank = True)
+	country = models.CharField('Country' , max_length = 3 , choices = COUNTRIES , default = 'USA')
+	stateTerritoryProvince = models.CharField('State/Territory/Province' , max_length = 6 , choices = STATES_TERRITORIES_PROVINCES , default = 'USA-CA')
 	cityTown = models.CharField('City/Town' , max_length = 60 , blank = True)
+	address1 = models.CharField('Address (Line 1)' , max_length = 100 , blank = True)
+	address2 = models.CharField('Address (Line 2)' , max_length = 100 , blank = True)
 	postalCode = models.CharField('Postal Code' , max_length = 15 , blank = True)
 
 	# Contact Info:
 	email = models.EmailField('Email' , blank = True)
-	phone = models.CharField('Phone Number' , max_length = 15 , blank = True)
+	phone = models.CharField('Phone Number—Format: +1 (123) 555-1234' , max_length = 21 , blank = True)
 
 	# Administrative:
 	createdOn = models.DateTimeField('Record Created On (Auto-Filled)' , auto_now_add = True)
