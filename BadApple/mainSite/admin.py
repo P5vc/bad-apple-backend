@@ -40,7 +40,7 @@ class DatabaseManagerPermissionsAdmin(admin.ModelAdmin):
 @admin.register(PRATemplate , site = customAdminSite)
 class PRATemplateAdmin(admin.ModelAdmin):
 	list_display = ['subject' , 'stateTerritoryProvince' , 'public' , 'approved']
-	exclude = ['createdOn' , 'updatedOn']
+	readonly_fields = ['createdOn' , 'updatedOn' , 'lastChangedBy' , 'daysUntilDeletion']
 
 
 	# Custom save behavior:
@@ -79,7 +79,7 @@ class PRATemplateAdmin(admin.ModelAdmin):
 @admin.register(OversightCommission , site = customAdminSite)
 class OversightCommissionAdmin(admin.ModelAdmin):
 	list_display = ['name' , 'stateTerritoryProvince' , 'cityTown' , 'type' , 'public' , 'approved']
-	exclude = ['createdOn' , 'updatedOn']
+	readonly_fields = ['createdOn' , 'updatedOn' , 'lastChangedBy' , 'daysUntilDeletion']
 
 
 	# Custom save behavior:
