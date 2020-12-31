@@ -68,7 +68,7 @@ class OversightCommission(models.Model):
 	# Choices:
 	TYPES = [
 					('0' , 'Citizen Board/Panel/Commission/Committee'),
-					('1' , 'Independent Auditor/Monitor/Ombudsman'),
+					('1' , 'Independent Auditor/Monitor/Agency/Ombudsman'),
 					('2' , 'Office/Board/Council/Divison of Elected Officials'),
 					('3' , 'Office/Board/Council/Divison of Appointed Officials'),
 					('4' , 'Board of Police Commissionors'),
@@ -76,7 +76,7 @@ class OversightCommission(models.Model):
 			]
 
 	# Profile:
-	name = models.CharField('Name' , max_length = 60 , blank = True)
+	name = models.CharField('Name' , max_length = 150 , blank = True)
 	type = models.CharField('Type' , max_length = 4 , choices = TYPES , default = '0')
 	website = models.URLField('Website URL' , max_length = 300 , blank = True)
 
