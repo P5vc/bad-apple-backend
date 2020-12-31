@@ -78,7 +78,7 @@ class PRATemplateAdmin(admin.ModelAdmin):
 
 @admin.register(OversightCommission , site = customAdminSite)
 class OversightCommissionAdmin(admin.ModelAdmin):
-	list_display = ['name' , 'stateTerritoryProvince' , 'cityTown' , 'type' , 'public' , 'approved']
+	list_display = ['name' , 'stateTerritoryProvince' , 'cityTown' , 'public' , 'approved']
 	readonly_fields = ['createdOn' , 'updatedOn' , 'lastChangedBy' , 'daysUntilDeletion']
 
 
