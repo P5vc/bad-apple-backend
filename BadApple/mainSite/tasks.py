@@ -1,9 +1,17 @@
+from celery.schedules import crontab
+from .celery import app
 from .models import DatabaseManagerPermissions , PRATemplate , OversightCommission
-from celery.decorators import periodic_task
-from celery.task.schedules import crontab
 
 
-@periodic_task(run_every = (crontab(minute = 0 , hour = 0)) , name = 'deleteDatabaseEntries' , ignore_result = True)
+# Task scheduler:
+@app.on_after_finalize.connect
+def setup_periodic_tasks(sender , **kwargs):
+	sender.add_periodic_task(crontab(minute = 0 , hour = 0) , deleteDatabaseEntries.s())
+	sender.add_periodic_task(crontab(minute = 0 , hour = 0 , day_of_week = 'sunday') , databaseManagerRateLimitReset.s())
+
+
+# Tasks:
+@app.task
 def deleteDatabaseEntries():
 	for dbPRATemplateEntry in PRATemplate.objects.filter(delete = True):
 		dbPRATemplateEntry.daysUntilDeletion -= 1
@@ -20,7 +28,7 @@ def deleteDatabaseEntries():
 			dbOversightCommissionEntry.save()
 
 
-@periodic_task(run_every = (crontab(minute = 0 , hour = 0 , day_of_week = 'sunday')) , name = 'databaseManagerRateLimitReset' , ignore_result = True)
+@app.task
 def databaseManagerRateLimitReset():
 	for dbManagerObject in DatabaseManagerPermissions.objects.all():
 		dbManagerObject.changesLastWeek = dbManagerObject.changesThisWeek
