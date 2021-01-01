@@ -172,10 +172,6 @@ SECURE_REFERRER_POLICY = 'same-origin'
 # Login Options
 PASSWORD_RESET_TIMEOUT = 600
 
-# Celery
-CELERY_TASK_SOFT_TIME_LIMIT = 3540
-CELERY_TASK_TIME_LIMIT = 3600
-
 # Tor
 HOST_SCHEME_ALWAYS_HTTPS = ['badapplesifsmfpeetrmnfdk7jbvgidfcy7f3m64c53mccljw4efisad.onion']
 
