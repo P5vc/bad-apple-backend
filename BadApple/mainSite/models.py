@@ -66,13 +66,17 @@ class PRATemplate(models.Model):
 
 class OversightCommission(models.Model):
 	# Choices:
+	#TYPES = [
+	#				('0' , 'Citizen Board/Panel/Commission/Committee'),
+	#				('1' , 'Independent Auditor/Monitor/Agency/Ombudsman'),
+	#				('2' , 'Office/Board/Council/Divison of Elected Officials'),
+	#				('3' , 'Office/Board/Council/Divison of Appointed Officials'),
+	#				('4' , 'Board of Police Commissionors'),
+	#				('5' , 'Interdepartmental Entity (H.R./Office of Complaints)')
+	#		]
 	TYPES = [
-					('0' , 'Citizen Board/Panel/Commission/Committee'),
-					('1' , 'Independent Auditor/Monitor/Agency/Ombudsman'),
-					('2' , 'Office/Board/Council/Divison of Elected Officials'),
-					('3' , 'Office/Board/Council/Divison of Appointed Officials'),
-					('4' , 'Board of Police Commissionors'),
-					('5' , 'Interdepartmental Entity (H.R./Office of Complaints)')
+					('0' , 'Police Review Boards and Commissions'),
+					('1' , 'Sheriff Review Boards and Commissions')
 			]
 
 	# Profile:
@@ -89,14 +93,14 @@ class OversightCommission(models.Model):
 	address2 = models.CharField('Address (Line 2)' , max_length = 100 , blank = True)
 
 	# General Contact Info:
-	email = models.EmailField('Email' , blank = True)
+	email = models.EmailField('Email Address' , blank = True)
 	phone = models.CharField('Phone Number (Format: 1-123-555-1234)' , max_length = 18 , blank = True)
 	phoneTDD = models.CharField('TTD/TTY Phone Number (Format: 1-123-555-1234)' , max_length = 18 , blank = True)
 	fax = models.CharField('Fax Number (Format: 1-123-555-1234)' , max_length = 18 , blank = True)
 	contactForm = models.URLField('Contact Form URL' , max_length = 300 , blank = True)
 
 	# Press Contact Info:
-	pressEmail = models.EmailField('Press Email' , blank = True)
+	pressEmail = models.EmailField('Press Email Address' , blank = True)
 	pressPhone = models.CharField('Press Phone Number (Format: 1-123-555-1234)' , max_length = 18 , blank = True)
 	pressContactForm = models.URLField('Press Contact Form URL' , max_length = 300 , blank = True)
 
@@ -125,3 +129,27 @@ class OversightCommission(models.Model):
 	class Meta:
 		verbose_name = 'Oversight Commission'
 		verbose_name_plural = 'Oversight Commissions'
+
+
+
+class DatabaseDump(models.Model):
+	# Choices:
+	DATA_CATEGORIES = [
+					('0' , 'Police Oversight Commissions')
+			]
+
+	# Parameters:
+	dataCategory = models.CharField('Data to Dump' , max_length = 2 , choices = DATA_CATEGORIES , default = '0')
+
+
+
+	# Manage metadata:
+	class Meta:
+		verbose_name = 'Database Dump'
+		verbose_name_plural = 'Database Dump'
+
+
+
+	# Override default save behavior, to ensure that the database is never touched:
+	def save(self, *args, **kwargs):
+		pass
