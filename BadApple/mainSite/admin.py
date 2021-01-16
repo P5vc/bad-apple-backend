@@ -4,7 +4,7 @@ from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.urls import path
 from django.conf import settings
-from .models import *
+from mainSite.models import *
 from io import BytesIO
 from os import remove
 import time
@@ -83,6 +83,123 @@ class PRATemplateAdmin(admin.ModelAdmin):
 @admin.register(OversightCommission , site = customAdminSite)
 class OversightCommissionAdmin(admin.ModelAdmin):
 	list_display = ['name' , 'stateTerritoryProvince' , 'cityTown' , 'public' , 'approved']
+	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion']
+
+
+	# Custom save behavior:
+	def add_view(self , request , form_url = '' , extra_context = None):
+		if (request.method == 'POST'):
+			if (request.POST.__contains__('lastChangedBy')):
+				request.POST = request.POST.copy()
+				request.POST.__setitem__('lastChangedBy' , request.user.username)
+				dbManagerObj = DatabaseManagerPermissions.objects.get(user = request.user)
+				if (dbManagerObj.changesThisWeek >= settings.WEEKLY_TOUCH_LIMIT):
+					raise PermissionDenied
+				dbManagerObj.changesThisWeek += 1
+				dbManagerObj.save()
+
+				request.POST.__setitem__('daysUntilDeletion' , 30)
+
+		return super().changeform_view(request , None , form_url , extra_context)
+
+	def change_view(self , request , object_id , form_url = '' , extra_context = None):
+		if (request.method == 'POST'):
+			if (request.POST.__contains__('lastChangedBy')):
+				request.POST = request.POST.copy()
+				request.POST.__setitem__('lastChangedBy' , request.user.username)
+				dbManagerObj = DatabaseManagerPermissions.objects.get(user = request.user)
+				if (dbManagerObj.changesThisWeek >= settings.WEEKLY_TOUCH_LIMIT):
+					raise PermissionDenied
+				dbManagerObj.changesThisWeek += 1
+				dbManagerObj.save()
+
+				request.POST.__setitem__('daysUntilDeletion' , 30)
+
+		return super().changeform_view(request , object_id , form_url , extra_context)
+
+
+
+@admin.register(Officer , site = customAdminSite)
+class OfficerAdmin(admin.ModelAdmin):
+	list_display = ['firstName' , 'lastName']
+	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion']
+
+
+	# Custom save behavior:
+	def add_view(self , request , form_url = '' , extra_context = None):
+		if (request.method == 'POST'):
+			if (request.POST.__contains__('lastChangedBy')):
+				request.POST = request.POST.copy()
+				request.POST.__setitem__('lastChangedBy' , request.user.username)
+				dbManagerObj = DatabaseManagerPermissions.objects.get(user = request.user)
+				if (dbManagerObj.changesThisWeek >= settings.WEEKLY_TOUCH_LIMIT):
+					raise PermissionDenied
+				dbManagerObj.changesThisWeek += 1
+				dbManagerObj.save()
+
+				request.POST.__setitem__('daysUntilDeletion' , 30)
+
+		return super().changeform_view(request , None , form_url , extra_context)
+
+	def change_view(self , request , object_id , form_url = '' , extra_context = None):
+		if (request.method == 'POST'):
+			if (request.POST.__contains__('lastChangedBy')):
+				request.POST = request.POST.copy()
+				request.POST.__setitem__('lastChangedBy' , request.user.username)
+				dbManagerObj = DatabaseManagerPermissions.objects.get(user = request.user)
+				if (dbManagerObj.changesThisWeek >= settings.WEEKLY_TOUCH_LIMIT):
+					raise PermissionDenied
+				dbManagerObj.changesThisWeek += 1
+				dbManagerObj.save()
+
+				request.POST.__setitem__('daysUntilDeletion' , 30)
+
+		return super().changeform_view(request , object_id , form_url , extra_context)
+
+
+
+@admin.register(InvestigativeReport , site = customAdminSite)
+class InvestigativeReportAdmin(admin.ModelAdmin):
+	list_display = ['client' , 'date']
+	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion']
+
+
+	# Custom save behavior:
+	def add_view(self , request , form_url = '' , extra_context = None):
+		if (request.method == 'POST'):
+			if (request.POST.__contains__('lastChangedBy')):
+				request.POST = request.POST.copy()
+				request.POST.__setitem__('lastChangedBy' , request.user.username)
+				dbManagerObj = DatabaseManagerPermissions.objects.get(user = request.user)
+				if (dbManagerObj.changesThisWeek >= settings.WEEKLY_TOUCH_LIMIT):
+					raise PermissionDenied
+				dbManagerObj.changesThisWeek += 1
+				dbManagerObj.save()
+
+				request.POST.__setitem__('daysUntilDeletion' , 30)
+
+		return super().changeform_view(request , None , form_url , extra_context)
+
+	def change_view(self , request , object_id , form_url = '' , extra_context = None):
+		if (request.method == 'POST'):
+			if (request.POST.__contains__('lastChangedBy')):
+				request.POST = request.POST.copy()
+				request.POST.__setitem__('lastChangedBy' , request.user.username)
+				dbManagerObj = DatabaseManagerPermissions.objects.get(user = request.user)
+				if (dbManagerObj.changesThisWeek >= settings.WEEKLY_TOUCH_LIMIT):
+					raise PermissionDenied
+				dbManagerObj.changesThisWeek += 1
+				dbManagerObj.save()
+
+				request.POST.__setitem__('daysUntilDeletion' , 30)
+
+		return super().changeform_view(request , object_id , form_url , extra_context)
+
+
+
+@admin.register(InvestigativeReportFinding , site = customAdminSite)
+class InvestigativeReportFindingAdmin(admin.ModelAdmin):
+	list_display = ['finding' , 'findingBasis']
 	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion']
 
 
