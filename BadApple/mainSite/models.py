@@ -1,24 +1,15 @@
+# General imports:
 from django.db import models
-from django.conf import settings
-from .modelCodes import *
+
+# Import reference data:
+from mainSite.extendedModels.modelCodes import *
+
+# Import administrative models:
+from mainSite.extendedModels.administrative import *
 
 
 
-class DatabaseManagerPermissions(models.Model):
-	user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete = models.CASCADE)
-
-	# Limits:
-	changesThisWeek = models.IntegerField('Changes Made This Week (max = 10)' , default = 0)
-	changesLastWeek = models.IntegerField('Changes Made Last Week (max = 10)' , default = 0)
-
-
-
-	# Manage metadata:
-	class Meta:
-		verbose_name = 'Database Manager Permissions'
-		verbose_name_plural = 'Database Manager Permissions'
-
-
+# Main database models:
 
 class PRATemplate(models.Model):
 	# Choices:
@@ -132,24 +123,103 @@ class OversightCommission(models.Model):
 
 
 
-class DatabaseDump(models.Model):
-	# Choices:
-	DATA_CATEGORIES = [
-					('0' , 'Police Oversight Commissions')
-			]
+class Officer(models.Model):
+	firstName = models.CharField('First Name' , max_length = 150 , blank = True)
+	middleName = models.CharField('Middle Name/Initial' , max_length = 150 , blank = True)
+	lastName = models.CharField('Last Name' , max_length = 150 , blank = True)
 
-	# Parameters:
-	dataCategory = models.CharField('Data to Dump' , max_length = 2 , choices = DATA_CATEGORIES , default = '0')
+	# Administrative:
+	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
+	updatedOn = models.DateTimeField('Record Last Updated On' , auto_now = True)
+	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
+	delete = models.BooleanField('Delete' , default = False)
+	daysUntilDeletion = models.IntegerField('Days Until Deletion' , default = 30)
+
+	# Permissions:
+	approved = models.BooleanField('Record Approved' , default = False)
+	public = models.BooleanField('Record Public' , default = False)
 
 
 
 	# Manage metadata:
 	class Meta:
-		verbose_name = 'Database Dump'
-		verbose_name_plural = 'Database Dump'
+		verbose_name = 'Officer'
+		verbose_name_plural = 'Officers'
 
 
 
-	# Override default save behavior, to ensure that the database is never touched:
-	def save(self, *args, **kwargs):
-		pass
+class InvestigativeReport(models.Model):
+	# Related Models:
+	subjectOfInvestigation = models.ForeignKey(Officer , null = True , on_delete = models.SET_NULL , verbose_name = 'Subject of Investigation (Officer)')
+
+	# Investigator Metadata:
+	investigator = models.CharField('Investigator' , max_length = 500 , blank = True)
+	license = models.CharField('Investigator License' , max_length = 500 , blank = True)
+	investigatorEmployer = models.CharField('Investigator Employer' , max_length = 500 , blank = True)
+
+	# Contents Metadata:
+	client = models.CharField('Client' , max_length = 300 , blank = True)
+	date = models.DateTimeField('Date' , blank = True)
+
+	# Contents:
+	findingsSummary = models.TextField('Summary of Findings' , max_length = 10000 , blank = True)
+	conclusion = models.TextField('Conclusion' , max_length = 10000 , blank = True)
+
+	# References:
+	fullReportURL = models.URLField('Full Report URL' , max_length = 300 , blank = True)
+
+	# Administrative:
+	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
+	updatedOn = models.DateTimeField('Record Last Updated On' , auto_now = True)
+	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
+	delete = models.BooleanField('Delete' , default = False)
+	daysUntilDeletion = models.IntegerField('Days Until Deletion' , default = 30)
+
+	# Permissions:
+	approved = models.BooleanField('Record Approved' , default = False)
+	public = models.BooleanField('Record Public' , default = False)
+
+
+
+	# Manage metadata:
+	class Meta:
+		verbose_name = 'Investigative Report'
+		verbose_name_plural = 'Investigative Reports'
+
+
+
+class InvestigativeReportFinding(models.Model):
+	# Choices:
+	FINDINGS = [
+					('0' , 'Sustained'),
+					('1' , 'Not Sustained'),
+					('2' , 'Exonerated'),
+					('3' , 'Unfounded')
+				]
+
+	# Related Models:
+	investigativeReport = models.ForeignKey(InvestigativeReport , on_delete = models.CASCADE , verbose_name = 'Investigative Report')
+
+	# Contents:
+	findingSummary = models.TextField('Summary of Finding' , max_length = 10000 , blank = True)
+	findingBasis = models.CharField('Department Policy/Legal Code' , max_length = 500 , blank = True)
+	findingBasisQuote = models.TextField('Policy/Legal Code Quote' , max_length = 10000 , blank = True)
+	finding = models.CharField('Finding' , max_length = 2 , choices = FINDINGS , default = '0')
+
+	# Administrative:
+	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
+	updatedOn = models.DateTimeField('Record Last Updated On' , auto_now = True)
+	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
+	delete = models.BooleanField('Delete' , default = False)
+	daysUntilDeletion = models.IntegerField('Days Until Deletion' , default = 30)
+
+	# Permissions:
+	approved = models.BooleanField('Record Approved' , default = False)
+	public = models.BooleanField('Record Public' , default = False)
+
+
+
+	# Manage metadata:
+	class Meta:
+		verbose_name = 'Investigative Report Finding'
+		verbose_name_plural = 'Investigative Report Findings'
