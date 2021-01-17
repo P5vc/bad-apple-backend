@@ -167,6 +167,8 @@ class InvestigativeReport(models.Model):
 
 	# References:
 	fullReportURL = models.URLField('Full Report URL' , max_length = 300 , blank = True)
+	fullArchiveURL = models.URLField('Full Archive URL' , max_length = 300 , blank = True)
+	originalPRARequestURL = models.URLField('Original PRA Request URL' , max_length = 300 , blank = True)
 
 	# Administrative:
 	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
