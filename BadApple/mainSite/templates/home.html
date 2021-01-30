@@ -2,19 +2,8 @@
 {% load static %}
 
 
-{% block meta %}
-        <meta name="description" content="">
-        <meta name="author" content="">
-{% endblock %}
-
-
 {% block title %}
         <title>Bad Apple</title>
-{% endblock %}
-
-
-{% block customCSS %}
-        <link href="{% static "css/home.css" %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 
@@ -34,8 +23,8 @@
             </div>
             <div class="justify-content-center min-vw-100 row text-center w-100">
                 <div class="alignRight col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
-                    <a href="{% url "home" %}"><img src="{% static "img/andrej-lisakov-V2OyJtFqEtY-unsplash.jpg" %}" class="imageSquare mh-100 mw-100 w-75"/></a>
-                    <a href="{% url "home" %}"><p class="imageSquareText imageSquareTextL text-light">PRA Templates</p></a>
+                    <a href="{% url "pra" %}"><img src="{% static "img/andrej-lisakov-V2OyJtFqEtY-unsplash.jpg" %}" class="imageSquare mh-100 mw-100 w-75"/></a>
+                    <a href="{% url "pra" %}"><p class="imageSquareText imageSquareTextL text-light">PRA Templates</p></a>
                 </div>
                 <div class="alignLeft col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
                     <a href="{% url "home" %}"><img class="imageSquare mh-100 mw-100 w-75" src="{% static "img/elena-mozhvilo-j06gLuKK0GM-unsplash.jpg" %}"/></a>
