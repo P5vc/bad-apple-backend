@@ -1,6 +1,6 @@
 from celery.schedules import crontab
-from .celery import app
-from .models import DatabaseManagerPermissions , PRATemplate , OversightCommission
+from mainSite.celery import app
+from mainSite.models import DatabaseManagerPermissions , PRATemplate , OversightCommission
 
 
 # Task scheduler:
@@ -13,18 +13,18 @@ def setup_periodic_tasks(sender , **kwargs):
 # Tasks:
 @app.task
 def deleteDatabaseEntries():
-	for dbPRATemplateEntry in PRATemplate.objects.filter(delete = True):
-		dbPRATemplateEntry.daysUntilDeletion -= 1
-		if (dbPRATemplateEntry.daysUntilDeletion < 0):
+	for dbPRATemplateEntry in PRATemplate.objects.filter(toBeDeleted = True):
+		if (dbPRATemplateEntry.daysUntilDeletion <= 0):
 			dbPRATemplateEntry.delete()
 		else:
+			dbPRATemplateEntry.daysUntilDeletion -= 1
 			dbPRATemplateEntry.save()
 
-	for dbOversightCommissionEntry in OversightCommission.objects.filter(delete = True):
-		dbOversightCommissionEntry.daysUntilDeletion -= 1
-		if (dbOversightCommissionEntry.daysUntilDeletion < 0):
+	for dbOversightCommissionEntry in OversightCommission.objects.filter(toBeDeleted = True):
+		if (dbOversightCommissionEntry.daysUntilDeletion <= 0):
 			dbOversightCommissionEntry.delete()
 		else:
+			dbOversightCommissionEntry.daysUntilDeletion -= 1
 			dbOversightCommissionEntry.save()
 
 
