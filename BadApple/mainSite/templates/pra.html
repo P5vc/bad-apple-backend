@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+        <title>Bad Apple - PRA Templates</title>
+{% endblock %}
+
+
+{% block customCSS %}
+        <link href="{% static "css/pra.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block pageOneActive %}{% endblock %}
+
+
+{% block content %}
+        <div class="align-content-center align-items-center bg-light container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 text-dark w-100">
+            <div class="justify-content-center min-vw-100 row text-center w-100">
+                <div class="col-12 mb-3">
+                    <h1 class="display-1">PRA Templates</h1>
+                </div>
+            </div>
+            <form role="form" action="." method="post">
+                <div class="justify-content-center mb-5 min-vw-100 mt-5 row text-center w-100">
+                    <div class="col-12 col-md-1">
+                    </div>
+                    <div class="col-12 col-md-4 mt-2">
+                        <div class="form-group">
+                            <label for="{{ praForm.stateTerritoryProvince.id_for_label }}">State</label>
+                            {{ praForm.stateTerritoryProvince }}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 mt-2 ">
+                        <div class="form-group ">
+                            <label for="{{ praForm.subject.id_for_label }}">Subject</label>
+                            {{ praForm.subject }}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-2 mt-4 pt-2">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    <div class="col-12 col-md-1">
+                    </div>
+                </div>
+            </form>
+        </div>
+{% endblock content %}
