@@ -39,7 +39,7 @@ class PRATemplate(models.Model):
 	createdOn = models.DateTimeField('Template Created On (Auto-Filled)' , auto_now_add = True)
 	updatedOn = models.DateTimeField('Template Last Updated On (Auto-Filled)' , auto_now = True)
 	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
-	delete = models.BooleanField('Delete' , default = False)
+	toBeDeleted = models.BooleanField('Delete' , default = False)
 	daysUntilDeletion = models.IntegerField('Days Until Deletion (When Marked For Deletion)' , default = 30)
 
 	# Permissions:
@@ -107,7 +107,7 @@ class OversightCommission(models.Model):
 	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
 	updatedOn = models.DateTimeField('Record Last Updated On' , auto_now = True)
 	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
-	delete = models.BooleanField('Delete' , default = False)
+	toBeDeleted = models.BooleanField('Delete' , default = False)
 	daysUntilDeletion = models.IntegerField('Days Until Deletion' , default = 30)
 
 	# Permissions:
@@ -132,7 +132,7 @@ class Officer(models.Model):
 	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
 	updatedOn = models.DateTimeField('Record Last Updated On' , auto_now = True)
 	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
-	delete = models.BooleanField('Delete' , default = False)
+	toBeDeleted = models.BooleanField('Delete' , default = False)
 	daysUntilDeletion = models.IntegerField('Days Until Deletion' , default = 30)
 
 	# Permissions:
@@ -174,7 +174,7 @@ class InvestigativeReport(models.Model):
 	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
 	updatedOn = models.DateTimeField('Record Last Updated On' , auto_now = True)
 	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
-	delete = models.BooleanField('Delete' , default = False)
+	toBeDeleted = models.BooleanField('Delete' , default = False)
 	daysUntilDeletion = models.IntegerField('Days Until Deletion' , default = 30)
 
 	# Permissions:
@@ -212,7 +212,7 @@ class InvestigativeReportFinding(models.Model):
 	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
 	updatedOn = models.DateTimeField('Record Last Updated On' , auto_now = True)
 	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
-	delete = models.BooleanField('Delete' , default = False)
+	toBeDeleted = models.BooleanField('Delete' , default = False)
 	daysUntilDeletion = models.IntegerField('Days Until Deletion' , default = 30)
 
 	# Permissions:
