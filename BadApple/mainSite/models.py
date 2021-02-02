@@ -1,5 +1,6 @@
 # General imports:
 from django.db import models
+from string import capwords
 
 # Import reference data:
 from mainSite.extendedModels.modelCodes import *
@@ -56,15 +57,7 @@ class PRATemplate(models.Model):
 
 
 class OversightCommission(models.Model):
-	# Choices:
-	#TYPES = [
-	#				('0' , 'Citizen Board/Panel/Commission/Committee'),
-	#				('1' , 'Independent Auditor/Monitor/Agency/Ombudsman'),
-	#				('2' , 'Office/Board/Council/Divison of Elected Officials'),
-	#				('3' , 'Office/Board/Council/Divison of Appointed Officials'),
-	#				('4' , 'Board of Police Commissionors'),
-	#				('5' , 'Interdepartmental Entity (H.R./Office of Complaints)')
-	#		]
+	#Choices
 	TYPES = [
 					('0' , 'Police Review Boards and Commissions'),
 					('1' , 'Sheriff Review Boards and Commissions')
@@ -123,10 +116,21 @@ class OversightCommission(models.Model):
 
 
 
+	# Override default save behavior to ensure proper capitalization:
+	def save(self, *args, **kwargs):
+		self.name = capwords(self.name)
+		self.cityTown = capwords(self.cityTown)
+		self.address1 = capwords(self.address1)
+		self.address2 = capwords(self.address2)
+
+		super(OversightCommission , self).save(*args, **kwargs)
+
+
+
 class Officer(models.Model):
-	firstName = models.CharField('First Name' , max_length = 150 , blank = True)
+	firstName = models.CharField('First Name(s)' , max_length = 150 , blank = True)
 	middleName = models.CharField('Middle Name/Initial' , max_length = 150 , blank = True)
-	lastName = models.CharField('Last Name' , max_length = 150 , blank = True)
+	lastName = models.CharField('Last Name(s)' , max_length = 150 , blank = True)
 
 	# Administrative:
 	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
@@ -145,6 +149,16 @@ class Officer(models.Model):
 	class Meta:
 		verbose_name = 'Officer'
 		verbose_name_plural = 'Officers'
+
+
+
+	# Override default save behavior to ensure proper capitalization:
+	def save(self, *args, **kwargs):
+		self.firstName = capwords(self.firstName)
+		self.middleName = capwords(self.middleName)
+		self.lastName = capwords(self.lastName)
+
+		super(Officer , self).save(*args, **kwargs)
 
 
 
@@ -187,6 +201,16 @@ class InvestigativeReport(models.Model):
 	class Meta:
 		verbose_name = 'Investigative Report'
 		verbose_name_plural = 'Investigative Reports'
+
+
+
+	# Override default save behavior to ensure proper capitalization:
+	def save(self, *args, **kwargs):
+		self.investigator = capwords(self.investigator)
+		self.investigatorEmployer = capwords(self.investigatorEmployer)
+		self.client = capwords(self.client)
+
+		super(InvestigativeReport , self).save(*args, **kwargs)
 
 
 
