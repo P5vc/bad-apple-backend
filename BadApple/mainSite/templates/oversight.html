@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+        <title>Bad Apple - Oversight Lookup</title>
+{% endblock %}
+
+
+{% block customCSS %}
+        <link href="{% static "css/oversight.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block pageTwoActive %}{% endblock %}
+
+
+{% block content %}
+        <div class="align-content-center align-items-center bg-light container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 text-dark w-100">
+            <div class="justify-content-center min-vw-100 row text-center w-100">
+                <div class="col-12 mb-3 mt-3">
+                    <h1 class="display-1">Oversight Commissions</h1>
+                </div>
+            </div>
+            <form role="form" action="." method="post">
+                <div class="justify-content-center mb-5 min-vw-100 mt-5 row text-center w-100">
+                    <div class="col-12 col-md-1">
+                    </div>
+                    <div class="col-12 col-md-4 mt-2">
+                        <div class="form-group">
+                            <label for="{{ oversightForm.stateTerritoryProvince.id_for_label }}">State</label>
+                            {{ oversightForm.stateTerritoryProvince }}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 mt-2 ">
+                        <div class="form-group ">
+                            <label for="{{ praForm.cityTown.id_for_label }}">City</label>
+                            {{ oversightForm.cityTown }}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-2 mt-4 pt-2">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    <div class="col-12 col-md-1">
+                    </div>
+                </div>
+            </form>
+            {% if showResults %}
+            {% if resultFound %}
+            <div class="container">
+                <div class="justify-content-center row">
+                    {% for commission in commissions %}
+                    <div class="col-12 col-lg-4 col-md-6 pb-3 pt-3">
+                        <div class="card h-100">
+                            <a href="." class="d-block"><img src="{% static commission.image %}" class="card-img-top"></a>
+                            <div class="card-body">
+                                <a href="." class="text-dark text-decoration-none"><h5 class="card-title">{{ commission.commissionTitle }}</h5></a>
+                                <p class="card-text">{{ commission.aboutText }}</p>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between small">
+                                <a href="{{ commission.websiteURL }}" class="text-secondary">Website</a>
+                                <span>Updated: {{ commission.modificationDate }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <div class="justify-content-center min-vw-100 row text-center w-100">
+                <div class="col-12">
+                    <h4 class="text-danger">No Commissions Found</h4>
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+{% endblock %}
