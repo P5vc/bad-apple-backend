@@ -1,5 +1,6 @@
 # General imports:
 from django.db import models
+from uuid import uuid4
 
 # Import reference data:
 from mainSite.extendedModels.modelCodes import *
@@ -56,6 +57,13 @@ class PRATemplate(models.Model):
 
 
 class OversightCommission(models.Model):
+	def generateUniqueID():
+		while (True):
+			uniqueID = str(uuid4())
+			if (len(OversightCommission.objects.filter(commissionID = uniqueID)) == 0):
+				return uniqueID
+
+
 	#Choices
 	TYPES = [
 					('0' , 'Police Review Boards and Commissions'),
@@ -96,6 +104,7 @@ class OversightCommission(models.Model):
 	faqPage = models.URLField('FAQ Page URL' , max_length = 300 , blank = True)
 
 	# Administrative:
+	commissionID = models.CharField('Commission ID' , max_length = 36 , default = generateUniqueID)
 	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
 	updatedOn = models.DateTimeField('Record Last Updated On' , auto_now = True)
 	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
