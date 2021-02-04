@@ -1,6 +1,5 @@
 # General imports:
 from django.db import models
-from string import capwords
 
 # Import reference data:
 from mainSite.extendedModels.modelCodes import *
@@ -116,17 +115,6 @@ class OversightCommission(models.Model):
 
 
 
-	# Override default save behavior to ensure proper capitalization:
-	def save(self, *args, **kwargs):
-		self.name = capwords(self.name)
-		self.cityTown = capwords(self.cityTown)
-		self.address1 = capwords(self.address1)
-		self.address2 = capwords(self.address2)
-
-		super(OversightCommission , self).save(*args, **kwargs)
-
-
-
 class Officer(models.Model):
 	firstName = models.CharField('First Name(s)' , max_length = 150 , blank = True)
 	middleName = models.CharField('Middle Name/Initial' , max_length = 150 , blank = True)
@@ -149,16 +137,6 @@ class Officer(models.Model):
 	class Meta:
 		verbose_name = 'Officer'
 		verbose_name_plural = 'Officers'
-
-
-
-	# Override default save behavior to ensure proper capitalization:
-	def save(self, *args, **kwargs):
-		self.firstName = capwords(self.firstName)
-		self.middleName = capwords(self.middleName)
-		self.lastName = capwords(self.lastName)
-
-		super(Officer , self).save(*args, **kwargs)
 
 
 
@@ -201,16 +179,6 @@ class InvestigativeReport(models.Model):
 	class Meta:
 		verbose_name = 'Investigative Report'
 		verbose_name_plural = 'Investigative Reports'
-
-
-
-	# Override default save behavior to ensure proper capitalization:
-	def save(self, *args, **kwargs):
-		self.investigator = capwords(self.investigator)
-		self.investigatorEmployer = capwords(self.investigatorEmployer)
-		self.client = capwords(self.client)
-
-		super(InvestigativeReport , self).save(*args, **kwargs)
 
 
 
