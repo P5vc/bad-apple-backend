@@ -2,7 +2,6 @@ from django.shortcuts import render
 from mainSite.models import PRATemplate , OversightCommission
 from mainSite.forms import PRATemplateForm , OversightCommissionForm
 from random import choice
-from string import capwords
 
 
 def home(request):
@@ -38,7 +37,7 @@ def oversight(request):
 		resultFound = False
 		if (oversightForm.is_valid()):
 			if (len(oversightForm.cleaned_data['cityTown']) > 0):
-				commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = oversightForm.cleaned_data['stateTerritoryProvince'] , cityTown = capwords(oversightForm.cleaned_data['cityTown']) , approved = True , public = True)
+				commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = oversightForm.cleaned_data['stateTerritoryProvince'] , cityTown__icontains = oversightForm.cleaned_data['cityTown'] , approved = True , public = True)
 			else:
 				commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = oversightForm.cleaned_data['stateTerritoryProvince'] , approved = True , public = True)
 
