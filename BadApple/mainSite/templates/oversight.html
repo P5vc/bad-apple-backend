@@ -55,8 +55,9 @@
                         <div class="card h-100">
                             <a href="." class="d-block"><img src="{% static commission.image %}" class="card-img-top"></a>
                             <div class="card-body">
+                                <h6 class="text-info">{{ commission.cityTown }}</h6>
                                 <a href="." class="text-dark text-decoration-none"><h5 class="card-title">{{ commission.commissionTitle }}</h5></a>
-                                <p class="card-text">{{ commission.aboutText }}</p>
+                                <p class="card-text text-secondary">{{ commission.aboutText }}</p>
                             </div>
                             <div class="card-footer d-flex justify-content-between small">
                                 <a href="{{ commission.websiteURL }}" class="text-secondary">Website</a>
