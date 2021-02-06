@@ -47,7 +47,8 @@ def oversight(request):
 			backgroundImages = ['img/lucas-benjamin-wQLAGv4_OYs-unsplash.jpg' , 'img/steve-johnson-ctRJMubyj4o-unsplash.jpg' , 'img/joel-filipe-WjnF1Tp-p3I-unsplash.jpg' , 'img/rene-bohmer-YeUVDKZWSZ4-unsplash.jpg' , 'img/jr-korpa-SFT9G3pAxLY-unsplash.jpg' , 'img/rodion-kutsaev-pVoEPpLw818-unsplash.jpg' , 'img/vinicius-amnx-amano-OHPdgstNFGs-unsplash.jpg' , 'img/henrik-donnestad-V6Qd6zA85ck-unsplash.jpg' , 'img/pawel-czerwinski-l8DUam8vtbc-unsplash.jpg' , 'img/denise-chan-pXmbsF70ulM-unsplash.jpg']
 			commissions = []
 			for commissionObject in commissionObjects:
-				commission = {'image' : choice(backgroundImages) , 'cityTown' : '' , 'commissionTitle' : '' , 'aboutText' : '' , 'websiteURL' : '.' , 'modificationDate' : ''}
+				commission = {'image' : choice(backgroundImages) , 'commissionID' : '' , 'cityTown' : '' , 'commissionTitle' : '' , 'aboutText' : '' , 'websiteURL' : '.' , 'modificationDate' : ''}
+				commission['commissionID'] = str(commissionObject.commissionID)
 				commission['cityTown'] = str(commissionObject.cityTown)
 				commission['commissionTitle'] = str(commissionObject.name)
 				if (len(str(commissionObject.aboutSummary)) > 200):
