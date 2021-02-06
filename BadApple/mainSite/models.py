@@ -71,7 +71,7 @@ class OversightCommission(models.Model):
 			]
 
 	# Profile:
-	name = models.CharField('Name' , max_length = 150 , blank = True)
+	name = models.CharField('Name' , max_length = 150)
 	type = models.CharField('Type' , max_length = 4 , choices = TYPES , default = '0')
 	website = models.URLField('Website URL' , max_length = 300 , blank = True)
 

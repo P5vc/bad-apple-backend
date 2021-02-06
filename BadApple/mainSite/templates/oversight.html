@@ -53,14 +53,24 @@
                     {% for commission in commissions %}
                     <div class="col-12 col-lg-4 col-md-6 pb-3 pt-3">
                         <div class="card h-100">
-                            <a href="." class="d-block"><img src="{% static commission.image %}" class="card-img-top"></a>
+                            <a href="{% url "commission" commission.commissionID %}" class="d-block"><img src="{% static commission.image %}" class="card-img-top"></a>
                             <div class="card-body">
+                                {% if commission.cityTown %}
                                 <h6 class="text-info">{{ commission.cityTown }}</h6>
-                                <a href="." class="text-dark text-decoration-none"><h5 class="card-title">{{ commission.commissionTitle }}</h5></a>
+                                {% endif %}
+                                <a href="{% url "commission" commission.commissionID %}" class="text-dark text-decoration-none"><h5 class="card-title">{{ commission.commissionTitle }}</h5></a>
+                                {% if commission.aboutText %}
                                 <p class="card-text text-secondary">{{ commission.aboutText }}</p>
+                                {% else %}
+                                <p class="card-text text-secondary">No commission summary available.</p>
+                                {% endif %}
                             </div>
                             <div class="card-footer d-flex justify-content-between small">
+                                {% if commission.websiteURL %}
                                 <a href="{{ commission.websiteURL }}" class="text-secondary">Website</a>
+                                {% else %}
+                                <a href="." class="text-secondary">No Website</a>
+                                {% endif %}
                                 <span>Updated: {{ commission.modificationDate }}</span>
                             </div>
                         </div>
