@@ -1,0 +1,33 @@
+@media (min-width:1200px) {
+    .maximumWidth {
+        max-width: 75%;
+    }
+}
+
+.smallLineSpacing {
+    line-height: 1;
+}
+
+.palette-background {
+    background-color: #f3fefe;
+}
+
+.palette-darker-background {
+    background-color: #ddeced;
+}
+
+.palette-blue {
+    color: #3d5a80;
+}
+
+.palette-light-blue {
+    color: #98c1d9;
+}
+
+.palette-orange {
+    color: #ee6c4d;
+}
+
+.palette-black {
+    color: #293241;
+}

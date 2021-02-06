@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+        <title>Bad Apple - Oversight Commission</title>
+{% endblock %}
+
+
+{% block customCSS %}
+        <link href="{% static "css/oversight.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block pageTwoActive %}{% endblock %}
+
+
+{% block content %}
+        <div class="align-content-center align-items-center bg-dark container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 w-100">
+            <div class="container maximumWidth mb-4 mt-4">
+                <div class="bg-dark card h-100">
+                    <img class="card-img-top" src="{% static image %}">
+                    <div class="card-body palette-background">
+                        <div class="mb-2 row">
+                            <div class="col-12">
+                                <a href="{{ website }}" class="text-decoration-none"><h5 class="card-title mb-0 palette-black">{{ name }}</h5></a>
+                            </div>
+                            <div class="col-12">
+                                <small class="palette-light-blue">{{ type }}</small>
+                            </div>
+                        </div>
+                        <div class="mb-4 row">
+                            <div class="col-12">
+                                <p class="mb-0 palette-blue smallLineSpacing">{% if address1 %}{{ address1 }}<br>{% endif %}{% if address2 %}{{ address2 }}<br>{% endif %}{% if cityTown %}{{ cityTown }}, {% endif %}{% if stateTerritoryProvince %}{{ stateTerritoryProvince }}{% endif %}</p>
+                            </div>
+                        </div>
+                        <div class="mb-2 row">
+                            <div class="col-12">
+                                <h6 class="palette-orange">Contact Information</h6>
+                            </div>
+                            {% if email %}
+                            <div class="col-6 col-md-3">
+                                <a href="mailto:{{ email }}" class="text-decoration-none"><p class="palette-blue smallLineSpacing">Email Address</p></a>
+                            </div>
+                            {% endif %}
+                            {% if phone %}
+                            <div class="col-6 col-md-3">
+                                <a href="tel:{{ phone }}" class="text-decoration-none"><p class="palette-blue smallLineSpacing">Phone Number</p></a>
+                            </div>
+                            {% endif %}
+                            {% if ttdtty %}
+                            <div class="col-6 col-md-3">
+                                <a href="tel:{{ ttdtty }}" class="text-decoration-none"><p class=" palette-blue smallLineSpacing">TTD/TTY Number</p></a>
+                            </div>
+                            {% endif %}
+                            {% if fax %}
+                            <div class="col-6 col-md-3">
+                                <a href="tel:{{ fax }}" class="text-decoration-none"><p class="palette-blue smallLineSpacing">Fax Number</p></a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-4 row">
+                            <div class="col-12">
+                                <h6 class="palette-orange">About</h6>
+                                {% if about %}
+                                <p class="mb-0 palette-blue smallLineSpacing">{{ about }}</p>
+                                {% else %}
+                                <p class="mb-0 palette-blue smallLineSpacing">There is no summary data available for this oversight commission.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="mb-2 row">
+                            <div class="col-12">
+                                <h6 class="palette-orange">Additional Links</h6>
+                            </div>
+                            {% if website %}
+                            <div class="col-6 col-md-3">
+                                <a href="{{ website }}" class="text-decoration-none"><p class="palette-blue smallLineSpacing">Website</p></a>
+                            </div>
+                            {% endif %}
+                            {% if contactForm %}
+                            <div class="col-6 col-md-3">
+                                <a href="{{ contactForm }}" class="text-decoration-none"><p class="palette-blue smallLineSpacing">Contact Form</p></a>
+                            </div>
+                            {% endif %}
+                            {% if pressForm %}
+                            <div class="col-6 col-md-3">
+                                <a href="{{ pressForm }}" class="text-decoration-none"><p class=" palette-blue smallLineSpacing">Press Form</p></a>
+                            </div>
+                            {% endif %}
+                            {% if complaintInfo1 %}
+                            <div class="col-6 col-md-3">
+                                <a href="{{ complaintInfo1 }}" class="text-decoration-none"><p class="palette-blue smallLineSpacing">Complaint Info</p></a>
+                            </div>
+                            {% endif %}
+                            {% if complaintInfo2 %}
+                            <div class="col-6 col-md-3">
+                                <a href="{{ complaintInfo2 }}" class="text-decoration-none"><p class="palette-blue smallLineSpacing">More Info</p></a>
+                            </div>
+                            {% endif %}
+                            {% if complaintForm %}
+                            <div class="col-6 col-md-3">
+                                <a href="{{ complaintForm }}" class="text-decoration-none"><p class="palette-blue smallLineSpacing">Complaint Form</p></a>
+                            </div>
+                            {% endif %}
+                            {% if members %}
+                            <div class="col-6 col-md-3">
+                                <a href="{{ members }}" class="text-decoration-none"><p class="palette-blue smallLineSpacing">Members</p></a>
+                            </div>
+                            {% endif %}
+                            {% if faq %}
+                            <div class="col-6 col-md-3">
+                                <a href="{{ faq }}" class="text-decoration-none"><p class="palette-blue smallLineSpacing">FAQ</p></a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <small class="card-text palette-light-blue">This information was last updated on {{ updated }}.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
