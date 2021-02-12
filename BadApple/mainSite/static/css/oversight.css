@@ -4,30 +4,42 @@
     }
 }
 
+.smaller-card-image-top {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+}
+
 .smallLineSpacing {
-    line-height: 1;
+    line-height: 1.1;
 }
 
-.palette-background {
-    background-color: #f3fefe;
+.palette-primary {
+    color: #2e343b;
 }
 
-.palette-darker-background {
-    background-color: #ddeced;
+.palette-secondary {
+    color: #6c7a89;
 }
 
-.palette-blue {
-    color: #3d5a80;
+.palette-title {
+    color: #d35400;
 }
 
-.palette-light-blue {
-    color: #98c1d9;
+.palette-text {
+    color: #4f5a65;
 }
 
-.palette-orange {
-    color: #ee6c4d;
+.palette-data {
+    color: #9b59b6;
 }
 
-.palette-black {
-    color: #293241;
+.palette-link {
+    color: #1e90ff;
+}
+
+.palette-link:hover {
+    color: #1e90ff;
+    font-weight: bolder;
+    transition: all 250ms;
 }
