@@ -9,27 +9,63 @@
 
 {% block content %}
         <div class="align-content-center align-items-center bg-light container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 pb-5 text-dark w-100">
-            <div class="justify-content-center mb-5 min-vw-100 mt-5 row text-center w-100">
+            <div class="justify-content-center mb-4 min-vw-100 row text-center w-100">
                 <div class="col-12">
-                    <h1 class="display-1">Menu</h1>
+                    <h1 class="display-1">Bad Apple</h1>
+                </div>
+                <div class="col-12">
+                    <h6 class="lead">A collaboration between <a href="https://Priveasy.org" class="linkHover text-decoration-none">Priveasy</a> and the <a href="https://www.aaronswartzday.org/psp/" class="linkHover text-decoration-none">Aaron Swartz Day Police Surveillance Project</a>, Bad Apple provides valuable tools and resources with the aim of holding law enforcement accountable and putting an end to police misconduct.</h6>
                 </div>
             </div>
             <div class="justify-content-center min-vw-100 row text-center w-100">
                 <div class="alignRight col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
-                    <a href="{% url "pra" %}"><img src="{% static "img/andrej-lisakov-V2OyJtFqEtY-unsplash.jpg" %}" class="imageSquare mh-100 mw-100 w-75"/></a>
-                    <a href="{% url "pra" %}"><p class="imageSquareText imageSquareTextL text-light">PRA Templates</p></a>
+                    <a href="{% url 'pra' %}"><img src="{% static 'img/andrej-lisakov-V2OyJtFqEtY-unsplash.jpg' %}" class="imageSquare mh-100 mw-100 w-75"/></a>
+                    <a href="{% url 'pra' %}"><p class="imageSquareText imageSquareTextL text-light">PRA Templates</p></a>
                 </div>
                 <div class="alignLeft col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
-                    <a href="{% url "oversight" %}"><img class="imageSquare mh-100 mw-100 w-75" src="{% static "img/elena-mozhvilo-j06gLuKK0GM-unsplash.jpg" %}"/></a>
-                    <a href="{% url "oversight" %}"><p class="imageSquareText imageSquareTextR text-light">Oversight Lookup</p></a>
+                    <a href="{% url 'oversight' %}"><img class="imageSquare mh-100 mw-100 w-75" src="{% static 'img/elena-mozhvilo-j06gLuKK0GM-unsplash.jpg' %}"/></a>
+                    <a href="{% url 'oversight' %}"><p class="imageSquareText imageSquareTextR text-light">Oversight Lookup</p></a>
                 </div>
                 <div class="alignRight col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
-                    <a href="{% url "home" %}"><img src="{% static "img/stepan-babanin-kx6fpBOm-ss-unsplash.jpg" %}" class="imageSquare mh-100 mw-100 w-75"/></a>
-                    <a href="{% url "home" %}"><p class="imageSquareText imageSquareTextL text-light">Bad Apple Database</p></a>
+                    <a href="{% url 'home' %}"><img src="{% static 'img/stepan-babanin-kx6fpBOm-ss-unsplash.jpg' %}" class="imageSquare mh-100 mw-100 w-75"/></a>
+                    <a href="{% url 'home' %}"><p class="imageSquareText imageSquareTextL text-light">Bad Apple Database</p></a>
                 </div>
                 <div class="alignLeft col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
-                    <a href="{% url "home" %}"><img src="{% static "img/thiago-carlos-machado-oNXGsD7Ibsk-unsplash.jpg" %}" class="imageSquare mh-100 mw-100 w-75"/></a>
-                    <a href="{% url "home" %}"><p class="imageSquareText imageSquareTextR text-light">Submit a Tip</p></a>
+                    <a href="{% url 'home' %}"><img src="{% static 'img/thiago-carlos-machado-oNXGsD7Ibsk-unsplash.jpg' %}" class="imageSquare mh-100 mw-100 w-75"/></a>
+                    <a href="{% url 'home' %}"><p class="imageSquareText imageSquareTextR text-light">Submit a Tip</p></a>
+                </div>
+            </div>
+        </div>
+        <div class="align-content-center align-items-center bg-light container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 pb-5 text-dark w-100">
+            <div class="justify-content-center row text-center w-100">
+                <div class="col-12">
+                    <h1 class="display-1">About</h1>
+                </div>
+            </div>
+            <div class="justify-content-center mt-3 row w-100">
+                <div class="col-12 mt-3">
+                    <h4><a href="{% url 'pra' %}" class="linkHover text-decoration-none">Public Records Act Templates</a></h4>
+                </div>
+                <div class="col-12">
+                    <p>An organized database of templates designed to simplify the process filing effective, Public Records Act requests.</p>
+                </div>
+                <div class="col-12 mt-3">
+                    <h4><a href="{% url 'oversight' %}" class="linkHover text-decoration-none">Oversight Commission Lookup</a></h4>
+                </div>
+                <div class="col-12">
+                    <p>Search for police and sheriff oversight commissions by location, and get all of the information you need, compiled onto one, straightfoward page.</p>
+                </div>
+                <div class="col-12 mt-3">
+                    <h4><a href="{% url 'home' %}" class="linkHover text-decoration-none">Bad Apple Database</a></h4>
+                </div>
+                <div class="col-12">
+                    <p>Look up officers who have had sustained findings found against them for misconduct, and view all relevant information.</p>
+                </div>
+                <div class="col-12 mt-3">
+                    <h4><a href="{% url 'home' %}" class="linkHover text-decoration-none">Private Tip Submissions</a></h4>
+                </div>
+                <div class="col-12">
+                    <p>Submit an anonymous tip about misconduct you've witnessed. We use this information to guide our future PRA requests, and may include it in reports presented to oversight commissions.</p>
                 </div>
             </div>
         </div>
