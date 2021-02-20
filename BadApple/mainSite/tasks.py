@@ -1,6 +1,6 @@
 from celery.schedules import crontab
 from mainSite.celery import app
-from mainSite.models import DatabaseManagerPermissions , PRATemplate , OversightCommission
+from mainSite.models import DatabaseManagerPermissions , PRATemplate , OversightCommission , Officer , InvestigativeReport , InvestigativeReportFinding
 
 
 # Task scheduler:
@@ -26,6 +26,27 @@ def deleteDatabaseEntries():
 		else:
 			dbOversightCommissionEntry.daysUntilDeletion -= 1
 			dbOversightCommissionEntry.save()
+
+	for dbOfficerEntry in Officer.objects.filter(toBeDeleted = True):
+		if (dbOfficerEntry.daysUntilDeletion <= 0):
+			dbOfficerEntry.delete()
+		else:
+			dbOfficerEntry.daysUntilDeletion -= 1
+			dbOfficerEntry.save()
+
+	for dbInvestigativeReportEntry in InvestigativeReport.objects.filter(toBeDeleted = True):
+		if (dbInvestigativeReportEntry.daysUntilDeletion <= 0):
+			dbInvestigativeReportEntry.delete()
+		else:
+			dbInvestigativeReportEntry.daysUntilDeletion -= 1
+			dbInvestigativeReportEntry.save()
+
+	for dbInvestigativeReportFindingEntry in InvestigativeReportFinding.objects.filter(toBeDeleted = True):
+		if (dbInvestigativeReportFindingEntry.daysUntilDeletion <= 0):
+			dbInvestigativeReportFindingEntry.delete()
+		else:
+			dbInvestigativeReportFindingEntry.daysUntilDeletion -= 1
+			dbInvestigativeReportFindingEntry.save()
 
 
 @app.task
