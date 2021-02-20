@@ -66,7 +66,9 @@
                             <div class="col-12">
                                 <h6 class="palette-title">About</h6>
                                 {% if about %}
-                                <p class="mb-0 palette-text smallLineSpacing">{{ about }}</p>
+                                {% for paragraph in about %}
+                                <p class="mb-0 palette-text smallLineSpacing">{{ paragraph }}</p>
+                                {% endfor %}
                                 {% else %}
                                 <p class="mb-0 palette-text smallLineSpacing">There is no summary data available for this oversight commission.</p>
                                 {% endif %}
