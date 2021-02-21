@@ -1,0 +1,89 @@
+.linkExpand {
+    letter-spacing: 0px;
+    font-weight: inherit;
+	transition: all 250ms;
+}
+
+.linkExpand:hover {
+    letter-spacing: 2px;
+    font-weight: bolder;
+	transition: all 1000ms;
+}
+
+.linkBlue {
+	color: #212529;
+}
+
+.linkBlue:hover {
+	color: #0d6efd;
+}
+
+.linkPurple {
+	color: #212529;
+}
+
+.linkPurple:hover {
+	color: #713ea6;
+}
+
+.linkThin {
+    font-weight: lighter;
+    transition: all 250ms;
+}
+
+.linkThin:hover {
+    text-decoration: underline;
+    font-weight: normal;
+	transition: all 1000ms;
+}
+
+.maxWidthReduced {
+    max-width: 100%;
+}
+
+@media (min-width:1200px) {
+    .maxWidthReduced {
+        max-width: 75%;
+    }
+}
+
+.palette-primary {
+    color: #2e343b;
+}
+
+.palette-secondary {
+    color: #6c7a89;
+}
+
+.palette-title {
+    color: #d35400;
+}
+
+.palette-text {
+    color: #4f5a65;
+}
+
+.palette-data {
+    color: #9b59b6;
+}
+
+.palette-link {
+    color: #1e90ff;
+	transition: all 250ms;
+}
+
+.palette-link:hover {
+    color: #1e90ff;
+    font-weight: bolder;
+    transition: all 1000ms;
+}
+
+.smaller-card-image-top {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.smallLineSpacing {
+    line-height: 1.1;
+}
