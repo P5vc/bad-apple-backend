@@ -24,7 +24,9 @@ class PRATemplate(models.Model):
 					('6' , 'Predictive Policing'),
 					('7' , 'Gunshot Detection Microphones (ShotSpotter)'),
 					('8' , 'Social Media Monitoring'),
-					('9' , 'IMSI-Catcher Equipment (Stingray)')
+					('9' , 'IMSI-Catcher Equipment (Stingray)'),
+					('10' , 'Police Misconduct - Based on the Officer\'s Name'),
+					('11' , 'Police Misconduct - Based on the Incident')
 				]
 
 	# Filters:
