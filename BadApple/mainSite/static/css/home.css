@@ -73,27 +73,3 @@
         margin-top: -67%;
     }
 }
-
-.linkHover:hover {
-    color: #713ea6;
-    transition: all 1000ms;
-    letter-spacing: 2px;
-    font-weight: bolder;
-}
-
-.linkHover {
-    color: #212529;
-    letter-spacing: 0px;
-    transition: all 250ms;
-    font-weight: inherit;
-}
-
-.thinUntilHover {
-    font-weight: lighter;
-    transition: all 250ms;
-}
-
-.thinUntilHover:hover {
-    text-decoration: underline;
-    font-weight: normal;
-}
