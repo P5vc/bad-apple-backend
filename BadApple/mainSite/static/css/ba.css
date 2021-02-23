@@ -78,6 +78,14 @@
     transition: all 1000ms;
 }
 
+.palette-link-color {
+    color: #1e90ff;
+}
+
+.palette-link-color:hover {
+    color: #1e90ff;
+}
+
 .smaller-card-image-top {
     width: 100%;
     max-height: 200px;
