@@ -20,7 +20,7 @@ class PRATemplate(models.Model):
 					('2' , 'Facial Recognition'),
 					('3' , 'Thermographic Cameras (FLIR)'),
 					('4' , 'License Plate Readers'),
-					('5' , 'Memoranda of Understanding'),
+					('5' , 'Federal MOUs (Memoranda of Understanding)'),
 					('6' , 'Predictive Policing'),
 					('7' , 'Gunshot Detection Microphones (ShotSpotter)'),
 					('8' , 'Social Media Monitoring'),
