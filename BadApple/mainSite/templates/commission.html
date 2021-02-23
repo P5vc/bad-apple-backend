@@ -1,14 +1,9 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
 
 {% block title %}
         <title>Bad Apple - Oversight Commission</title>
-{% endblock %}
-
-
-{% block customCSS %}
-        <link href="{% static "css/oversight.css" %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 
@@ -20,13 +15,13 @@
 
 {% block content %}
         <div class="align-content-center align-items-center bg-dark container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 w-100">
-            <div class="container maximumWidth mb-4 mt-4">
+            <div class="container maxWidthReduced mb-4 mt-4">
                 <div class="bg-dark card h-100">
                     <img class="smaller-card-image-top" src="{% static image %}">
                     <div class="card-body bg-light">
                         <div class="mb-2 row">
                             <div class="col-12">
-                                <a href="{{ website }}" class="text-decoration-none"><h5 class="card-title mb-0 palette-primary">{{ name }}</h5></a>
+                                <a href="{{ website }}" class="text-decoration-none"><h4 class="card-title mb-0 palette-primary">{{ name }}</h4></a>
                             </div>
                             <div class="col-12">
                                 <small class="palette-secondary">{{ type }}</small>
@@ -39,32 +34,36 @@
                         </div>
                         <div class="mb-2 row">
                             <div class="col-12">
-                                <h6 class="palette-title">Contact Information</h6>
+                                <h5 class="palette-title">Contact Information</h5>
                             </div>
                             {% if email %}
-                            <div class="col-6 col-md-3">
-                                <a href="mailto:{{ email }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">Email Address</p></a>
+                            <div class="col-6 col-md-4 mb-2">
+                                <p class="mb-0">Email Address:</p>
+                                <small><a href="mailto:{{ email }}" class="palette-link-color">{{ email }}</a></small>
                             </div>
                             {% endif %}
                             {% if phone %}
-                            <div class="col-6 col-md-3">
-                                <a href="tel:{{ phone }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">Phone Number</p></a>
+                            <div class="col-6 col-md-4 mb-2">
+                                <p class="mb-0">Phone Number:</p>
+                                <small><a href="tel:{{ phone }}" class="palette-link-color">{{ phone }}</a></small>
                             </div>
                             {% endif %}
                             {% if ttdtty %}
-                            <div class="col-6 col-md-3">
-                                <a href="tel:{{ ttdtty }}" class="text-decoration-none"><p class=" palette-link smallLineSpacing">TTD/TTY Number</p></a>
+                            <div class="col-6 col-md-4 mb-2">
+                                <p class="mb-0">TTD/TTY Number:</p>
+                                <small><a href="tel:{{ ttdtty }}" class="palette-link-color">{{ ttdtty }}</a></small>
                             </div>
                             {% endif %}
                             {% if fax %}
-                            <div class="col-6 col-md-3">
-                                <a href="tel:{{ fax }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">Fax Number</p></a>
+                            <div class="col-6 col-md-4 mb-2">
+                                <p class="mb-0">Fax Number:</p>
+                                <small><a href="tel:{{ fax }}" class="palette-link-color">{{ fax }}</a></small>
                             </div>
                             {% endif %}
                         </div>
                         <div class="mb-4 row">
                             <div class="col-12">
-                                <h6 class="palette-title">About</h6>
+                                <h5 class="palette-title">About</h5>
                                 {% if about %}
                                 {% for paragraph in about %}
                                 <p class="mb-0 palette-text smallLineSpacing">{{ paragraph }}</p>
@@ -76,7 +75,7 @@
                         </div>
                         <div class="mb-2 row">
                             <div class="col-12">
-                                <h6 class="palette-title">Additional Links</h6>
+                                <h5 class="palette-title">Additional Links</h5>
                             </div>
                             {% if website %}
                             <div class="col-6 col-md-3">
