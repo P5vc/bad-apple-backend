@@ -11,33 +11,33 @@
         {% endblock %}
         {% block title %}
         {% endblock %}
-        <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
-        <link href="{% static "css/home.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/ba.css' %}" rel="stylesheet" type="text/css">
         {% block customCSS %}
         {% endblock %}
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
     </head>
     <body class="{% block bodyClasses %}bg-light{% endblock %}">
         <nav class="bg-dark justify-con justify-content-center navbar">
             <div class="container d-flex flex-wrap justify-content-center text-dark">
                 <div class="min-vw-100 row w-100">
                     <div class="col-12 text-center">
-                        <h2 class="display-5 text-light"><a href="{% url "home" %}" class="text-decoration-none text-light thinUntilHover">Bad Apple</a></h2>
+                        <h2 class="display-5 text-light"><a href="{% url 'home' %}" class="text-decoration-none text-light linkThin">Bad Apple</a></h2>
                     </div>
                 </div>
                 <div class="min-vw-100 row w-100">
                     <div class="col-12 mb-auto mt-auto text-center text-light">
                         <div class="justify-content-center row">
                             <div class="col-6 col-md-3 col-sm-3 col-xl-2 mb-auto mt-auto">
-                                <a href="{% url "pra" %}" class="{% block pageOneActive %}text-decoration-none {% endblock %}text-light text-nowrap thinUntilHover">PRA Templates</a>
+                                <a href="{% url 'pra' %}" class="{% block pageOneActive %}text-decoration-none {% endblock %}text-light text-nowrap linkThin">PRA Templates</a>
                             </div>
                             <div class="col-6 col-md-3 col-sm-3 col-xl-2 mb-auto mt-auto">
-                                <a href="{% url "oversight" %}" class="{% block pageTwoActive %}text-decoration-none {% endblock %}text-light text-nowrap thinUntilHover">Oversight Lookup</a>
+                                <a href="{% url 'oversight' %}" class="{% block pageTwoActive %}text-decoration-none {% endblock %}text-light text-nowrap linkThin">Oversight Lookup</a>
                             </div>
                             <div class="col-6 col-md-3 col-sm-3 col-xl-2 mb-auto mt-auto">
-                                <a href="{% url "home" %}" class="{% block pageThreeActive %}text-decoration-none {% endblock %}text-light text-nowrap thinUntilHover">Bad Apple Database</a>
+                                <a href="{% url 'home' %}" class="{% block pageThreeActive %}text-decoration-none {% endblock %}text-light text-nowrap linkThin">Bad Apple Database</a>
                             </div>
                             <div class="col-6 col-md-3 col-sm-3 col-xl-2 mb-auto mt-auto">
-                                <a href="{% url "home" %}" class="{% block pageFourActive %}text-decoration-none {% endblock %}text-light text-nowrap thinUntilHover">Submit a Tip</a>
+                                <a href="{% url 'home' %}" class="{% block pageFourActive %}text-decoration-none {% endblock %}text-light text-nowrap linkThin">Submit a Tip</a>
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
         </nav>
         {% block content %}
         {% endblock %}
-        <script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
         {% block customJS %}
         {% endblock %}
     </body>
