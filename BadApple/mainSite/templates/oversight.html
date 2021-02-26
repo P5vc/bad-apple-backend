@@ -7,11 +7,6 @@
 {% endblock %}
 
 
-{% block customCSS %}
-        <link href="{% static "css/oversight.css" %}" rel="stylesheet" type="text/css">
-{% endblock %}
-
-
 {% block pageTwoActive %}{% endblock %}
 
 
@@ -20,6 +15,7 @@
             <div class="justify-content-center min-vw-100 row text-center w-100">
                 <div class="col-12 mb-3 mt-3">
                     <h1 class="display-1">Oversight Commissions</h1>
+                    <h5><a href="{% url 'documentation' %}#Oversight" class="linkExpand linkBlue text-decoration-none">Learn More</a></h5>
                 </div>
             </div>
             <form role="form" action="." method="post">
@@ -51,18 +47,18 @@
             <div class="container">
                 <div class="justify-content-center row">
                     {% for commission in commissions %}
-                    <div class="col-12 col-lg-4 col-md-6 pb-3 pt-3">
+                    <div class="col-12 col-lg-4 col-md-6 grow pb-3 pt-3">
                         <div class="card h-100">
                             <a href="{% url "commission" commission.commissionID %}" class="d-block"><img src="{% static commission.image %}" class="card-img-top"></a>
                             <div class="card-body">
                                 {% if commission.cityTown %}
-                                <h6 class="text-info">{{ commission.cityTown }}</h6>
+                                <h6 class="text-info"><a href="{% url 'commission' commission.commissionID %}" class="text-decoration-none text-info">{{ commission.cityTown }}</a></h6>
                                 {% endif %}
-                                <a href="{% url "commission" commission.commissionID %}" class="text-dark text-decoration-none"><h5 class="card-title">{{ commission.commissionTitle }}</h5></a>
+                                <a href="{% url 'commission' commission.commissionID %}" class="text-dark text-decoration-none"><h5 class="card-title">{{ commission.commissionTitle }}</h5></a>
                                 {% if commission.aboutText %}
-                                <p class="card-text text-secondary">{{ commission.aboutText }}</p>
+                                <p class="card-text text-secondary"><a href="{% url 'commission' commission.commissionID %}" class="text-decoration-none text-secondary">{{ commission.aboutText }}</a></p>
                                 {% else %}
-                                <p class="card-text text-secondary">No commission summary available.</p>
+                                <p class="card-text text-secondary"><a href="{% url 'commission' commission.commissionID %}" class="text-decoration-none text-secondary">No commission summary available.</a></p>
                                 {% endif %}
                             </div>
                             <div class="card-footer d-flex justify-content-between small">

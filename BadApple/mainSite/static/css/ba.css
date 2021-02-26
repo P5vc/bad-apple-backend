@@ -1,29 +1,39 @@
+.grow {
+    border: 8px solid rgba(0, 0, 0, 0);
+    transition: all 250ms;
+}
+
+.grow:hover {
+    border-width: 0px;
+    transition: all 1000ms 250ms;
+}
+
 .linkExpand {
     letter-spacing: 0px;
     font-weight: inherit;
-	transition: all 250ms;
+    transition: all 250ms;
 }
 
 .linkExpand:hover {
     letter-spacing: 2px;
     font-weight: bolder;
-	transition: all 1000ms;
+    transition: all 1000ms;
 }
 
 .linkBlue {
-	color: #212529;
+    color: #212529;
 }
 
 .linkBlue:hover {
-	color: #0d6efd;
+    color: #0d6efd;
 }
 
 .linkPurple {
-	color: #212529;
+    color: #212529;
 }
 
 .linkPurple:hover {
-	color: #713ea6;
+    color: #713ea6;
 }
 
 .linkThin {
@@ -34,7 +44,7 @@
 .linkThin:hover {
     text-decoration: underline;
     font-weight: normal;
-	transition: all 1000ms;
+    transition: all 1000ms;
 }
 
 .maxWidthReduced {
@@ -69,7 +79,7 @@
 
 .palette-link {
     color: #1e90ff;
-	transition: all 250ms;
+    transition: all 250ms;
 }
 
 .palette-link:hover {
