@@ -7,14 +7,19 @@
 {% endblock %}
 
 
+{% block customCSS %}
+        <link href="{% static 'css/home.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
 {% block content %}
         <div class="align-content-center align-items-center container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 pb-5 text-dark w-100">
             <div class="justify-content-center mb-4 min-vw-100 row text-center w-100">
                 <div class="col-12">
                     <h1 class="display-1 mb-4">Bad Apple</h1>
                 </div>
-                <div class="col-12">
-                    <h6 class="lead">A collaboration between <a href="https://Priveasy.org" class="linkHover text-decoration-none">Priveasy</a> and the <a href="https://www.aaronswartzday.org/psp/" class="linkHover text-decoration-none">Aaron Swartz Day Police Surveillance Project</a>, Bad Apple provides valuable tools and resources with the aim of holding law enforcement accountable and putting an end to police misconduct.</h6>
+                <div class="col-11">
+                    <h6 class="lead">A collaboration between <a href="https://Priveasy.org" class="linkExpand linkPurple text-decoration-none">Priveasy</a> and the <a href="https://www.aaronswartzday.org/psp/" class="linkExpand linkPurple text-decoration-none">Aaron Swartz Day Police Surveillance Project</a>, Bad Apple provides valuable tools and resources with the aim of holding law enforcement accountable and putting an end to police misconduct.</h6>
                 </div>
             </div>
             <div class="justify-content-center min-vw-100 row text-center w-100">
@@ -44,20 +49,20 @@
             </div>
             <div class="justify-content-center mt-3 row w-100">
                 <div class="col-12 col-lg-6 mt-3">
-                    <h4><a href="{% url 'pra' %}" class="linkHover text-decoration-none">Public Records Act Templates</a></h4>
+                    <h4><a href="{% url 'pra' %}" class="linkExpand linkBlue text-decoration-none">Public Records Act Templates</a></h4>
                     <p>An organized database of templates designed to simplify the process filing effective, Public Records Act requests.</p>
                 </div>
                 <div class="col-12 col-lg-6 mt-3">
-                    <h4><a href="{% url 'oversight' %}" class="linkHover text-decoration-none">Oversight Commission Lookup</a></h4>
+                    <h4><a href="{% url 'oversight' %}" class="linkExpand linkBlue text-decoration-none">Oversight Commission Lookup</a></h4>
                     <p>Search for police and sheriff oversight commissions by location, and get all of the information you need, compiled onto one, straightfoward page.</p>
                 </div>
                 <div class="col-12 col-lg-6 mt-3">
-                    <h4><a href="{% url 'home' %}" class="linkHover text-decoration-none">Bad Apple Database</a></h4>
+                    <h4><a href="{% url 'home' %}" class="linkExpand linkBlue text-decoration-none">Bad Apple Database</a></h4>
                     <p>Look up officers who have had sustained findings found against them for misconduct, and view all relevant information.</p>
                 </div>
                 <div class="col-12 col-lg-6 mt-3">
-                    <h4><a href="{% url 'home' %}" class="linkHover text-decoration-none">Private Tip Submissions</a></h4>
-                    <p>Submit an anonymous tip about misconduct you've witnessed. We use this information to guide our future PRA requests, and may include it in reports presented to oversight commissions.</p>
+                    <h4><a href="{% url 'home' %}" class="linkExpand linkBlue text-decoration-none">Private Tip Submissions</a></h4>
+                    <p>Submit a private tip about misconduct you've witnessed. We use this information to guide our future PRA requests, and may include it in reports presented to oversight commissions.</p>
                 </div>
             </div>
         </div>

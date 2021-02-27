@@ -15,4 +15,4 @@ class OversightCommissionForm(ModelForm):
 	class Meta:
 		model = OversightCommission
 		fields = ['stateTerritoryProvince' , 'cityTown']
-		widgets = {'stateTerritoryProvince' : Select(attrs = {'class' : 'form-control'}) , 'cityTown' : TextInput(attrs = {'class' : 'form-control'})}
+		widgets = {'stateTerritoryProvince' : Select(attrs = {'class' : 'form-control'}) , 'cityTown' : TextInput(attrs = {'class' : 'form-control' , 'placeholder' : 'City or Town'})}

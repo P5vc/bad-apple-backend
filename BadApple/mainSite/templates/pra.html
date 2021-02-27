@@ -7,11 +7,6 @@
 {% endblock %}
 
 
-{% block customCSS %}
-        <link href="{% static "css/pra.css" %}" rel="stylesheet" type="text/css">
-{% endblock %}
-
-
 {% block pageOneActive %}{% endblock %}
 
 
@@ -20,6 +15,7 @@
             <div class="justify-content-center min-vw-100 row text-center w-100">
                 <div class="col-12 mb-3">
                     <h1 class="display-1">PRA Templates</h1>
+                    <h5><a href="{% url 'documentation' %}#PRA" class="linkExpand linkBlue text-decoration-none">Learn More</a></h5>
                 </div>
             </div>
             <form role="form" action="." method="post">

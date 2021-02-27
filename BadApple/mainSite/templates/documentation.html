@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+        <title>Bad Apple - Learn More</title>
+{% endblock %}
+
+
+{% block content %}
+        <div class="align-content-center align-items-center bg-light container d-flex flex-wrap justify-content-center min-vw-100">
+            <div class="justify-content-center row text-center w-100">
+                <div class="col-12">
+                    <h3 class="display-3 mb-3 mt-3">Learn More</h3>
+                </div>
+            </div>
+            <div class="justify-content-center row w-100">
+                <div class="col-12 col-xl-6" id="PRA">
+                    <h2><a href="{% url 'pra' %}" class="text-decoration-none linkBlue linkExpand">PRA Templates</a></h2>
+                    <p>Bad Apple provides a searchable database of Public Records Act templates, allowing anyone to easily and properly request records pertaining to a specific incident involving police misconduct or police surveillance technologies (such as drones, stingrays, or predictive policing software).</p>
+                    <p>If your state has a public records act or similar law, you can file a request by pasting the result from your PRA Template search into <a href="https://www.muckrock.com/foi/" class="linkBlue linkExpand">MuckRock</a>. Our PRA templates have been tested time and again, and are specifically crafted to be as concise, comprehensive, and effective as possible.</p>
+                    <p>If you do not feel comfortable filing a PRA, but have good information that should warrant a PRA request, please submit a tip, and we may file a PRA for you.</p>
+                </div>
+                <div class="col-12 col-xl-6" id="Oversight">
+                    <h2><a href="{% url 'oversight' %}" class="text-decoration-none linkBlue linkExpand">Oversight Lookup</a></h2>
+                    <p>Use our Oversight Lookup tool to find information on police and sheriff oversight commissions in your area.</p>
+                    <p>Oversight commissions are an important resource for holding law enforcement accountable. If you've experienced or witnessed police misconduct, wish to follow up on a prior incident, or have relevant questions for the commission, our oversight commissions database can help you find and get into contact with the right people.</p>
+                    <p>If you have knowledge of police misconduct but are not comfortable filing a complaint with one of the oversight commissions in our database, please submit a tip, and we will do our best to get that information to them.</p>
+                    <p>If you know of a commission that is not in our database, please submit a tip with a link to their official website and include any other relevant information, and we will look into adding it to our database.</p>
+                </div>
+                <div class="col-12 col-xl-6" id="BadApple">
+                    <h2><a href="{% url 'home' %}" class="text-decoration-none linkBlue linkExpand">Bad Apple Database</a></h2>
+                    <p>The Bad Apple Database allows anyone to look up information on officers that have had sustained findings against them, for misconduct. All of the information in the database comes directly from the corresponding police or sheriff's department itself, and is copied word for word from their official, post-investigation report. If we decide to make available any information that is not a sustained finding, it will be clearly marked as such in the database.</p>
+                    <p>Using the database, you can immediately find all of the important details on the officer, as well as any reports found against them, and the findings within those reports, neatly organized to display only the relevant information. You will also always have the opportunity to view the full report, should you wish.<p>
+                    <p>This database is an important tool for screening officers, and ensuring that those who have records of misconduct aren't simply shuffled around to new locations each time they have a sustained finding against them, escaping responsibility and putting more people at risk.</p>
+                </div>
+                <div class="col-12 col-xl-6" id="Tip">
+                    <h2><a href="{% url 'home' %}" class="text-decoration-none linkBlue linkExpand">Submit a Tip</a></h2>
+                    <p>Take advantage of our private tip form to provide us with any information that you would like us to know. The last thing we want is for fear of retaliation to prevent someone from seeking justice when police misconduct occurs. Therefore, if you would like to report something, and are uncomfortable with filing an official complaint, you may let us know, and we will do our best to act on the information as we see fit.</p>
+                    <p>Please note that many oversight commissions do not allow complaints to be filed anonymously. Therefore, the change that we can effect with the information you submit may be limited. That being said, we do regularly compile tips into Bad Apple Reports and deliver them to the appropriate commissions, allowing those commissions to review the information and determine what to do going forward. If the commission already has the officer on their radar, your tip may (further) encourage an investigation which could result in punitive action.</p>
+                    <p>We do <strong>not</strong> save or associate any identifying information with your tip, including but not limited to your IP address, user agent, and location. If you are concerned about maintaining your privacy, we recommend using <a href="http://badapplesifsmfpeetrmnfdk7jbvgidfcy7f3m64c53mccljw4efisad.onion" class="linkBlue linkExpand">our onion service</a> when submitting your tip.</p>
+                </div>
+            </div>
+        </div>
+{% endblock content %}
