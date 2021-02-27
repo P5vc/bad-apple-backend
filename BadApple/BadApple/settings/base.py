@@ -31,6 +31,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '.badapplesifsmfpeetrmnfdk7jbvgidfcy7f3m64c53mccljw4efisad.onion',
+    '.badapple.priveasy.org',
+    '.ba.p5.vc'
 ]
 
 
@@ -162,6 +164,9 @@ SECURE_HSTS_SECONDS = 15552000
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'Strict'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 60 * 60 * 3
 CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
