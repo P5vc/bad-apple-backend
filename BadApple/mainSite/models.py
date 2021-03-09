@@ -112,6 +112,7 @@ class OversightCommission(models.Model):
 	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
 	toBeDeleted = models.BooleanField('Delete' , default = False)
 	daysUntilDeletion = models.IntegerField('Days Until Deletion' , default = 30)
+	completed = models.BooleanField('Completed' , default = True)
 
 	# Permissions:
 	approved = models.BooleanField('Record Approved' , default = False)
