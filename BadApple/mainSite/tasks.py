@@ -1,6 +1,7 @@
 from celery.schedules import crontab
 from mainSite.celery import app
-from mainSite.models import DatabaseManagerPermissions , PRATemplate , OversightCommission , Officer , InvestigativeReport , InvestigativeReportFinding
+from mainSite.models import DatabaseManagerPermissions , PRATemplate , OversightCommission , Officer , InvestigativeReport , InvestigativeReportFinding , Tip , EncryptedMessage
+from gnupg import GPG
 
 
 # Task scheduler:
@@ -8,6 +9,7 @@ from mainSite.models import DatabaseManagerPermissions , PRATemplate , Oversight
 def setup_periodic_tasks(sender , **kwargs):
 	sender.add_periodic_task(crontab(minute = 0 , hour = 0) , deleteDatabaseEntries.s())
 	sender.add_periodic_task(crontab(minute = 0 , hour = 0 , day_of_week = 'sunday') , databaseManagerRateLimitReset.s())
+	sender.add_periodic_task(crontab(minute = 0 , hour = 0) , archiveTips.s())
 
 
 # Tasks:
@@ -48,6 +50,13 @@ def deleteDatabaseEntries():
 			dbInvestigativeReportFindingEntry.daysUntilDeletion -= 1
 			dbInvestigativeReportFindingEntry.save()
 
+	for tipObject in Tip.objects.filter(processed = True , archive = False):
+		if (tipObject.daysUntilDeletion <= 0):
+			tipObject.delete()
+		else:
+			tipObject.daysUntilDeletion -= 1
+			tipObject.save()
+
 
 @app.task
 def databaseManagerRateLimitReset():
@@ -55,3 +64,33 @@ def databaseManagerRateLimitReset():
 		dbManagerObject.changesLastWeek = dbManagerObject.changesThisWeek
 		dbManagerObject.changesThisWeek = 0
 		dbManagerObject.save()
+
+
+@app.task
+def archiveTips():
+	gpg = GPG(gnupghome = '/home/ubuntu/.gnupg/')
+	gpg.encoding = 'utf-8'
+
+	fingerprints = []
+	for key in gpg.list_keys():
+		fingerprints.append(key['fingerprint'])
+
+	if (len(fingerprints) < 2):
+		return
+
+	for tipObject in Tip.objects.filter(archive = True , archived = False):
+		for encryptedMessageObject in EncryptedMessage.objects.filter(parentTip = tipObject , messageIsArchived = False):
+			if (not(encryptedMessageObject.primaryPubKeyFingerprint in fingerprints)):
+				encryptedMessageObject.delete()
+				continue
+
+			fingerprints.remove(encryptedMessageObject.primaryPubKeyFingerprint)
+			message = encryptedMessageObject.encryptedMessage
+			for recipient in fingerprints:
+				dualyEncryptedMessage = str(gpg.encrypt(message , recipient , always_trust = True))
+				EncryptedMessage.objects.create(parentTip = tipObject , messageIsArchiged = True , primaryPubKeyFingerprint = encryptedMessageObject.primaryPubKeyFingerprint , secondaryPubKeyFingerprint = recipient , encryptedMessage = dualyEncryptedMessage)
+
+			encryptedMessageObject.delete()
+
+		tipObject.archived = True
+		tipObject.save()

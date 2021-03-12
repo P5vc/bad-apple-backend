@@ -1,6 +1,7 @@
 # General imports:
 from django.db import models
 from uuid import uuid4
+from gnupg import GPG
 
 # Import reference data:
 from mainSite.extendedModels.modelCodes import *
@@ -229,3 +230,78 @@ class InvestigativeReportFinding(models.Model):
 	class Meta:
 		verbose_name = 'Investigative Report Finding'
 		verbose_name_plural = 'Investigative Report Findings'
+
+
+
+class Tip(models.Model):
+	# Choices:
+	TOPICS = [
+					('0' , 'PRA Templates'),
+					('1' , 'Oversight Commissions'),
+					('2' , 'Bad Apple Database'),
+					('3' , 'Report Police Misconduct'),
+					('4' , 'Ask a Question'),
+					('5' , 'Media Inquiry'),
+					('6' , 'Other')
+				]
+
+	# Contents:
+	topic = models.CharField('Topic' , max_length = 2 , choices = TOPICS , default = '6')
+	message = models.TextField('Message' , max_length = 10000 , blank = False)
+
+	# Status:
+	viewed = models.BooleanField('Tip Viewed' , default = False)
+	processed = models.BooleanField('Tip Processed' , default = False)
+	archive = models.BooleanField('Archive' , default = False)
+	archived = models.BooleanField('Archived' , default = False)
+	daysUntilDeletion = models.IntegerField('Days Until Deletion' , default = 10)
+
+
+
+	# Manage metadata:
+	class Meta:
+		verbose_name = 'Tip'
+		verbose_name_plural = 'Tips'
+
+
+
+	# Override the default save behavior to prevent unencrypted data from touching the database:
+	def save(self, *args, **kwargs):
+		plaintextMessage = self.message
+		self.message = 'This message has been saved in an encrypted format to an "Encrypted Message" object.'
+		super().save(self)
+
+		gpg = GPG(gnupghome = '/home/ubuntu/.gnupg/')
+		gpg.encoding = 'utf-8'
+
+		fingerprints = []
+		for key in gpg.list_keys():
+			fingerprints.append(key['fingerprint'])
+
+		for recipient in fingerprints:
+			if (len(plaintextMessage) < 10000):
+				encryptedMessage = str(gpg.encrypt(str(plaintextMessage) , recipient , always_trust = True))
+				if (len(encryptedMessage) < 100000):
+					EncryptedMessage.objects.create(parentTip = self , primaryPubKeyFingerprint = recipient , encryptedMessage = encryptedMessage)
+
+
+
+class EncryptedMessage(models.Model):
+	# Related Models:
+	parentTip = models.ForeignKey(Tip , on_delete = models.CASCADE , verbose_name = 'Parent Tip')
+
+	# Administrative:
+	messageIsArchived = models.BooleanField('Message is Archived' , default = False)
+
+	primaryPubKeyFingerprint = models.CharField('Primary Public Key Fingerprint' , max_length = 50 , blank = False)
+	secondaryPubKeyFingerprint = models.CharField('Secondary Public Key Fingerprint' , max_length = 50 , blank = True)
+
+	# Contents:
+	encryptedMessage = models.TextField('Encrypted Message' , max_length = 100000 , blank = False)
+
+
+
+	# Manage metadata:
+	class Meta:
+		verbose_name = 'Encrypted Message'
+		verbose_name_plural = 'Encrypted Messages'

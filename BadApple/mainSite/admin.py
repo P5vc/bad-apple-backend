@@ -41,6 +41,20 @@ class DatabaseManagerPermissionsAdmin(admin.ModelAdmin):
 
 
 
+@admin.register(Tip , site = customAdminSite)
+class TipAdmin(admin.ModelAdmin):
+	list_display = ['topic' , 'viewed' , 'processed' , 'archived']
+	readonly_fields = ['topic' , 'message' , 'daysUntilDeletion' , 'archived']
+
+
+
+@admin.register(EncryptedMessage , site = customAdminSite)
+class EncryptedMessageAdmin(admin.ModelAdmin):
+	list_display = ['primaryPubKeyFingerprint' , 'secondaryPubKeyFingerprint' , 'messageIsArchived']
+	readonly_fields = ['parentTip' , 'messageIsArchived' , 'primaryPubKeyFingerprint' , 'secondaryPubKeyFingerprint' , 'encryptedMessage']
+
+
+
 # Custom save behavior for managed models:
 def customSaveBehavior(request):
 	if (request.method == 'POST'):

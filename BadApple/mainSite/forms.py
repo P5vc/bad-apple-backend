@@ -1,5 +1,5 @@
 from django.forms import ModelForm , Select , TextInput
-from mainSite.models import PRATemplate , OversightCommission
+from mainSite.models import PRATemplate , OversightCommission , Tip
 
 
 
@@ -16,3 +16,11 @@ class OversightCommissionForm(ModelForm):
 		model = OversightCommission
 		fields = ['stateTerritoryProvince' , 'cityTown']
 		widgets = {'stateTerritoryProvince' : Select(attrs = {'class' : 'form-control'}) , 'cityTown' : TextInput(attrs = {'class' : 'form-control' , 'placeholder' : 'City or Town'})}
+
+
+
+class TipForm(ModelForm):
+	class Meta:
+		model = Tip
+		fields = ['topic' , 'message']
+		widgets = {'topic' : Select(attrs = {'class' : 'form-control'}) , 'message' : TextInput(attrs = {'class' : 'form-control' , 'placeholder' : 'Enter your message here...'})}
