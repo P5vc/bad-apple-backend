@@ -266,10 +266,10 @@ class Tip(models.Model):
 
 
 	# Override the default save behavior to prevent unencrypted data from touching the database:
-	def save(self, *args, **kwargs):
+	def save(self , *args , **kwargs):
 		plaintextMessage = self.message
 		self.message = 'This message has been saved in an encrypted format to an "Encrypted Message" object.'
-		super().save(self)
+		super().save(*args , **kwargs)
 
 		gpg = GPG(gnupghome = '/home/ubuntu/.gnupg/')
 		gpg.encoding = 'utf-8'

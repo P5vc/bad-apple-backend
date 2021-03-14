@@ -1,4 +1,4 @@
-from django.forms import ModelForm , Select , TextInput
+from django.forms import ModelForm , Select , TextInput , CharField , Textarea
 from mainSite.models import PRATemplate , OversightCommission , Tip
 
 
@@ -23,4 +23,15 @@ class TipForm(ModelForm):
 	class Meta:
 		model = Tip
 		fields = ['topic' , 'message']
-		widgets = {'topic' : Select(attrs = {'class' : 'form-control'}) , 'message' : TextInput(attrs = {'class' : 'form-control' , 'placeholder' : 'Enter your message here...'})}
+		widgets = {'topic' : Select(attrs = {'class' : 'form-control'}) , 'message' : Textarea(attrs = {'class' : 'form-control' , 'rows' : '8' , 'placeholder' : 'Enter your message here...'})}
+
+
+
+class TipFormCAPTCHA(ModelForm):
+	captchaInput = CharField(max_length = 6 , widget = TextInput(attrs = {'class' : 'form-control' , 'placeholder' : 'Enter CAPTCHA text here...'}))
+	verificationText = CharField(max_length = 1000)
+
+	class Meta:
+		model = Tip
+		fields = ['topic' , 'message']
+		widgets = {'topic' : Select(attrs = {'class' : 'form-control'}) , 'message' : Textarea(attrs = {'class' : 'form-control' , 'rows' : '8' , 'placeholder' : 'Enter your message here...'})}
