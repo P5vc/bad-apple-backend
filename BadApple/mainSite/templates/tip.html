@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+        <title>Bad Apple - Submit a Tip</title>
+{% endblock %}
+
+
+{% block pageFourActive %}{% endblock %}
+
+
+{% block content %}
+        <div class="align-content-center align-items-center bg-light container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 text-dark w-100">
+            <div class="justify-content-center min-vw-100 row text-center w-100">
+                <div class="col-12 mb-3 mt-3">
+                    <h1 class="display-1 mb-0">Submit a Tip</h1>
+                    <h5><a href="{% url 'documentation' %}#Tip" class="linkExpand linkBlue text-decoration-none">Learn More</a></h5>
+                </div>
+            </div>
+            <form role="form" action="." method="post">
+                {% if errorMessage %}
+                <div class="justify-content-center min-vw-100 mt-5 row text-center w-100">
+                    <div class="col-12 mt-2">
+                        <h3 class="text-danger">{{ errorMessage }}</h3>
+                    </div>
+                </div>
+                {% endif %}
+                {% if successMessage %}
+                <div class="justify-content-center min-vw-100 mt-5 row text-center w-100">
+                    <div class="col-12 mt-2">
+                        <h3 class="text-success">{{ successMessage }}</h3>
+                    </div>
+                </div>
+                {% endif %}
+                {% if showForm %}
+                <div class="justify-content-center mb-5 min-vw-100  row text-center w-100">
+                    <div class="col-12 col-md-10 col-sm-11 col-xl-9 mt-2">
+                        <div class="form-group">
+                            <label for="{{ tipForm.topic.id_for_label }}">Topic</label>
+                            {{ tipForm.topic }}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-10 col-sm-11 col-xl-9 mt-2">
+                        <div class="form-group ">
+                            <label for="{{ tipForm.message.id_for_label }}">Message</label>
+                            {{ tipForm.message }}
+                        </div>
+                    </div>
+                    {% if captcha %}
+                    <div class="col-12 col-md-10 col-sm-11 col-xl-9  pt-2">
+                        <label for="captcha">CAPTCHA</label>
+                        <img src="data:image/png;base64,{{ b64Image }}" class="w-100" id="captcha"/>
+                    </div>
+                    <div class="col-12 col-md-10 col-sm-11 col-xl-9 mt-2">
+                        <div class="form-group">
+                            {{ tipForm.captchaInput }}
+                            {{ tipForm.verificationText.as_hidden }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="col-12 mt-4 pt-2">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+{% endblock content %}

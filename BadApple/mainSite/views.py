@@ -1,7 +1,12 @@
 from django.shortcuts import redirect , render
-from mainSite.models import PRATemplate , OversightCommission
-from mainSite.forms import PRATemplateForm , OversightCommissionForm
+from django.forms import TextInput
+from mainSite.models import PRATemplate , OversightCommission , Tip
+from mainSite.forms import PRATemplateForm , OversightCommissionForm , TipForm , TipFormCAPTCHA
 from random import choice
+
+# Import and configure BotBlock
+from mainSite import BotBlock
+BotBlock.encryptText = True
 
 
 # Global Variables:
@@ -81,3 +86,76 @@ def commission(request , slug):
 		return redirect('oversight')
 
 	return render(request , 'commission.html' , {'image' : choice(backgroundImages) , 'name' : str(commissionObject.name) , 'type' : str(commissionObject.get_type_display()) , 'address1' : str(commissionObject.address1) , 'address2' : str(commissionObject.address2) , 'cityTown' : str(commissionObject.cityTown) , 'stateTerritoryProvince' : str(commissionObject.get_stateTerritoryProvince_display()) , 'email' : str(commissionObject.email) , 'phone' : str(commissionObject.phone) , 'ttdtty' : str(commissionObject.phoneTDD) , 'fax' : str(commissionObject.fax) , 'about' : str(commissionObject.aboutSummary).strip().split('\n') , 'website' : str(commissionObject.website) , 'contactForm' : str(commissionObject.contactForm) , 'pressForm' : str(commissionObject.pressContactForm) , 'complaintInfo1' : str(commissionObject.complaintInfo1) , 'complaintInfo2' : str(commissionObject.complaintInfo2) , 'complaintForm' : str(commissionObject.complaintForm) , 'members' : str(commissionObject.membersPage) , 'faq' : str(commissionObject.faqPage) , 'updated' : str(commissionObject.updatedOn.strftime('%B %d, %Y'))})
+
+
+def tip(request):
+	databaseEntries = Tip.objects.filter(archived = False).count()
+	if (databaseEntries >= 100):
+		return render(request , 'tip.html' , {'errorMessage' : 'We are unable to accept new tips at the moment, as our tip database is currently full. Please try again soon.' , 'successMessage' : False , 'showForm' : False})
+
+	if (request.method == 'POST'):
+		if (databaseEntries >= 10):
+			tipForm = TipFormCAPTCHA(request.POST)
+			if (not(tipForm.is_valid())):
+				captchaData = BotBlock.generate()
+				imageData = captchaData['b64Image'].decode()
+				newTipForm = TipFormCAPTCHA()
+				newTipForm.fields['topic'].initial = tipForm.cleaned_data['topic']
+				newTipForm.fields['message'].initial = tipForm.cleaned_data['message']
+				newTipForm.fields['verificationText'].initial = captchaData['encryptedText'].decode()
+				return render(request , 'tip.html' , {'errorMessage' : 'Form invalid. Please try again.' , 'successMessage' : False , 'showForm' : True , 'tipForm' : newTipForm , 'captcha' : True , 'b64Image' : imageData})
+
+			if (len(tipForm.cleaned_data['topic']) <= 2):
+				if (len(str(tipForm.cleaned_data['message'])) <= 10000):
+					try:
+						if (BotBlock.verify(str(tipForm.cleaned_data['captchaInput']) , str(tipForm.cleaned_data['verificationText']).encode())):
+							Tip.objects.create(topic = str(tipForm.cleaned_data['topic']) , message = str(tipForm.cleaned_data['message']))
+							return render(request , 'tip.html' , {'errorMessage' : False , 'successMessage' : 'Your tip has been successfully submitted.' , 'showForm' : False})
+					except:
+						captchaData = BotBlock.generate()
+						imageData = captchaData['b64Image'].decode()
+						newTipForm = TipFormCAPTCHA()
+						newTipForm.fields['topic'].initial = tipForm.cleaned_data['topic']
+						newTipForm.fields['message'].initial = tipForm.cleaned_data['message']
+						newTipForm.fields['verificationText'].initial = captchaData['encryptedText'].decode()
+						return render(request , 'tip.html' , {'errorMessage' : 'An unknown error occurred.' , 'successMessage' : False , 'showForm' : True , 'tipForm' : newTipForm , 'captcha' : True , 'b64Image' : imageData})
+					else:
+						captchaData = BotBlock.generate()
+						imageData = captchaData['b64Image'].decode()
+						newTipForm = TipFormCAPTCHA()
+						newTipForm.fields['topic'].initial = tipForm.cleaned_data['topic']
+						newTipForm.fields['message'].initial = tipForm.cleaned_data['message']
+						newTipForm.fields['verificationText'].initial = captchaData['encryptedText'].decode()
+						return render(request , 'tip.html' , {'errorMessage' : 'Incorrect CAPTCHA. Please try again.' , 'successMessage' : False , 'showForm' : True , 'tipForm' : newTipForm , 'captcha' : True , 'b64Image' : imageData})
+			captchaData = BotBlock.generate()
+			imageData = captchaData['b64Image'].decode()
+			newTipForm = TipFormCAPTCHA()
+			newTipForm.fields['topic'].initial = tipForm.cleaned_data['topic']
+			newTipForm.fields['message'].initial = tipForm.cleaned_data['message']
+			newTipForm.fields['verificationText'].initial = captchaData['encryptedText'].decode()
+			return render(request , 'tip.html' , {'errorMessage' : 'Form invalid. Please try again.' , 'successMessage' : False , 'showForm' : True , 'tipForm' : newTipForm , 'captcha' : True , 'b64Image' : imageData})
+		else:
+			tipForm = TipForm(request.POST)
+			if (not(tipForm.is_valid())):
+				return render(request , 'tip.html' , {'errorMessage' : 'Form invalid. Please try again.' , 'successMessage' : False , 'showForm' : True , 'tipForm' : tipForm , 'captcha' : False})
+
+			if (len(tipForm.cleaned_data['topic']) <= 2):
+				if (len(str(tipForm.cleaned_data['message'])) <= 10000):
+					Tip.objects.create(topic = str(tipForm.cleaned_data['topic']) , message = str(tipForm.cleaned_data['message']))
+					return render(request , 'tip.html' , {'errorMessage' : False , 'successMessage' : 'Your tip has been successfully submitted.' , 'showForm' : False})
+
+			return render(request , 'tip.html' , {'errorMessage' : 'Form invalid. Please try again.' , 'successMessage' : False , 'showForm' : True , 'tipForm' : tipForm , 'captcha' : False})
+
+	else:
+		captchaEnabled = False
+		imageData = ''
+		tipForm = TipForm()
+		if (databaseEntries >= 10):
+			captchaData = BotBlock.generate()
+			imageData = captchaData['b64Image'].decode()
+
+			tipForm = TipFormCAPTCHA()
+			tipForm.fields['verificationText'].initial = captchaData['encryptedText'].decode()
+			captchaEnabled = True
+
+		return render(request , 'tip.html' , {'errorMessage' : False , 'successMessage' : False , 'showForm' : True , 'tipForm' : tipForm , 'captcha' : captchaEnabled , 'b64Image' : imageData})
