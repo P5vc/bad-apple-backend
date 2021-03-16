@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+        <title>Bad Apple Database</title>
+{% endblock %}
+
+
+{% block pageThreeActive %}{% endblock %}
+
+
+{% block content %}
+        <div class="align-content-center align-items-center bg-light container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 text-dark w-100">
+            <div class="justify-content-center min-vw-100 row text-center w-100">
+                <div class="col-12 mb-3 mt-3">
+                    <h1 class="display-1 mb-0">Bad Apple Database</h1>
+                    <h5><a href="{% url 'documentation' %}#BadApple" class="linkExpand linkBlue text-decoration-none">Learn More</a></h5>
+                    <h1 class="display-4 mt-5 text-primary">Coming Soon</h1>
+                </div>
+            </div>
+        </div>
+{% endblock content %}
