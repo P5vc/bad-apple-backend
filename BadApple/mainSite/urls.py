@@ -7,5 +7,6 @@ urlpatterns = [
 				path('PRA/' , views.pra , name = 'pra'),
 				path('Oversight/' , views.oversight , name = 'oversight'),
 				path('Commission/<slug:slug>/' , views.commission , name = 'commission'),
-				path('Tip/' , views.tip , name = 'tip')
+				path('Tip/' , views.tip , name = 'tip'),
+				path('BadAppleDatabase/' , views.badApple , name = 'badApple')
 			]

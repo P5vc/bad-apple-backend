@@ -159,3 +159,7 @@ def tip(request):
 			captchaEnabled = True
 
 		return render(request , 'tip.html' , {'errorMessage' : False , 'successMessage' : False , 'showForm' : True , 'tipForm' : tipForm , 'captcha' : captchaEnabled , 'b64Image' : imageData})
+
+
+def badApple(request):
+	return render(request , 'badapple.html' , {})
