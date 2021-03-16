@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -28,16 +29,16 @@
                     <div class="col-12 mb-auto mt-auto text-center text-light">
                         <div class="justify-content-center row">
                             <div class="col-6 col-md-3 col-sm-3 col-xl-2 mb-auto mt-auto">
-                                <a href="{% url 'pra' %}" class="{% block pageOneActive %}text-decoration-none {% endblock %}text-light text-nowrap linkThin">PRA Templates</a>
+                                <a href="{% url 'pra' %}" class="{% block pageOneActive %}text-decoration-none {% endblock %}text-light text-nowrap linkThin">{% translate 'PRA Templates' %}</a>
                             </div>
                             <div class="col-6 col-md-3 col-sm-3 col-xl-2 mb-auto mt-auto">
-                                <a href="{% url 'oversight' %}" class="{% block pageTwoActive %}text-decoration-none {% endblock %}text-light text-nowrap linkThin">Oversight Lookup</a>
+                                <a href="{% url 'oversight' %}" class="{% block pageTwoActive %}text-decoration-none {% endblock %}text-light text-nowrap linkThin">{% translate 'Oversight Lookup' %}</a>
                             </div>
                             <div class="col-6 col-md-3 col-sm-3 col-xl-2 mb-auto mt-auto">
-                                <a href="{% url 'badApple' %}" class="{% block pageThreeActive %}text-decoration-none {% endblock %}text-light text-nowrap linkThin">Bad Apple Database</a>
+                                <a href="{% url 'badApple' %}" class="{% block pageThreeActive %}text-decoration-none {% endblock %}text-light text-nowrap linkThin">{% translate 'Bad Apple Database' %}</a>
                             </div>
                             <div class="col-6 col-md-3 col-sm-3 col-xl-2 mb-auto mt-auto">
-                                <a href="{% url 'tip' %}" class="{% block pageFourActive %}text-decoration-none {% endblock %}text-light text-nowrap linkThin">Submit a Tip</a>
+                                <a href="{% url 'tip' %}" class="{% block pageFourActive %}text-decoration-none {% endblock %}text-light text-nowrap linkThin">{% translate 'Submit a Tip' %}</a>
                             </div>
                         </div>
                     </div>
