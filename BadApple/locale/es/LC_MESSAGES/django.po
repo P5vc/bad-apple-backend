@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BadAppleBackend RC2\n"
 "Report-Msgid-Bugs-To: Priveasy Admin\n"
-"POT-Creation-Date: 2021-03-18 00:19+0000\n"
-"PO-Revision-Date: 2021-03-18 00:19+0000\n"
+"POT-Creation-Date: 2021-03-18 15:49+0000\n"
+"PO-Revision-Date: 2021-03-18 17:39+0000\n"
 "Last-Translator: Priveasy Admin <Admin@Priveasy.org>\n"
 "Language-Team: Volunteer Spanish Language Translators\n"
 "Language: Spanish\n"
@@ -17,6 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: mainSite/forms.py:19
+msgid "City or Town (Optional)"
+msgstr ""
+
+#: mainSite/forms.py:27 mainSite/forms.py:38
+msgid "Enter your message here..."
+msgstr ""
+
+#: mainSite/forms.py:32
+msgid "Enter CAPTCHA text here..."
+msgstr ""
 
 #: mainSite/models.py:20
 msgid "Body Worn Cameras"
@@ -78,11 +90,11 @@ msgstr ""
 #: mainSite/templates/documentation.html:21 mainSite/templates/home.html:30
 #: mainSite/templates/pra.html:19
 msgid "PRA Templates"
-msgstr ""
+msgstr "Plantillas PRA"
 
 #: mainSite/models.py:241 mainSite/templates/oversight.html:19
 msgid "Oversight Commissions"
-msgstr ""
+msgstr "Comisiones de Vigilancia"
 
 #. Translators: This is a page title
 #: mainSite/models.py:242 mainSite/templates/badapple.html:8
@@ -90,7 +102,7 @@ msgstr ""
 #: mainSite/templates/documentation.html:40 mainSite/templates/home.html:38
 #: mainSite/templates/home.html:62
 msgid "Bad Apple Database"
-msgstr ""
+msgstr "Base de Datos Bad Apple"
 
 #: mainSite/models.py:243
 msgid "Report Police Misconduct"
@@ -112,7 +124,7 @@ msgstr ""
 #: mainSite/templates/oversight.html:20 mainSite/templates/pra.html:20
 #: mainSite/templates/tip.html:20
 msgid "Learn More"
-msgstr ""
+msgstr "Aprender Más"
 
 #: mainSite/templates/badapple.html:21
 msgid "Coming Soon"
@@ -121,17 +133,17 @@ msgstr ""
 #: mainSite/templates/base.html:35 mainSite/templates/documentation.html:30
 #: mainSite/templates/home.html:34
 msgid "Oversight Lookup"
-msgstr ""
+msgstr "Búsqueda de Comisiones"
 
 #: mainSite/templates/base.html:41 mainSite/templates/documentation.html:49
 #: mainSite/templates/home.html:42 mainSite/templates/tip.html:19
 msgid "Submit a Tip"
-msgstr ""
+msgstr "Enviar un Soplo"
 
 #. Translators: This is a page title
 #: mainSite/templates/commission.html:8
 msgid "Bad Apple - Oversight Commission"
-msgstr ""
+msgstr "Bad Apple - Comisiones de Vigilancia"
 
 #: mainSite/templates/commission.html:39
 msgid "Contact Information"
@@ -207,7 +219,7 @@ msgstr ""
 #. Translators: This is a page title
 #: mainSite/templates/documentation.html:8
 msgid "Bad Apple - Learn More"
-msgstr ""
+msgstr "Bad Apple - Aprender Más"
 
 #. Translators: Please do not modify any tags (text located between the "<" and ">" symbols) or letters with a proceeding backslash ("\")
 #: mainSite/templates/documentation.html:23
@@ -229,6 +241,21 @@ msgid ""
 "we may file a PRA for you.</p>\n"
 "                    "
 msgstr ""
+"\n"
+"                    <p>Bad Apple proporciona una base de datos de búsqueda con plantillas para el \"Public "
+"Records Act\" (una ley de registros públicos), lo cual permite a cualquier persona solicitar, de forma fácil y adecuada, "
+"los archivos relacionados con un incidente específico relacionado con la mala conducta policial o "
+"con las tecnologías de vigilancia policial (como drones, StingRays o software de vigilancia "
+"policial predictiva).</p>\n"
+"                    <p>Si su estado tiene una ley de registros públicos o una ley similar, "
+"puede presentar una solicitud por pegar el resultado de su búsqueda de plantillas PRA "
+"en <a href=\"%(muckrockLink)s\" class=\"%(cssClasses)s\">MuckRock</"
+"a>. Nuestras plantillas PRA han sido probadas una y otra vez, y están diseñadas específicamente "
+"para ser lo más concisas, completas y eficaces posible.</p>\n"
+"                    <p>Si no se siente cómodo presentando una PRA, pero tiene "
+"buena información que debería justificar una solicitud PRA, por favor envíenos un soplo, y "
+"pudiéramos presentar una PRA por usted.</p>\n"
+"                    "
 
 #. Translators: Please do not modify any tags (text located between the "<" and ">" symbols) or letters with a proceeding backslash ("\")
 #: mainSite/templates/documentation.html:32
@@ -251,6 +278,23 @@ msgid ""
 "our database.</p>\n"
 "                    "
 msgstr ""
+"\n"
+"                    <p>Utilice nuestra herramienta de búsqueda de comisiones para encontrar información sobre "
+"las comisiones de supervisión de la policía y el sheriff en su área.</p>\n"
+"                    <p>Las comisiones de supervisión son un recurso importante para "
+"hacer responsables a las fuerzas del orden público. Si usted ha experimentado o ha sido testigo "
+"de una mala conducta policial, desea hacer un seguimiento de un incidente anterior o tiene preguntas relevantes "
+"para la comisión, nuestra base de datos de comisiones de supervisión puede ayudarle "
+"a encontrar y ponerse en contacto con las personas adecuadas.</p>\n"
+"                    <p>Si usted tiene conocimiento de mala conducta policial pero "
+"no se siente cómodo presentando una queja con una de las comisiones de supervisión en "
+"nuestra base de datos, por favor envíenos un soplo, y haremos todo lo posible para "
+"darles esa información.</p>\n"
+"                    <p>Si usted sabe de una comisión que no está en nuestra "
+"base de datos, por favor envíenos un soplo con el enlace de su sitio web oficial, e "
+"incluya cualquier otra información relevante, y nosotros intentaremos agregarla a "
+"nuestra base de datos.</p>\n"
+"                    "
 
 #. Translators: Please do not modify any tags (text located between the "<" and ">" symbols) or letters with a proceeding backslash ("\")
 #: mainSite/templates/documentation.html:42
@@ -275,6 +319,25 @@ msgid ""
 "risk.</p>\n"
 "                    "
 msgstr ""
+"\n"
+"                    <p>La base de datos Bad Apple permite a cualquier persona buscar "
+"información sobre los oficiales que han tenido hallazgos sostenidos contra ellos, por "
+"mala conducta. Toda la información de la base de datos procede directamente de la "
+"policía o del departamento del sheriff correspondiente, y ha sido copiada palabra por "
+"palabra del informe oficial posterior a la investigación. Si decidimos poner a "
+"disponible cualquier información que no sea un hallazgo sostenido contra ellos, se marcará "
+"claramente como tal en la base de datos.</p>\n"
+"                    <p>Por usar la base de datos, usted puede encontrar de inmediato todos los "
+"detalles importantes sobre el oficial, así como cualquier informe encontrado contra "
+"ellos, y los hallazgos dentro de esos informes, organizados cuidadosamente para mostrar "
+"sólo la información relevante. También tendrá la oportunidad de "
+"ver el informe completo, si lo desea.<p>\n"
+"                    <p>Esta base de datos es una herramienta importante para examinar "
+"oficiales, y garantizar que los que tienen registros de mala conducta no son "
+"simplemente barajados a nuevos lugares cada vez que tengan un hallazgo sostenido "
+"contra ellos, escapando de la responsabilidad y poniendo a más personas "
+"en peligro.</p>\n"
+"                    "
 
 #. Translators: Please do not modify any tags (text located between the "<" and ">" symbols) or letters with a proceeding backslash ("\")
 #: mainSite/templates/documentation.html:51
@@ -299,9 +362,30 @@ msgid ""
 "identifying information with your tip, including but not limited to your IP "
 "address, user agent, and location. If you are concerned about maintaining "
 "your privacy, we recommend using <a href=\"%(onionLocation)s\" class="
-"\"%(cssClasses)s\">our onion service</a> when submitting your tip.</p>\n"
+"\"%(cssClasses)s\">our onion service</a> (using Tor Browser) when submitting your tip.</p>\n"
 "                    "
 msgstr ""
+"\n"
+"                    <p>Aprovéchese de nuestro formulario privado de soplos para proporcionarnos "
+"cualquier información que desee que sepamos. Lo último que queremos "
+"es por temor a represalias para evitar que alguien busque justicia cuando "
+"ocurre una mala conducta policial. Por lo tanto, si usted desea informar algo, "
+"y se siente incómodo con la presentación de una queja oficial, usted puede informarnos, "
+"y haremos todo lo posible para actuar sobre la información como mejor nos parezca.</p>\n"
+"                    <p>Tenga en cuenta que muchas comisiones de supervisión no permiten "
+"que las quejas se presenten de forma anónima. Así que, el cambio que podemos "
+"realizar con la información que envíe, puede ser limitado. Dicho esto, nosotros "
+"regularmente compilamos soplos en Informes de Bad Apple, y los entregamos a las "
+"comisiones apropiadas, permitiendo a esas comisiones revisar la "
+"información y determinar qué hacer en el futuro. Si la comisión "
+"ya tiene al oficial en su radar, su soplo pudiera alentar una "
+"investigación que pudiera resultar en una acción punitiva.</p>\n"
+"                    <p>Nosotros <strong>no</strong> guardamos ni asociamos ninguna "
+"información identificativa con su soplo, incluyendo pero sin limitarse a su dirección IP, "
+"agente de usuario y ubicación. Si le preocupa mantener la "
+"privacidad, le recomendamos que utilice <a href=\"%(onionLocation)s\" class="
+"\"%(cssClasses)s\">nuestro servicio onion</a> (usando el Navegador Tor) al enviar su soplo.</p>\n"
+"                    "
 
 #. Translators: Please do not modify any tags (text located between the "<" and ">" symbols) or letters with a proceeding backslash ("\")
 #: mainSite/templates/home.html:24
@@ -326,7 +410,7 @@ msgstr ""
 
 #: mainSite/templates/home.html:58
 msgid "Oversight Commission Lookup"
-msgstr ""
+msgstr "Buscar Comisiones de Vigilancia"
 
 #: mainSite/templates/home.html:59
 msgid ""
@@ -354,7 +438,7 @@ msgstr ""
 #. Translators: This is a page title
 #: mainSite/templates/oversight.html:8
 msgid "Bad Apple - Oversight Lookup"
-msgstr ""
+msgstr "Bad Apple - Búsqueda de Comisiones"
 
 #: mainSite/templates/oversight.html:29 mainSite/templates/pra.html:29
 msgid "State"
@@ -390,7 +474,7 @@ msgstr ""
 #. Translators: This is a page title
 #: mainSite/templates/pra.html:8
 msgid "Bad Apple - PRA Templates"
-msgstr ""
+msgstr "Bad Apple - Plantillas PRA"
 
 #: mainSite/templates/pra.html:35
 msgid "Subject"
@@ -411,7 +495,7 @@ msgstr ""
 #. Translators: This is a page title
 #: mainSite/templates/tip.html:8
 msgid "Bad Apple - Submit a Tip"
-msgstr ""
+msgstr "Bad Apple - Enviar un Soplo"
 
 #: mainSite/templates/tip.html:42
 msgid "Topic"
@@ -419,7 +503,7 @@ msgstr ""
 
 #: mainSite/templates/tip.html:48
 msgid "Message"
-msgstr ""
+msgstr "Mensaje"
 
 #: mainSite/views.py:95
 msgid ""
