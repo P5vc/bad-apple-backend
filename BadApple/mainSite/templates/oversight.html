@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 
 {% block title %}
-        <title>Bad Apple - Oversight Lookup</title>
+        {# Translators: This is a page title #}
+        <title>{% translate 'Bad Apple - Oversight Lookup' %}</title>
 {% endblock %}
 
 
@@ -14,8 +16,8 @@
         <div class="align-content-center align-items-center bg-light container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 text-dark w-100">
             <div class="justify-content-center min-vw-100 row text-center w-100">
                 <div class="col-12 mb-3 mt-3">
-                    <h1 class="display-1">Oversight Commissions</h1>
-                    <h5><a href="{% url 'documentation' %}#Oversight" class="linkExpand linkBlue text-decoration-none">Learn More</a></h5>
+                    <h1 class="display-1">{% translate 'Oversight Commissions' %}</h1>
+                    <h5><a href="{% url 'documentation' %}#Oversight" class="linkExpand linkBlue text-decoration-none">{% translate 'Learn More' %}</a></h5>
                 </div>
             </div>
             <form role="form" action="." method="post">
@@ -24,19 +26,20 @@
                     </div>
                     <div class="col-12 col-md-4 mt-2">
                         <div class="form-group">
-                            <label for="{{ oversightForm.stateTerritoryProvince.id_for_label }}">State</label>
+                            <label for="{{ oversightForm.stateTerritoryProvince.id_for_label }}">{% translate 'State' %}</label>
                             {{ oversightForm.stateTerritoryProvince }}
                         </div>
                     </div>
                     <div class="col-12 col-md-4 mt-2 ">
                         <div class="form-group ">
-                            <label for="{{ praForm.cityTown.id_for_label }}">City</label>
+                            <label for="{{ praForm.cityTown.id_for_label }}">{% translate 'City' %}</label>
                             {{ oversightForm.cityTown }}
                         </div>
                     </div>
                     <div class="col-12 col-md-2 mt-4 pt-2">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        {# Translators: This text appears on a search button #}
+                        <button type="submit" class="btn btn-primary">{% translate 'Submit' %}</button>
                     </div>
                     <div class="col-12 col-md-1">
                     </div>
@@ -58,16 +61,17 @@
                                 {% if commission.aboutText %}
                                 <p class="card-text text-secondary"><a href="{% url 'commission' commission.commissionID %}" class="text-decoration-none text-secondary">{{ commission.aboutText }}</a></p>
                                 {% else %}
-                                <p class="card-text text-secondary"><a href="{% url 'commission' commission.commissionID %}" class="text-decoration-none text-secondary">No commission summary available.</a></p>
+                                <p class="card-text text-secondary"><a href="{% url 'commission' commission.commissionID %}" class="text-decoration-none text-secondary">{% blocktranslate %}No commission summary available.{% endblocktranslate %}</a></p>
                                 {% endif %}
                             </div>
                             <div class="card-footer d-flex justify-content-between small">
                                 {% if commission.websiteURL %}
-                                <a href="{{ commission.websiteURL }}" class="text-secondary">Website</a>
+                                <a href="{{ commission.websiteURL }}" class="text-secondary">{% translate 'Website' %}</a>
                                 {% else %}
-                                <a href="." class="text-secondary">No Website</a>
+                                <a href="." class="text-secondary">{% translate 'No Website' %}</a>
                                 {% endif %}
-                                <span>Updated: {{ commission.modificationDate }}</span>
+                                {# Translators: A date value will be automatically added after this text #}
+                                <span>{% translate 'Updated' %}: {{ commission.modificationDate }}</span>
                             </div>
                         </div>
                     </div>
@@ -77,7 +81,7 @@
             {% else %}
             <div class="justify-content-center min-vw-100 row text-center w-100">
                 <div class="col-12">
-                    <h4 class="text-danger">No Commissions Found</h4>
+                    <h4 class="text-danger">{% blocktranslate %}No Commissions Found{% endblocktranslate %}</h4>
                 </div>
             </div>
             {% endif %}

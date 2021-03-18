@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 
 {% block title %}
@@ -19,50 +20,51 @@
                     <h1 class="display-1 mb-4">Bad Apple</h1>
                 </div>
                 <div class="col-11">
-                    <h6 class="lead">A collaboration between <a href="https://Priveasy.org" class="linkExpand linkPurple text-decoration-none">Priveasy</a> and the <a href="https://www.aaronswartzday.org/psp/" class="linkExpand linkPurple text-decoration-none">Aaron Swartz Day Police Surveillance Project</a>, Bad Apple provides valuable tools and resources with the aim of holding law enforcement accountable and putting an end to police misconduct.</h6>
+                    {# Translators: Please do not modify any tags (text located between the "<" and ">" symbols) or letters with a proceeding backslash ("\") #}
+                    <h6 class="lead">{% blocktranslate with priveasyURL='https://Priveasy.org' asdpspURL='https://www.aaronswartzday.org/psp/' linkClasses='linkExpand linkPurple text-decoration-none' %}A collaboration between <a href="{{ priveasyURL }}" class="{{ linkClasses }}">Priveasy</a> and the <a href="{{ asdpspURL }}" class="{{ linkClasses }}">Aaron Swartz Day Police Surveillance Project</a>, Bad Apple provides valuable tools and resources with the aim of holding law enforcement accountable and putting an end to police misconduct.{% endblocktranslate %}</h6>
                 </div>
             </div>
             <div class="justify-content-center min-vw-100 row text-center w-100">
                 <div class="alignRight col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
                     <a href="{% url 'pra' %}"><img src="{% static 'img/andrej-lisakov-V2OyJtFqEtY-unsplash.jpg' %}" class="imageSquare mh-100 mw-100 w-75"/></a>
-                    <a href="{% url 'pra' %}"><p class="imageSquareText imageSquareTextL text-light">PRA Templates</p></a>
+                    <a href="{% url 'pra' %}"><p class="imageSquareText imageSquareTextL text-light">{% translate 'PRA Templates' %}</p></a>
                 </div>
                 <div class="alignLeft col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
                     <a href="{% url 'oversight' %}"><img class="imageSquare mh-100 mw-100 w-75" src="{% static 'img/elena-mozhvilo-j06gLuKK0GM-unsplash.jpg' %}"/></a>
-                    <a href="{% url 'oversight' %}"><p class="imageSquareText imageSquareTextR text-light">Oversight Lookup</p></a>
+                    <a href="{% url 'oversight' %}"><p class="imageSquareText imageSquareTextR text-light">{% translate 'Oversight Lookup' %}</p></a>
                 </div>
                 <div class="alignRight col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
                     <a href="{% url 'badApple' %}"><img src="{% static 'img/stepan-babanin-kx6fpBOm-ss-unsplash.jpg' %}" class="imageSquare mh-100 mw-100 w-75"/></a>
-                    <a href="{% url 'badApple' %}"><p class="imageSquareText imageSquareTextL text-light">Bad Apple Database</p></a>
+                    <a href="{% url 'badApple' %}"><p class="imageSquareText imageSquareTextL text-light">{% translate 'Bad Apple Database' %}</p></a>
                 </div>
                 <div class="alignLeft col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
                     <a href="{% url 'tip' %}"><img src="{% static 'img/thiago-carlos-machado-oNXGsD7Ibsk-unsplash.jpg' %}" class="imageSquare mh-100 mw-100 w-75"/></a>
-                    <a href="{% url 'tip' %}"><p class="imageSquareText imageSquareTextR text-light">Submit a Tip</p></a>
+                    <a href="{% url 'tip' %}"><p class="imageSquareText imageSquareTextR text-light">{% translate 'Submit a Tip' %}</p></a>
                 </div>
             </div>
         </div>
         <div class="align-content-center align-items-center bg-light container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 pb-5 text-dark w-100">
             <div class="justify-content-center row text-center w-100">
                 <div class="col-12">
-                    <h1 class="display-1">About</h1>
+                    <h1 class="display-1">{% translate 'About' %}</h1>
                 </div>
             </div>
             <div class="justify-content-center mt-3 row w-100">
                 <div class="col-12 col-lg-6 mt-3">
-                    <h4><a href="{% url 'pra' %}" class="linkExpand linkBlue text-decoration-none">Public Records Act Templates</a></h4>
-                    <p>An organized database of templates designed to simplify the process filing effective, Public Records Act requests.</p>
+                    <h4><a href="{% url 'pra' %}" class="linkExpand linkBlue text-decoration-none">{% translate 'Public Records Act Templates' %}</a></h4>
+                    <p>{% blocktranslate %}An organized database of templates designed to simplify the process filing effective, Public Records Act requests.{% endblocktranslate %}</p>
                 </div>
                 <div class="col-12 col-lg-6 mt-3">
-                    <h4><a href="{% url 'oversight' %}" class="linkExpand linkBlue text-decoration-none">Oversight Commission Lookup</a></h4>
-                    <p>Search for police and sheriff oversight commissions by location, and get all of the information you need, compiled onto one, straightfoward page.</p>
+                    <h4><a href="{% url 'oversight' %}" class="linkExpand linkBlue text-decoration-none">{% translate 'Oversight Commission Lookup' %}</a></h4>
+                    <p>{% blocktranslate %}Search for police and sheriff oversight commissions by location, and get all of the information you need, compiled onto one, straightfoward page.{% endblocktranslate %}</p>
                 </div>
                 <div class="col-12 col-lg-6 mt-3">
-                    <h4><a href="{% url 'badApple' %}" class="linkExpand linkBlue text-decoration-none">Bad Apple Database</a></h4>
-                    <p>Look up officers who have had sustained findings found against them for misconduct, and view all relevant information.</p>
+                    <h4><a href="{% url 'badApple' %}" class="linkExpand linkBlue text-decoration-none">{% translate 'Bad Apple Database' %}</a></h4>
+                    <p>{% blocktranslate %}Look up officers who have had sustained findings found against them for misconduct, and view all relevant information.{% endblocktranslate %}</p>
                 </div>
                 <div class="col-12 col-lg-6 mt-3">
-                    <h4><a href="{% url 'tip' %}" class="linkExpand linkBlue text-decoration-none">Private Tip Submissions</a></h4>
-                    <p>Submit a private tip about misconduct you've witnessed. We use this information to guide our future PRA requests, and may include it in reports presented to oversight commissions.</p>
+                    <h4><a href="{% url 'tip' %}" class="linkExpand linkBlue text-decoration-none">{% translate 'Private Tip Submissions' %}</a></h4>
+                    <p>{% blocktranslate %}Submit a private tip about misconduct you've witnessed. We use this information to guide our future PRA requests, and may include it in reports presented to oversight commissions.{% endblocktranslate %}</p>
                 </div>
             </div>
         </div>

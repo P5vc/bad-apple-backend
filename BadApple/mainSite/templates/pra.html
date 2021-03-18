@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 
 {% block title %}
-        <title>Bad Apple - PRA Templates</title>
+        {# Translators: This is a page title #}
+        <title>{% translate 'Bad Apple - PRA Templates' %}</title>
 {% endblock %}
 
 
@@ -14,8 +16,8 @@
         <div class="align-content-center align-items-center bg-light container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 text-dark w-100">
             <div class="justify-content-center min-vw-100 row text-center w-100">
                 <div class="col-12 mb-3">
-                    <h1 class="display-1">PRA Templates</h1>
-                    <h5><a href="{% url 'documentation' %}#PRA" class="linkExpand linkBlue text-decoration-none">Learn More</a></h5>
+                    <h1 class="display-1">{% translate 'PRA Templates' %}</h1>
+                    <h5><a href="{% url 'documentation' %}#PRA" class="linkExpand linkBlue text-decoration-none">{% translate 'Learn More' %}</a></h5>
                 </div>
             </div>
             <form role="form" action="." method="post">
@@ -24,19 +26,20 @@
                     </div>
                     <div class="col-12 col-md-4 mt-2">
                         <div class="form-group">
-                            <label for="{{ praForm.stateTerritoryProvince.id_for_label }}">State</label>
+                            <label for="{{ praForm.stateTerritoryProvince.id_for_label }}">{% translate 'State' %}</label>
                             {{ praForm.stateTerritoryProvince }}
                         </div>
                     </div>
                     <div class="col-12 col-md-4 mt-2 ">
                         <div class="form-group ">
-                            <label for="{{ praForm.subject.id_for_label }}">Subject</label>
+                            <label for="{{ praForm.subject.id_for_label }}">{% translate 'Subject' %}</label>
                             {{ praForm.subject }}
                         </div>
                     </div>
                     <div class="col-12 col-md-2 mt-4 pt-2">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        {# Translators: This text appears on a search button #}
+                        <button type="submit" class="btn btn-primary">{% translate 'Submit' %}</button>
                     </div>
                     <div class="col-12 col-md-1">
                     </div>
@@ -48,7 +51,7 @@
                 <div class="col-12">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <div class="input-group-text">Letter Title</div>
+                            <div class="input-group-text">{% translate 'Letter Title' %}</div>
                         </div>
                         <input type="text" class="form-control" placeholder="Letter Title" value="{{ letterTitle }}">
                     </div>
@@ -56,7 +59,7 @@
                 <div class="col-12 mt-3">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <div class="h-100 input-group-text">Letter Body</div>
+                            <div class="h-100 input-group-text">{% translate 'Letter Body' %}</div>
                         </div>
                         <textarea class="form-control" rows="8" id="letterBody">{{ letterBody }}</textarea>
                     </div>
@@ -65,7 +68,7 @@
             {% else %}
             <div class="justify-content-center min-vw-100 row text-center w-100">
                 <div class="col-12">
-                    <h4 class="text-danger">No Matching Template Found</h4>
+                    <h4 class="text-danger">{% blocktranslate %}No Matching Template Found{% endblocktranslate %}</h4>
                 </div>
             </div>
             {% endif %}
