@@ -133,6 +133,9 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 LOCALE_PATHS = [Path(BASE_DIR , 'locale/')]
+LANGUAGE_COOKIE_NAME = 'BadAppleLanguage'
+LANGUAGE_COOKIE_SAMESITE = 'Strict'
+LANGUAGE_COOKIE_SECURE = True
 
 
 # Static files (CSS, JavaScript, Images)
