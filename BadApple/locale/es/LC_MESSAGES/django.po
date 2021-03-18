@@ -1,0 +1,445 @@
+# BAD APPLE WEBSITE TRANSLATION - SPANISH
+# Copyright (C) 2021 BAD APPLE
+# This file is distributed under the CC-BY-SA-4.0 license.
+# PRIVEASY ADMIN <Admin@Priveasy.org>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: BadAppleBackend RC2\n"
+"Report-Msgid-Bugs-To: Priveasy Admin\n"
+"POT-Creation-Date: 2021-03-18 00:19+0000\n"
+"PO-Revision-Date: 2021-03-18 00:19+0000\n"
+"Last-Translator: Priveasy Admin <Admin@Priveasy.org>\n"
+"Language-Team: Volunteer Spanish Language Translators\n"
+"Language: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: mainSite/models.py:20
+msgid "Body Worn Cameras"
+msgstr ""
+
+#: mainSite/models.py:21
+msgid "Unmanned Aerial Vehicles (Drones)"
+msgstr ""
+
+#: mainSite/models.py:22
+msgid "Facial Recognition"
+msgstr ""
+
+#: mainSite/models.py:23
+msgid "Thermographic Cameras (FLIR)"
+msgstr ""
+
+#: mainSite/models.py:24
+msgid "License Plate Readers"
+msgstr ""
+
+#: mainSite/models.py:25
+msgid "Federal MOUs (Memoranda of Understanding)"
+msgstr ""
+
+#: mainSite/models.py:26
+msgid "Predictive Policing"
+msgstr ""
+
+#: mainSite/models.py:27
+msgid "Gunshot Detection Microphones (ShotSpotter)"
+msgstr ""
+
+#: mainSite/models.py:28
+msgid "Social Media Monitoring"
+msgstr ""
+
+#: mainSite/models.py:29
+msgid "IMSI-Catcher Equipment (Stingray)"
+msgstr ""
+
+#: mainSite/models.py:30
+msgid "Police Misconduct - Based on the Officer's Name"
+msgstr ""
+
+#: mainSite/models.py:31
+msgid "Police Misconduct - Based on the Incident"
+msgstr ""
+
+#: mainSite/models.py:73
+msgid "Police Review Boards and Commissions"
+msgstr ""
+
+#: mainSite/models.py:74
+msgid "Sheriff Review Boards and Commissions"
+msgstr ""
+
+#: mainSite/models.py:240 mainSite/templates/base.html:32
+#: mainSite/templates/documentation.html:21 mainSite/templates/home.html:30
+#: mainSite/templates/pra.html:19
+msgid "PRA Templates"
+msgstr ""
+
+#: mainSite/models.py:241 mainSite/templates/oversight.html:19
+msgid "Oversight Commissions"
+msgstr ""
+
+#. Translators: This is a page title
+#: mainSite/models.py:242 mainSite/templates/badapple.html:8
+#: mainSite/templates/badapple.html:19 mainSite/templates/base.html:38
+#: mainSite/templates/documentation.html:40 mainSite/templates/home.html:38
+#: mainSite/templates/home.html:62
+msgid "Bad Apple Database"
+msgstr ""
+
+#: mainSite/models.py:243
+msgid "Report Police Misconduct"
+msgstr ""
+
+#: mainSite/models.py:244
+msgid "Ask a Question"
+msgstr ""
+
+#: mainSite/models.py:245
+msgid "Media Inquiry"
+msgstr ""
+
+#: mainSite/models.py:246
+msgid "Other"
+msgstr ""
+
+#: mainSite/templates/badapple.html:20 mainSite/templates/documentation.html:16
+#: mainSite/templates/oversight.html:20 mainSite/templates/pra.html:20
+#: mainSite/templates/tip.html:20
+msgid "Learn More"
+msgstr ""
+
+#: mainSite/templates/badapple.html:21
+msgid "Coming Soon"
+msgstr ""
+
+#: mainSite/templates/base.html:35 mainSite/templates/documentation.html:30
+#: mainSite/templates/home.html:34
+msgid "Oversight Lookup"
+msgstr ""
+
+#: mainSite/templates/base.html:41 mainSite/templates/documentation.html:49
+#: mainSite/templates/home.html:42 mainSite/templates/tip.html:19
+msgid "Submit a Tip"
+msgstr ""
+
+#. Translators: This is a page title
+#: mainSite/templates/commission.html:8
+msgid "Bad Apple - Oversight Commission"
+msgstr ""
+
+#: mainSite/templates/commission.html:39
+msgid "Contact Information"
+msgstr ""
+
+#: mainSite/templates/commission.html:43
+msgid "Email Address"
+msgstr ""
+
+#: mainSite/templates/commission.html:49
+msgid "Phone Number"
+msgstr ""
+
+#. Translators: This is a phone number for people who are deaf or hard of hearing
+#: mainSite/templates/commission.html:56
+msgid "TTD/TTY Number"
+msgstr ""
+
+#: mainSite/templates/commission.html:62
+msgid "Fax Number"
+msgstr ""
+
+#: mainSite/templates/commission.html:69 mainSite/templates/home.html:49
+msgid "About"
+msgstr ""
+
+#: mainSite/templates/commission.html:75
+msgid "There is no summary data available for this oversight commission."
+msgstr ""
+
+#: mainSite/templates/commission.html:81
+msgid "Additional Links"
+msgstr ""
+
+#: mainSite/templates/commission.html:85 mainSite/templates/oversight.html:69
+msgid "Website"
+msgstr ""
+
+#: mainSite/templates/commission.html:90
+msgid "Contact Form"
+msgstr ""
+
+#: mainSite/templates/commission.html:95
+msgid "Press Form"
+msgstr ""
+
+#: mainSite/templates/commission.html:100
+msgid "Complaint Info"
+msgstr ""
+
+#: mainSite/templates/commission.html:105
+msgid "More Info"
+msgstr ""
+
+#: mainSite/templates/commission.html:110
+msgid "Complaint Form"
+msgstr ""
+
+#: mainSite/templates/commission.html:115
+msgid "Members"
+msgstr ""
+
+#. Translators: "FAQ" is short for "Frequently-Asked Questions"
+#: mainSite/templates/commission.html:121
+msgid "FAQ"
+msgstr ""
+
+#. Translators: Although it is not visible, a date value will be automatically included at the end of this sentence
+#: mainSite/templates/commission.html:126
+msgid "This information was last updated on "
+msgstr ""
+
+#. Translators: This is a page title
+#: mainSite/templates/documentation.html:8
+msgid "Bad Apple - Learn More"
+msgstr ""
+
+#. Translators: Please do not modify any tags (text located between the "<" and ">" symbols) or letters with a proceeding backslash ("\")
+#: mainSite/templates/documentation.html:23
+#, python-format
+msgid ""
+"\n"
+"                    <p>Bad Apple provides a searchable database of Public "
+"Records Act templates, allowing anyone to easily and properly request "
+"records pertaining to a specific incident involving police misconduct or "
+"police surveillance technologies (such as drones, stingrays, or predictive "
+"policing software).</p>\n"
+"                    <p>If your state has a public records act or similar "
+"law, you can file a request by pasting the result from your PRA Template "
+"search into <a href=\"%(muckrockLink)s\" class=\"%(cssClasses)s\">MuckRock</"
+"a>. Our PRA templates have been tested time and again, and are specifically "
+"crafted to be as concise, comprehensive, and effective as possible.</p>\n"
+"                    <p>If you do not feel comfortable filing a PRA, but have "
+"good information that should warrant a PRA request, please submit a tip, and "
+"we may file a PRA for you.</p>\n"
+"                    "
+msgstr ""
+
+#. Translators: Please do not modify any tags (text located between the "<" and ">" symbols) or letters with a proceeding backslash ("\")
+#: mainSite/templates/documentation.html:32
+msgid ""
+"\n"
+"                    <p>Use our Oversight Lookup tool to find information on "
+"police and sheriff oversight commissions in your area.</p>\n"
+"                    <p>Oversight commissions are an important resource for "
+"holding law enforcement accountable. If you've experienced or witnessed "
+"police misconduct, wish to follow up on a prior incident, or have relevant "
+"questions for the commission, our oversight commissions database can help "
+"you find and get into contact with the right people.</p>\n"
+"                    <p>If you have knowledge of police misconduct but are "
+"not comfortable filing a complaint with one of the oversight commissions in "
+"our database, please submit a tip, and we will do our best to get that "
+"information to them.</p>\n"
+"                    <p>If you know of a commission that is not in our "
+"database, please submit a tip with a link to their official website and "
+"include any other relevant information, and we will look into adding it to "
+"our database.</p>\n"
+"                    "
+msgstr ""
+
+#. Translators: Please do not modify any tags (text located between the "<" and ">" symbols) or letters with a proceeding backslash ("\")
+#: mainSite/templates/documentation.html:42
+msgid ""
+"\n"
+"                    <p>The Bad Apple Database allows anyone to look up "
+"information on officers that have had sustained findings against them, for "
+"misconduct. All of the information in the database comes directly from the "
+"corresponding police or sheriff's department itself, and is copied word for "
+"word from their official, post-investigation report. If we decide to make "
+"available any information that is not a sustained finding, it will be "
+"clearly marked as such in the database.</p>\n"
+"                    <p>Using the database, you can immediately find all of "
+"the important details on the officer, as well as any reports found against "
+"them, and the findings within those reports, neatly organized to display "
+"only the relevant information. You will also always have the opportunity to "
+"view the full report, should you wish.<p>\n"
+"                    <p>This database is an important tool for screening "
+"officers, and ensuring that those who have records of misconduct aren't "
+"simply shuffled around to new locations each time they have a sustained "
+"finding against them, escaping responsibility and putting more people at "
+"risk.</p>\n"
+"                    "
+msgstr ""
+
+#. Translators: Please do not modify any tags (text located between the "<" and ">" symbols) or letters with a proceeding backslash ("\")
+#: mainSite/templates/documentation.html:51
+#, python-format
+msgid ""
+"\n"
+"                    <p>Take advantage of our private tip form to provide us "
+"with any information that you would like us to know. The last thing we want "
+"is for fear of retaliation to prevent someone from seeking justice when "
+"police misconduct occurs. Therefore, if you would like to report something, "
+"and are uncomfortable with filing an official complaint, you may let us "
+"know, and we will do our best to act on the information as we see fit.</p>\n"
+"                    <p>Please note that many oversight commissions do not "
+"allow complaints to be filed anonymously. Therefore, the change that we can "
+"effect with the information you submit may be limited. That being said, we "
+"do regularly compile tips into Bad Apple Reports and deliver them to the "
+"appropriate commissions, allowing those commissions to review the "
+"information and determine what to do going forward. If the commission "
+"already has the officer on their radar, your tip may (further) encourage an "
+"investigation which could result in punitive action.</p>\n"
+"                    <p>We do <strong>not</strong> save or associate any "
+"identifying information with your tip, including but not limited to your IP "
+"address, user agent, and location. If you are concerned about maintaining "
+"your privacy, we recommend using <a href=\"%(onionLocation)s\" class="
+"\"%(cssClasses)s\">our onion service</a> when submitting your tip.</p>\n"
+"                    "
+msgstr ""
+
+#. Translators: Please do not modify any tags (text located between the "<" and ">" symbols) or letters with a proceeding backslash ("\")
+#: mainSite/templates/home.html:24
+#, python-format
+msgid ""
+"A collaboration between <a href=\"%(priveasyURL)s\" class=\"%(linkClasses)s"
+"\">Priveasy</a> and the <a href=\"%(asdpspURL)s\" class=\"%(linkClasses)s"
+"\">Aaron Swartz Day Police Surveillance Project</a>, Bad Apple provides "
+"valuable tools and resources with the aim of holding law enforcement "
+"accountable and putting an end to police misconduct."
+msgstr ""
+
+#: mainSite/templates/home.html:54
+msgid "Public Records Act Templates"
+msgstr ""
+
+#: mainSite/templates/home.html:55
+msgid ""
+"An organized database of templates designed to simplify the process filing "
+"effective, Public Records Act requests."
+msgstr ""
+
+#: mainSite/templates/home.html:58
+msgid "Oversight Commission Lookup"
+msgstr ""
+
+#: mainSite/templates/home.html:59
+msgid ""
+"Search for police and sheriff oversight commissions by location, and get all "
+"of the information you need, compiled onto one, straightfoward page."
+msgstr ""
+
+#: mainSite/templates/home.html:63
+msgid ""
+"Look up officers who have had sustained findings found against them for "
+"misconduct, and view all relevant information."
+msgstr ""
+
+#: mainSite/templates/home.html:66
+msgid "Private Tip Submissions"
+msgstr ""
+
+#: mainSite/templates/home.html:67
+msgid ""
+"Submit a private tip about misconduct you've witnessed. We use this "
+"information to guide our future PRA requests, and may include it in reports "
+"presented to oversight commissions."
+msgstr ""
+
+#. Translators: This is a page title
+#: mainSite/templates/oversight.html:8
+msgid "Bad Apple - Oversight Lookup"
+msgstr ""
+
+#: mainSite/templates/oversight.html:29 mainSite/templates/pra.html:29
+msgid "State"
+msgstr ""
+
+#: mainSite/templates/oversight.html:35
+msgid "City"
+msgstr ""
+
+#. Translators: This text appears on a search button
+#: mainSite/templates/oversight.html:42 mainSite/templates/pra.html:42
+#: mainSite/templates/tip.html:67
+msgid "Submit"
+msgstr ""
+
+#: mainSite/templates/oversight.html:64
+msgid "No commission summary available."
+msgstr ""
+
+#: mainSite/templates/oversight.html:71
+msgid "No Website"
+msgstr ""
+
+#. Translators: A date value will be automatically added after this text
+#: mainSite/templates/oversight.html:74
+msgid "Updated"
+msgstr ""
+
+#: mainSite/templates/oversight.html:84
+msgid "No Commissions Found"
+msgstr ""
+
+#. Translators: This is a page title
+#: mainSite/templates/pra.html:8
+msgid "Bad Apple - PRA Templates"
+msgstr ""
+
+#: mainSite/templates/pra.html:35
+msgid "Subject"
+msgstr ""
+
+#: mainSite/templates/pra.html:54
+msgid "Letter Title"
+msgstr ""
+
+#: mainSite/templates/pra.html:62
+msgid "Letter Body"
+msgstr ""
+
+#: mainSite/templates/pra.html:71
+msgid "No Matching Template Found"
+msgstr ""
+
+#. Translators: This is a page title
+#: mainSite/templates/tip.html:8
+msgid "Bad Apple - Submit a Tip"
+msgstr ""
+
+#: mainSite/templates/tip.html:42
+msgid "Topic"
+msgstr ""
+
+#: mainSite/templates/tip.html:48
+msgid "Message"
+msgstr ""
+
+#: mainSite/views.py:95
+msgid ""
+"We are unable to accept new tips at the moment, as our tip database is "
+"currently full. Please try again soon."
+msgstr ""
+
+#: mainSite/views.py:107 mainSite/views.py:137 mainSite/views.py:141
+#: mainSite/views.py:148
+msgid "Form invalid. Please try again."
+msgstr ""
+
+#: mainSite/views.py:114 mainSite/views.py:146
+msgid "Your tip has been successfully submitted."
+msgstr ""
+
+#: mainSite/views.py:122
+msgid "An unknown error occurred."
+msgstr ""
+
+#: mainSite/views.py:130
+msgid "Incorrect CAPTCHA. Please try again."
+msgstr ""

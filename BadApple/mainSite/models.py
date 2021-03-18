@@ -1,4 +1,5 @@
 # General imports:
+from django.utils.translation import gettext as _
 from django.db import models
 from uuid import uuid4
 from gnupg import GPG
@@ -16,18 +17,18 @@ from mainSite.extendedModels.administrative import *
 class PRATemplate(models.Model):
 	# Choices:
 	SUBJECTS = [
-					('0' , 'Body Worn Cameras'),
-					('1' , 'Unmanned Aerial Vehicles (Drones)'),
-					('2' , 'Facial Recognition'),
-					('3' , 'Thermographic Cameras (FLIR)'),
-					('4' , 'License Plate Readers'),
-					('5' , 'Federal MOUs (Memoranda of Understanding)'),
-					('6' , 'Predictive Policing'),
-					('7' , 'Gunshot Detection Microphones (ShotSpotter)'),
-					('8' , 'Social Media Monitoring'),
-					('9' , 'IMSI-Catcher Equipment (Stingray)'),
-					('10' , 'Police Misconduct - Based on the Officer\'s Name'),
-					('11' , 'Police Misconduct - Based on the Incident')
+					('0' , _('Body Worn Cameras')),
+					('1' , _('Unmanned Aerial Vehicles (Drones)')),
+					('2' , _('Facial Recognition')),
+					('3' , _('Thermographic Cameras (FLIR)')),
+					('4' , _('License Plate Readers')),
+					('5' , _('Federal MOUs (Memoranda of Understanding)')),
+					('6' , _('Predictive Policing')),
+					('7' , _('Gunshot Detection Microphones (ShotSpotter)')),
+					('8' , _('Social Media Monitoring')),
+					('9' , _('IMSI-Catcher Equipment (Stingray)')),
+					('10' , _('Police Misconduct - Based on the Officer\'s Name')),
+					('11' , _('Police Misconduct - Based on the Incident'))
 				]
 
 	# Filters:
@@ -69,8 +70,8 @@ class OversightCommission(models.Model):
 
 	#Choices
 	TYPES = [
-					('0' , 'Police Review Boards and Commissions'),
-					('1' , 'Sheriff Review Boards and Commissions')
+					('0' , _('Police Review Boards and Commissions')),
+					('1' , _('Sheriff Review Boards and Commissions'))
 			]
 
 	# Profile:
@@ -236,13 +237,13 @@ class InvestigativeReportFinding(models.Model):
 class Tip(models.Model):
 	# Choices:
 	TOPICS = [
-					('0' , 'PRA Templates'),
-					('1' , 'Oversight Commissions'),
-					('2' , 'Bad Apple Database'),
-					('3' , 'Report Police Misconduct'),
-					('4' , 'Ask a Question'),
-					('5' , 'Media Inquiry'),
-					('6' , 'Other')
+					('0' , _('PRA Templates')),
+					('1' , _('Oversight Commissions')),
+					('2' , _('Bad Apple Database')),
+					('3' , _('Report Police Misconduct')),
+					('4' , _('Ask a Question')),
+					('5' , _('Media Inquiry')),
+					('6' , _('Other'))
 				]
 
 	# Contents:

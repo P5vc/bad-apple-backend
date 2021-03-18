@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 
 {% block title %}
-        <title>Bad Apple - Oversight Commission</title>
+        {# Translators: This is a page title #}
+        <title>{% translate 'Bad Apple - Oversight Commission' %}</title>
 {% endblock %}
 
 
@@ -34,91 +36,94 @@
                         </div>
                         <div class="mb-2 row">
                             <div class="col-12">
-                                <h5 class="palette-title">Contact Information</h5>
+                                <h5 class="palette-title">{% translate 'Contact Information' %}</h5>
                             </div>
                             {% if email %}
                             <div class="col-6 col-md-4 mb-2">
-                                <p class="mb-0">Email Address:</p>
+                                <p class="mb-0">{% translate 'Email Address' %}:</p>
                                 <small><a href="mailto:{{ email }}" class="palette-link-color">{{ email }}</a></small>
                             </div>
                             {% endif %}
                             {% if phone %}
                             <div class="col-6 col-md-4 mb-2">
-                                <p class="mb-0">Phone Number:</p>
+                                <p class="mb-0">{% translate 'Phone Number' %}:</p>
                                 <small><a href="tel:{{ phone }}" class="palette-link-color">{{ phone }}</a></small>
                             </div>
                             {% endif %}
                             {% if ttdtty %}
                             <div class="col-6 col-md-4 mb-2">
-                                <p class="mb-0">TTD/TTY Number:</p>
+                                {# Translators: This is a phone number for people who are deaf or hard of hearing #}
+                                <p class="mb-0">{% translate 'TTD/TTY Number' %}:</p>
                                 <small><a href="tel:{{ ttdtty }}" class="palette-link-color">{{ ttdtty }}</a></small>
                             </div>
                             {% endif %}
                             {% if fax %}
                             <div class="col-6 col-md-4 mb-2">
-                                <p class="mb-0">Fax Number:</p>
+                                <p class="mb-0">{% translate 'Fax Number' %}:</p>
                                 <small><a href="tel:{{ fax }}" class="palette-link-color">{{ fax }}</a></small>
                             </div>
                             {% endif %}
                         </div>
                         <div class="mb-4 row">
                             <div class="col-12">
-                                <h5 class="palette-title">About</h5>
+                                <h5 class="palette-title">{% translate 'About' %}</h5>
                                 {% if about %}
                                 {% for paragraph in about %}
                                 <p class="mb-0 palette-text smallLineSpacing">{{ paragraph }}</p>
                                 {% endfor %}
                                 {% else %}
-                                <p class="mb-0 palette-text smallLineSpacing">There is no summary data available for this oversight commission.</p>
+                                <p class="mb-0 palette-text smallLineSpacing">{% blocktranslate %}There is no summary data available for this oversight commission.{% endblocktranslate %}</p>
                                 {% endif %}
                             </div>
                         </div>
                         <div class="mb-2 row">
                             <div class="col-12">
-                                <h5 class="palette-title">Additional Links</h5>
+                                <h5 class="palette-title">{% translate 'Additional Links' %}</h5>
                             </div>
                             {% if website %}
                             <div class="col-6 col-md-3">
-                                <a href="{{ website }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">Website</p></a>
+                                <a href="{{ website }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Website' %}</p></a>
                             </div>
                             {% endif %}
                             {% if contactForm %}
                             <div class="col-6 col-md-3">
-                                <a href="{{ contactForm }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">Contact Form</p></a>
+                                <a href="{{ contactForm }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Contact Form' %}</p></a>
                             </div>
                             {% endif %}
                             {% if pressForm %}
                             <div class="col-6 col-md-3">
-                                <a href="{{ pressForm }}" class="text-decoration-none"><p class=" palette-link smallLineSpacing">Press Form</p></a>
+                                <a href="{{ pressForm }}" class="text-decoration-none"><p class=" palette-link smallLineSpacing">{% translate 'Press Form' %}</p></a>
                             </div>
                             {% endif %}
                             {% if complaintInfo1 %}
                             <div class="col-6 col-md-3">
-                                <a href="{{ complaintInfo1 }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">Complaint Info</p></a>
+                                <a href="{{ complaintInfo1 }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Complaint Info' %}</p></a>
                             </div>
                             {% endif %}
                             {% if complaintInfo2 %}
                             <div class="col-6 col-md-3">
-                                <a href="{{ complaintInfo2 }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">More Info</p></a>
+                                <a href="{{ complaintInfo2 }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'More Info' %}</p></a>
                             </div>
                             {% endif %}
                             {% if complaintForm %}
                             <div class="col-6 col-md-3">
-                                <a href="{{ complaintForm }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">Complaint Form</p></a>
+                                <a href="{{ complaintForm }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Complaint Form' %}</p></a>
                             </div>
                             {% endif %}
                             {% if members %}
                             <div class="col-6 col-md-3">
-                                <a href="{{ members }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">Members</p></a>
+                                <a href="{{ members }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Members' %}</p></a>
                             </div>
                             {% endif %}
                             {% if faq %}
                             <div class="col-6 col-md-3">
-                                <a href="{{ faq }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">FAQ</p></a>
+                                {# Translators: "FAQ" is short for "Frequently-Asked Questions" #}
+                                <a href="{{ faq }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'FAQ' %}</p></a>
                             </div>
                             {% endif %}
                         </div>
-                        <small class="card-text palette-secondary">This information was last updated on {{ updated }}.</small>
+                        {# Translators: Although it is not visible, a date value will be automatically included at the end of this sentence #}
+                        <small class="card-text palette-secondary">{% blocktranslate %}This information was last updated on {% endblocktranslate %}{{ updated }}.</small>
                     </div>
                 </div>
             </div>
