@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: BadAppleBackend RC2\n"
 "Report-Msgid-Bugs-To: Priveasy Admin\n"
 "POT-Creation-Date: 2021-03-18 15:49+0000\n"
-"PO-Revision-Date: 2021-03-23 03:00+0000\n"
+"PO-Revision-Date: 2021-03-23 03:51+0000\n"
 "Last-Translator: Priveasy Admin <Admin@Priveasy.org>\n"
 "Language-Team: Volunteer Spanish Language Translators\n"
 "Language: Spanish\n"
@@ -165,8 +165,7 @@ msgstr "Número TTD/TTY"
 
 #: mainSite/templates/commission.html:62
 msgid "Fax Number"
-msgstr ""
-"Número de Fax"
+msgstr "Número de Fax"
 
 #: mainSite/templates/commission.html:69 mainSite/templates/home.html:49
 msgid "About"
@@ -216,7 +215,7 @@ msgstr "FAQ"
 #. Translators: Although it is not visible, a date value will be automatically included at the end of this sentence
 #: mainSite/templates/commission.html:126
 msgid "This information was last updated on "
-msgstr "Esta información se actualizó por última vez en"
+msgstr "Esta información se actualizó por última vez en "
 
 #. Translators: This is a page title
 #: mainSite/templates/documentation.html:8
@@ -399,6 +398,11 @@ msgid ""
 "valuable tools and resources with the aim of holding law enforcement "
 "accountable and putting an end to police misconduct."
 msgstr ""
+"Una colaboración entre <a href=\"%(priveasyURL)s\" class=\"%(linkClasses)s"
+"\">Priveasy</a> y el <a href=\"%(asdpspURL)s\" class=\"%(linkClasses)s"
+"\">Aaron Swartz Day Police Surveillance Project</a>, Bad Apple proporciona "
+"herramientas y recursos valiosos con el objetivo de responsabilizar a las fuerzas del orden "
+"y poner fin a la mala conducta policial."
 
 #: mainSite/templates/home.html:54
 msgid "Public Records Act Templates"
@@ -420,7 +424,7 @@ msgstr "Buscar Comisiones de Vigilancia"
 #: mainSite/templates/home.html:59
 msgid ""
 "Search for police and sheriff oversight commissions by location, and get all "
-"of the information you need, compiled onto one, straightfoward page."
+"of the information you need, compiled onto one, straightforward page."
 msgstr ""
 "Buscar comisiones de vigilancia de la policía y el sheriff por ubicación, y "
 "obtenga toda la información que se necesita, compilada en una página."
