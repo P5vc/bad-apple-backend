@@ -1,4 +1,4 @@
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from django.forms import ModelForm , Select , TextInput , CharField , Textarea
 from mainSite.models import PRATemplate , OversightCommission , Tip
 
