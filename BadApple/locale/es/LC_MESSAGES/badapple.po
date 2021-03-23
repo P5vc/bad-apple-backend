@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: BadAppleBackend RC2\n"
 "Report-Msgid-Bugs-To: Priveasy Admin\n"
 "POT-Creation-Date: 2021-03-18 15:49+0000\n"
-"PO-Revision-Date: 2021-03-18 17:39+0000\n"
+"PO-Revision-Date: 2021-03-23 03:00+0000\n"
 "Last-Translator: Priveasy Admin <Admin@Priveasy.org>\n"
 "Language-Team: Volunteer Spanish Language Translators\n"
 "Language: Spanish\n"
@@ -20,71 +20,72 @@ msgstr ""
 
 #: mainSite/forms.py:19
 msgid "City or Town (Optional)"
-msgstr ""
+msgstr "Ciudad o Pueblo (Opcional)"
 
 #: mainSite/forms.py:27 mainSite/forms.py:38
 msgid "Enter your message here..."
-msgstr ""
+msgstr "Escriba su mensaje aquí..."
 
 #: mainSite/forms.py:32
 msgid "Enter CAPTCHA text here..."
-msgstr ""
+msgstr "Introduzca el texto CAPTCHA aquí..."
 
 #: mainSite/models.py:20
 msgid "Body Worn Cameras"
-msgstr ""
+msgstr "Cámaras de Cuerpo"
 
 #: mainSite/models.py:21
 msgid "Unmanned Aerial Vehicles (Drones)"
-msgstr ""
+msgstr "Vehículos Aéreos No Tripulados (Drones)"
 
 #: mainSite/models.py:22
 msgid "Facial Recognition"
-msgstr ""
+msgstr "Reconocimiento Facial"
 
 #: mainSite/models.py:23
 msgid "Thermographic Cameras (FLIR)"
-msgstr ""
+msgstr "Cámaras Termográficas (FLIR)"
 
 #: mainSite/models.py:24
 msgid "License Plate Readers"
-msgstr ""
+msgstr "Lectores de Matrículas"
 
 #: mainSite/models.py:25
 msgid "Federal MOUs (Memoranda of Understanding)"
-msgstr ""
+msgstr "MOUs Federales (Memorandos de Entendimiento)"
 
 #: mainSite/models.py:26
 msgid "Predictive Policing"
-msgstr ""
+msgstr "Vigilancia Predictiva"
 
 #: mainSite/models.py:27
 msgid "Gunshot Detection Microphones (ShotSpotter)"
-msgstr ""
+msgstr "Micrófonos de Detección de Disparos (ShotSpotter)"
 
 #: mainSite/models.py:28
 msgid "Social Media Monitoring"
-msgstr ""
+msgstr "Monitoreo de Redes Sociales"
 
 #: mainSite/models.py:29
 msgid "IMSI-Catcher Equipment (Stingray)"
-msgstr ""
+msgstr "Equipo Receptor-IMSI (Stingray)"
 
 #: mainSite/models.py:30
 msgid "Police Misconduct - Based on the Officer's Name"
 msgstr ""
+"Mala Conducta Policial - Basado en el Nombre del Oficial"
 
 #: mainSite/models.py:31
 msgid "Police Misconduct - Based on the Incident"
-msgstr ""
+msgstr "Mala Conducta Policial - Basado en el Incidente"
 
 #: mainSite/models.py:73
 msgid "Police Review Boards and Commissions"
-msgstr ""
+msgstr "Juntas y Comisiones de Revisión Policial"
 
 #: mainSite/models.py:74
 msgid "Sheriff Review Boards and Commissions"
-msgstr ""
+msgstr "Juntas y Comisiones de Revisión del Sheriff"
 
 #: mainSite/models.py:240 mainSite/templates/base.html:32
 #: mainSite/templates/documentation.html:21 mainSite/templates/home.html:30
@@ -106,19 +107,19 @@ msgstr "Base de Datos Bad Apple"
 
 #: mainSite/models.py:243
 msgid "Report Police Misconduct"
-msgstr ""
+msgstr "Denunciar Mala Conducta Policial"
 
 #: mainSite/models.py:244
 msgid "Ask a Question"
-msgstr ""
+msgstr "Hacer una Pregunta"
 
 #: mainSite/models.py:245
 msgid "Media Inquiry"
-msgstr ""
+msgstr "Solicitudes de los Medios"
 
 #: mainSite/models.py:246
 msgid "Other"
-msgstr ""
+msgstr "Otra Cosa"
 
 #: mainSite/templates/badapple.html:20 mainSite/templates/documentation.html:16
 #: mainSite/templates/oversight.html:20 mainSite/templates/pra.html:20
@@ -128,7 +129,7 @@ msgstr "Aprender Más"
 
 #: mainSite/templates/badapple.html:21
 msgid "Coming Soon"
-msgstr ""
+msgstr "Viene Pronto"
 
 #: mainSite/templates/base.html:35 mainSite/templates/documentation.html:30
 #: mainSite/templates/home.html:34
@@ -147,74 +148,75 @@ msgstr "Bad Apple - Comisiones de Vigilancia"
 
 #: mainSite/templates/commission.html:39
 msgid "Contact Information"
-msgstr ""
+msgstr "Información de Contacto"
 
 #: mainSite/templates/commission.html:43
 msgid "Email Address"
-msgstr ""
+msgstr "Correo Electrónico"
 
 #: mainSite/templates/commission.html:49
 msgid "Phone Number"
-msgstr ""
+msgstr "Número de Teléfono"
 
 #. Translators: This is a phone number for people who are deaf or hard of hearing
 #: mainSite/templates/commission.html:56
 msgid "TTD/TTY Number"
-msgstr ""
+msgstr "Número TTD/TTY"
 
 #: mainSite/templates/commission.html:62
 msgid "Fax Number"
 msgstr ""
+"Número de Fax"
 
 #: mainSite/templates/commission.html:69 mainSite/templates/home.html:49
 msgid "About"
-msgstr ""
+msgstr "Acerca de"
 
 #: mainSite/templates/commission.html:75
 msgid "There is no summary data available for this oversight commission."
-msgstr ""
+msgstr "No hay datos resumidos disponibles para esta comisión de vigilancia."
 
 #: mainSite/templates/commission.html:81
 msgid "Additional Links"
-msgstr ""
+msgstr "Otros Enlaces"
 
 #: mainSite/templates/commission.html:85 mainSite/templates/oversight.html:69
 msgid "Website"
-msgstr ""
+msgstr "Sitio Web"
 
 #: mainSite/templates/commission.html:90
 msgid "Contact Form"
-msgstr ""
+msgstr "Formulario de Contacto"
 
 #: mainSite/templates/commission.html:95
 msgid "Press Form"
-msgstr ""
+msgstr "Formulario para la Prensa"
 
 #: mainSite/templates/commission.html:100
 msgid "Complaint Info"
-msgstr ""
+msgstr "Información de Denuncias"
 
 #: mainSite/templates/commission.html:105
 msgid "More Info"
-msgstr ""
+msgstr "Más Información"
 
 #: mainSite/templates/commission.html:110
 msgid "Complaint Form"
-msgstr ""
+msgstr "Formulario para Denuncias"
 
 #: mainSite/templates/commission.html:115
 msgid "Members"
-msgstr ""
+msgstr "Miembros"
 
 #. Translators: "FAQ" is short for "Frequently-Asked Questions"
 #: mainSite/templates/commission.html:121
 msgid "FAQ"
-msgstr ""
+msgstr "FAQ"
 
 #. Translators: Although it is not visible, a date value will be automatically included at the end of this sentence
 #: mainSite/templates/commission.html:126
 msgid "This information was last updated on "
-msgstr ""
+msgstr "Esta información se actualizó por última vez en"
 
 #. Translators: This is a page title
 #: mainSite/templates/documentation.html:8
@@ -280,7 +282,7 @@ msgid ""
 msgstr ""
 "\n"
 "                    <p>Utilice nuestra herramienta de búsqueda de comisiones para encontrar información sobre "
-"las comisiones de supervisión de la policía y el sheriff en su área.</p>\n"
+"las comisiones de vigilancia de la policía y el sheriff en su área.</p>\n"
 "                    <p>Las comisiones de supervisión son un recurso importante para "
 "hacer responsables a las fuerzas del orden público. Si usted ha experimentado o ha sido testigo "
 "de una mala conducta policial, desea hacer un seguimiento de un incidente anterior o tiene preguntas relevantes "
@@ -372,7 +374,7 @@ msgstr ""
 "ocurre una mala conducta policial. Por lo tanto, si usted desea informar algo, "
 "y se siente incómodo con la presentación de una queja oficial, usted puede informarnos, "
 "y haremos todo lo posible para actuar sobre la información como mejor nos parezca.</p>\n"
-"                    <p>Tenga en cuenta que muchas comisiones de supervisión no permiten "
+"                    <p>Tenga en cuenta que muchas comisiones de vigilancia no permiten "
 "que las quejas se presenten de forma anónima. Así que, el cambio que podemos "
 "realizar con la información que envíe, puede ser limitado. Dicho esto, nosotros "
 "regularmente compilamos soplos en Informes de Bad Apple, y los entregamos a las "
@@ -400,13 +402,16 @@ msgstr ""
 
 #: mainSite/templates/home.html:54
 msgid "Public Records Act Templates"
-msgstr ""
+msgstr "Plantillas Para la Ley de Registros Públicos"
 
 #: mainSite/templates/home.html:55
 msgid ""
 "An organized database of templates designed to simplify the process filing "
 "effective, Public Records Act requests."
 msgstr ""
+"Una base de datos organizada con plantillas diseñadas para simplificar el "
+"proceso de presentación de solicitudes eficaces, pedidos de la Ley "
+"de Registros Públicos."
 
 #: mainSite/templates/home.html:58
 msgid "Oversight Commission Lookup"
@@ -417,16 +422,20 @@ msgid ""
 "Search for police and sheriff oversight commissions by location, and get all "
 "of the information you need, compiled onto one, straightfoward page."
 msgstr ""
+"Buscar comisiones de vigilancia de la policía y el sheriff por ubicación, y "
+"obtenga toda la información que se necesita, compilada en una página."
 
 #: mainSite/templates/home.html:63
 msgid ""
 "Look up officers who have had sustained findings found against them for "
 "misconduct, and view all relevant information."
 msgstr ""
+"Busque a los oficiales que han tenido hallazgos sostenidos encontrados en su "
+"contra por mala conducta, y vea toda la información relevante."
 
 #: mainSite/templates/home.html:66
 msgid "Private Tip Submissions"
-msgstr ""
+msgstr "Envíos de Soplos Privados"
 
 #: mainSite/templates/home.html:67
 msgid ""
@@ -434,6 +443,9 @@ msgid ""
 "information to guide our future PRA requests, and may include it in reports "
 "presented to oversight commissions."
 msgstr ""
+"Enviar un soplo privado sobre la mala conducta policial que haya presenciado. Utilizamos "
+"esta información para guiar nuestras futuras solicitudes PRA, y también pudiéramos "
+"incluirla en informes que entregamos a las comisiones de vigilancia policial."
 
 #. Translators: This is a page title
 #: mainSite/templates/oversight.html:8
@@ -442,34 +454,34 @@ msgstr "Bad Apple - Búsqueda de Comisiones"
 
 #: mainSite/templates/oversight.html:29 mainSite/templates/pra.html:29
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #: mainSite/templates/oversight.html:35
 msgid "City"
-msgstr ""
+msgstr "Ciudad"
 
 #. Translators: This text appears on a search button
 #: mainSite/templates/oversight.html:42 mainSite/templates/pra.html:42
 #: mainSite/templates/tip.html:67
 msgid "Submit"
-msgstr ""
+msgstr "Enviar"
 
 #: mainSite/templates/oversight.html:64
 msgid "No commission summary available."
-msgstr ""
+msgstr "No hay ningún resumen de comisión disponible."
 
 #: mainSite/templates/oversight.html:71
 msgid "No Website"
-msgstr ""
+msgstr "No Hay Sitio Web"
 
 #. Translators: A date value will be automatically added after this text
 #: mainSite/templates/oversight.html:74
 msgid "Updated"
-msgstr ""
+msgstr "Actualizado"
 
 #: mainSite/templates/oversight.html:84
 msgid "No Commissions Found"
-msgstr ""
+msgstr "No Comisiones Fueron Encontradas"
 
 #. Translators: This is a page title
 #: mainSite/templates/pra.html:8
@@ -478,19 +490,19 @@ msgstr "Bad Apple - Plantillas PRA"
 
 #: mainSite/templates/pra.html:35
 msgid "Subject"
-msgstr ""
+msgstr "Tema"
 
 #: mainSite/templates/pra.html:54
 msgid "Letter Title"
-msgstr ""
+msgstr "Título de la Carta"
 
 #: mainSite/templates/pra.html:62
 msgid "Letter Body"
-msgstr ""
+msgstr "Cuerpo de la Carta"
 
 #: mainSite/templates/pra.html:71
 msgid "No Matching Template Found"
-msgstr ""
+msgstr "No Encontramos una Plantilla"
 
 #. Translators: This is a page title
 #: mainSite/templates/tip.html:8
@@ -499,7 +511,7 @@ msgstr "Bad Apple - Enviar un Soplo"
 
 #: mainSite/templates/tip.html:42
 msgid "Topic"
-msgstr ""
+msgstr "Tema"
 
 #: mainSite/templates/tip.html:48
 msgid "Message"
@@ -510,20 +522,22 @@ msgid ""
 "We are unable to accept new tips at the moment, as our tip database is "
 "currently full. Please try again soon."
 msgstr ""
+"No podemos aceptar nuevos soplos por el momento, porque nuestra base de datos "
+"de soplos está llena. Por favor, inténtelo de nuevo pronto."
 
 #: mainSite/views.py:107 mainSite/views.py:137 mainSite/views.py:141
 #: mainSite/views.py:148
 msgid "Form invalid. Please try again."
-msgstr ""
+msgstr "Formulario inválido. Por favor, inténtelo de nuevo."
 
 #: mainSite/views.py:114 mainSite/views.py:146
 msgid "Your tip has been successfully submitted."
-msgstr ""
+msgstr "Su soplo ha sido enviado con éxito."
 
 #: mainSite/views.py:122
 msgid "An unknown error occurred."
-msgstr ""
+msgstr "Un error desconocido ha ocurrido. "
 
 #: mainSite/views.py:130
 msgid "Incorrect CAPTCHA. Please try again."
-msgstr ""
+msgstr "CAPTCHA incorrecto. Por favor, inténtelo de nuevo."
