@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BadAppleBackend RC2\n"
 "Report-Msgid-Bugs-To: Priveasy Admin\n"
-"POT-Creation-Date: 2021-03-28 17:17+0000\n"
-"PO-Revision-Date: 2021-03-28 17:31+0000\n"
+"POT-Creation-Date: 2021-03-28 17:48+0000\n"
+"PO-Revision-Date: 2021-03-28 17:50+0000\n"
 "Last-Translator: Priveasy Admin <Admin@Priveasy.org>\n"
 "Language-Team: Volunteer Spanish Language Translators\n"
 "Language: Spanish\n"
@@ -86,37 +86,37 @@ msgstr "Juntas y Comisiones de Revisión Policial"
 msgid "Sheriff Review Boards and Commissions"
 msgstr "Juntas y Comisiones de Revisión del Sheriff"
 
-#: mainSite/models.py:240 mainSite/templates/base.html:32
+#: mainSite/models.py:241 mainSite/templates/base.html:32
 #: mainSite/templates/documentation.html:21 mainSite/templates/home.html:30
 #: mainSite/templates/pra.html:19
 msgid "PRA Templates"
 msgstr "Plantillas PRA"
 
-#: mainSite/models.py:241 mainSite/templates/oversight.html:19
+#: mainSite/models.py:242 mainSite/templates/oversight.html:19
 msgid "Oversight Commissions"
 msgstr "Comisiones de Vigilancia"
 
 #. Translators: This is a page title
-#: mainSite/models.py:242 mainSite/templates/badapple.html:8
+#: mainSite/models.py:243 mainSite/templates/badapple.html:8
 #: mainSite/templates/badapple.html:19 mainSite/templates/base.html:38
 #: mainSite/templates/documentation.html:40 mainSite/templates/home.html:38
 #: mainSite/templates/home.html:63
 msgid "Bad Apple Database"
 msgstr "Base de Datos Bad Apple"
 
-#: mainSite/models.py:243
+#: mainSite/models.py:244
 msgid "Report Police Misconduct"
 msgstr "Denunciar Mala Conducta Policial"
 
-#: mainSite/models.py:244
+#: mainSite/models.py:245
 msgid "Ask a Question"
 msgstr "Hacer una Pregunta"
 
-#: mainSite/models.py:245
+#: mainSite/models.py:246
 msgid "Media Inquiry"
 msgstr "Solicitudes de los Medios"
 
-#: mainSite/models.py:246
+#: mainSite/models.py:247
 msgid "Other"
 msgstr "Otra Cosa"
 
@@ -203,16 +203,20 @@ msgid "Complaint Form"
 msgstr "Formulario para Denuncias"
 
 #: mainSite/templates/commission.html:115
+msgid "Other Complaint Form"
+msgstr "Otro Formulario para Denuncias"
+
+#: mainSite/templates/commission.html:120
 msgid "Members"
 msgstr "Miembros"
 
 #. Translators: "FAQ" is short for "Frequently-Asked Questions"
-#: mainSite/templates/commission.html:121
+#: mainSite/templates/commission.html:126
 msgid "FAQ"
 msgstr "FAQ"
 
 #. Translators: Although it is not visible, a date value will be automatically included at the end of this sentence
-#: mainSite/templates/commission.html:126
+#: mainSite/templates/commission.html:131
 msgid "This information was last updated on "
 msgstr "Esta información se actualizó por última vez en "
 

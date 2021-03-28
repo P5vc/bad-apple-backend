@@ -103,7 +103,8 @@ class OversightCommission(models.Model):
 	aboutSummary = models.TextField('About/Summary' , max_length = 10000 , blank = True)
 	complaintInfo1 = models.URLField('Complaint Information (URL 1)' , max_length = 300 , blank = True)
 	complaintInfo2 = models.URLField('Complaint Information (URL 2)' , max_length = 300 , blank = True)
-	complaintForm = models.URLField('Complaint Form URL' , max_length = 300 , blank = True)
+	complaintForm1 = models.URLField('Complaint Form 1 URL' , max_length = 300 , blank = True)
+	complaintForm2 = models.URLField('Complaint Form 2 URL' , max_length = 300 , blank = True)
 	membersPage = models.URLField('Members Page URL' , max_length = 300 , blank = True)
 	faqPage = models.URLField('FAQ Page URL' , max_length = 300 , blank = True)
 
