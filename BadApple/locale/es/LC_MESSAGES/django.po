@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BadAppleBackend RC2\n"
 "Report-Msgid-Bugs-To: Priveasy Admin\n"
-"POT-Creation-Date: 2021-03-18 15:49+0000\n"
-"PO-Revision-Date: 2021-03-23 03:51+0000\n"
+"POT-Creation-Date: 2021-03-28 17:17+0000\n"
+"PO-Revision-Date: 2021-03-28 17:31+0000\n"
 "Last-Translator: Priveasy Admin <Admin@Priveasy.org>\n"
 "Language-Team: Volunteer Spanish Language Translators\n"
 "Language: Spanish\n"
@@ -100,7 +100,7 @@ msgstr "Comisiones de Vigilancia"
 #: mainSite/models.py:242 mainSite/templates/badapple.html:8
 #: mainSite/templates/badapple.html:19 mainSite/templates/base.html:38
 #: mainSite/templates/documentation.html:40 mainSite/templates/home.html:38
-#: mainSite/templates/home.html:62
+#: mainSite/templates/home.html:63
 msgid "Bad Apple Database"
 msgstr "Base de Datos Bad Apple"
 
@@ -315,7 +315,7 @@ msgid ""
 "the important details on the officer, as well as any reports found against "
 "them, and the findings within those reports, neatly organized to display "
 "only the relevant information. You will also always have the opportunity to "
-"view the full report, should you wish.<p>\n"
+"view the full report, should you wish.</p>\n"
 "                    <p>This database is an important tool for screening "
 "officers, and ensuring that those who have records of misconduct aren't "
 "simply shuffled around to new locations each time they have a sustained "
@@ -337,7 +337,7 @@ msgstr ""
 "cualquier informe encontrado contra ellos, y los hallazgos dentro de esos "
 "informes, organizados cuidadosamente para mostrar sólo la información "
 "relevante. También tendrá la oportunidad de ver el informe completo, si lo "
-"desea.<p>\n"
+"desea.</p>\n"
 "                    <p>Esta base de datos es una herramienta importante para "
 "examinar oficiales, y garantizar que los que tienen registros de mala "
 "conducta no son simplemente barajados a nuevos lugares cada vez que tengan "
@@ -412,11 +412,15 @@ msgstr ""
 "herramientas y recursos valiosos con el objetivo de responsabilizar a las "
 "fuerzas del orden y poner fin a la mala conducta policial."
 
-#: mainSite/templates/home.html:54
+#: mainSite/templates/home.html:50
+msgid "More Details"
+msgstr "Más Detalles"
+
+#: mainSite/templates/home.html:55
 msgid "Public Records Act Templates"
 msgstr "Plantillas Para la Ley de Registros Públicos"
 
-#: mainSite/templates/home.html:55
+#: mainSite/templates/home.html:56
 msgid ""
 "An organized database of templates designed to simplify the process filing "
 "effective, Public Records Act requests."
@@ -425,11 +429,11 @@ msgstr ""
 "proceso de presentación de solicitudes eficaces, pedidos de la Ley de "
 "Registros Públicos."
 
-#: mainSite/templates/home.html:58
+#: mainSite/templates/home.html:59
 msgid "Oversight Commission Lookup"
 msgstr "Buscar Comisiones de Vigilancia"
 
-#: mainSite/templates/home.html:59
+#: mainSite/templates/home.html:60
 msgid ""
 "Search for police and sheriff oversight commissions by location, and get all "
 "of the information you need, compiled onto one, straightforward page."
@@ -437,7 +441,7 @@ msgstr ""
 "Buscar comisiones de vigilancia de la policía y el sheriff por ubicación, y "
 "obtenga toda la información que se necesita, compilada en una página."
 
-#: mainSite/templates/home.html:63
+#: mainSite/templates/home.html:64
 msgid ""
 "Look up officers who have had sustained findings found against them for "
 "misconduct, and view all relevant information."
@@ -445,11 +449,11 @@ msgstr ""
 "Busque a los oficiales que han tenido hallazgos sostenidos encontrados en su "
 "contra por mala conducta, y vea toda la información relevante."
 
-#: mainSite/templates/home.html:66
+#: mainSite/templates/home.html:67
 msgid "Private Tip Submissions"
 msgstr "Envíos de Soplos Privados"
 
-#: mainSite/templates/home.html:67
+#: mainSite/templates/home.html:68
 msgid ""
 "Submit a private tip about misconduct you've witnessed. We use this "
 "information to guide our future PRA requests, and may include it in reports "
