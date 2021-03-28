@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-11">
                     {# Translators: Please do not modify any tags (text located between the "<" and ">" symbols) or letters with a proceeding backslash ("\") #}
-                    <h6 class="lead">{% blocktranslate with priveasyURL='https://Priveasy.org' asdpspURL='https://www.aaronswartzday.org/psp/' linkClasses='linkExpand linkPurple text-decoration-none' %}A collaboration between <a href="{{ priveasyURL }}" class="{{ linkClasses }}">Priveasy</a> and the <a href="{{ asdpspURL }}" class="{{ linkClasses }}">Aaron Swartz Day Police Surveillance Project</a>, Bad Apple provides valuable tools and resources with the aim of holding law enforcement accountable and putting an end to police misconduct.{% endblocktranslate %}</h6>
+                    <h6 class="lead">{% blocktranslate with priveasyURL='https://Priveasy.org' asdpspURL='https://www.aaronswartzday.org/psp/' linkClasses='linkExpand linkPurple' %}A collaboration between <a href="{{ priveasyURL }}" class="{{ linkClasses }}">Priveasy</a> and the <a href="{{ asdpspURL }}" class="{{ linkClasses }}">Aaron Swartz Day Police Surveillance Project</a>, Bad Apple provides valuable tools and resources with the aim of holding law enforcement accountable and putting an end to police misconduct.{% endblocktranslate %}</h6>
                 </div>
             </div>
             <div class="justify-content-center min-vw-100 row text-center w-100">
@@ -47,6 +47,7 @@
             <div class="justify-content-center row text-center w-100">
                 <div class="col-12">
                     <h1 class="display-1">{% translate 'About' %}</h1>
+                    <h5><a href="{% url 'documentation' %}" class="fw-light linkBlue linkExpand">{% translate 'More Details' %}</a></h5>
                 </div>
             </div>
             <div class="justify-content-center mt-3 row w-100">
