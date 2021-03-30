@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BadAppleBackend RC2\n"
 "Report-Msgid-Bugs-To: Priveasy Admin\n"
-"POT-Creation-Date: 2021-03-28 17:48+0000\n"
-"PO-Revision-Date: 2021-03-28 17:50+0000\n"
+"POT-Creation-Date: 2021-03-30 03:38+0000\n"
+"PO-Revision-Date: 2021-03-30 03:52+0000\n"
 "Last-Translator: Priveasy Admin <Admin@Priveasy.org>\n"
 "Language-Team: Volunteer Spanish Language Translators\n"
 "Language: Spanish\n"
@@ -17,6 +17,134 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: mainSite/extendedModels/modelCodes.py:6
+msgid "Police Review Boards and Commissions"
+msgstr "Juntas y Comisiones de Revisión Policial"
+
+#: mainSite/extendedModels/modelCodes.py:7
+msgid "Sheriff Review Boards and Commissions"
+msgstr "Juntas y Comisiones de Revisión del Sheriff"
+
+#: mainSite/extendedModels/modelCodes.py:12
+#: mainSite/templates/commission.html:110
+msgid "Complaint Form"
+msgstr "Formulario para Denuncias"
+
+#: mainSite/extendedModels/modelCodes.py:13
+msgid "Complaint Form Menu"
+msgstr "Menú de Formularios para Denuncias"
+
+#: mainSite/extendedModels/modelCodes.py:14
+msgid "Printable Complaint Form"
+msgstr "Formulario Imprimible para Denuncias"
+
+#: mainSite/extendedModels/modelCodes.py:15
+msgid "Complaint Form in Spanish"
+msgstr "Formulario para Denuncias, en Español"
+
+#: mainSite/extendedModels/modelCodes.py:16
+msgid "Printable Complaint Form in Spanish"
+msgstr "Formulario Imprimible para Denuncias, en Español"
+
+#: mainSite/extendedModels/modelCodes.py:26
+msgid "Sustained"
+msgstr "Sostenido"
+
+#: mainSite/extendedModels/modelCodes.py:27
+msgid "Not Sustained"
+msgstr "No Sostenido"
+
+#: mainSite/extendedModels/modelCodes.py:28
+msgid "Exonerated"
+msgstr "Exonerado"
+
+#: mainSite/extendedModels/modelCodes.py:29
+msgid "Unfounded"
+msgstr "Infundado"
+
+#: mainSite/extendedModels/modelCodes.py:34
+msgid "Body Worn Cameras"
+msgstr "Cámaras de Cuerpo"
+
+#: mainSite/extendedModels/modelCodes.py:35
+msgid "Unmanned Aerial Vehicles (Drones)"
+msgstr "Vehículos Aéreos No Tripulados (Drones)"
+
+#: mainSite/extendedModels/modelCodes.py:36
+msgid "Facial Recognition"
+msgstr "Reconocimiento Facial"
+
+#: mainSite/extendedModels/modelCodes.py:37
+msgid "Thermographic Cameras (FLIR)"
+msgstr "Cámaras Termográficas (FLIR)"
+
+#: mainSite/extendedModels/modelCodes.py:38
+msgid "License Plate Readers"
+msgstr "Lectores de Matrículas"
+
+#: mainSite/extendedModels/modelCodes.py:39
+msgid "Federal MOUs (Memoranda of Understanding)"
+msgstr "MOUs Federales (Memorandos de Entendimiento)"
+
+#: mainSite/extendedModels/modelCodes.py:40
+msgid "Predictive Policing"
+msgstr "Vigilancia Predictiva"
+
+#: mainSite/extendedModels/modelCodes.py:41
+msgid "Gunshot Detection Microphones (ShotSpotter)"
+msgstr "Micrófonos de Detección de Disparos (ShotSpotter)"
+
+#: mainSite/extendedModels/modelCodes.py:42
+msgid "Social Media Monitoring"
+msgstr "Monitoreo de Redes Sociales"
+
+#: mainSite/extendedModels/modelCodes.py:43
+msgid "IMSI-Catcher Equipment (Stingray)"
+msgstr "Equipo Receptor-IMSI (Stingray)"
+
+#: mainSite/extendedModels/modelCodes.py:44
+msgid "Police Misconduct - Based on the Officer's Name"
+msgstr "Mala Conducta Policial - Basado en el Nombre del Oficial"
+
+#: mainSite/extendedModels/modelCodes.py:45
+msgid "Police Misconduct - Based on the Incident"
+msgstr "Mala Conducta Policial - Basado en el Incidente"
+
+#: mainSite/extendedModels/modelCodes.py:110 mainSite/templates/base.html:32
+#: mainSite/templates/documentation.html:21 mainSite/templates/home.html:30
+#: mainSite/templates/pra.html:19
+msgid "PRA Templates"
+msgstr "Plantillas PRA"
+
+#: mainSite/extendedModels/modelCodes.py:111
+#: mainSite/templates/oversight.html:19
+msgid "Oversight Commissions"
+msgstr "Comisiones de Vigilancia"
+
+#. Translators: This is a page title
+#: mainSite/extendedModels/modelCodes.py:112 mainSite/templates/badapple.html:8
+#: mainSite/templates/badapple.html:19 mainSite/templates/base.html:38
+#: mainSite/templates/documentation.html:40 mainSite/templates/home.html:38
+#: mainSite/templates/home.html:63
+msgid "Bad Apple Database"
+msgstr "Base de Datos Bad Apple"
+
+#: mainSite/extendedModels/modelCodes.py:113
+msgid "Report Police Misconduct"
+msgstr "Denunciar Mala Conducta Policial"
+
+#: mainSite/extendedModels/modelCodes.py:114
+msgid "Ask a Question"
+msgstr "Hacer una Pregunta"
+
+#: mainSite/extendedModels/modelCodes.py:115
+msgid "Media Inquiry"
+msgstr "Solicitudes de los Medios"
+
+#: mainSite/extendedModels/modelCodes.py:116
+msgid "Other"
+msgstr "Otra Cosa"
 
 #: mainSite/forms.py:19
 msgid "City or Town (Optional)"
@@ -29,96 +157,6 @@ msgstr "Escriba su mensaje aquí..."
 #: mainSite/forms.py:32
 msgid "Enter CAPTCHA text here..."
 msgstr "Introduzca el texto CAPTCHA aquí..."
-
-#: mainSite/models.py:20
-msgid "Body Worn Cameras"
-msgstr "Cámaras de Cuerpo"
-
-#: mainSite/models.py:21
-msgid "Unmanned Aerial Vehicles (Drones)"
-msgstr "Vehículos Aéreos No Tripulados (Drones)"
-
-#: mainSite/models.py:22
-msgid "Facial Recognition"
-msgstr "Reconocimiento Facial"
-
-#: mainSite/models.py:23
-msgid "Thermographic Cameras (FLIR)"
-msgstr "Cámaras Termográficas (FLIR)"
-
-#: mainSite/models.py:24
-msgid "License Plate Readers"
-msgstr "Lectores de Matrículas"
-
-#: mainSite/models.py:25
-msgid "Federal MOUs (Memoranda of Understanding)"
-msgstr "MOUs Federales (Memorandos de Entendimiento)"
-
-#: mainSite/models.py:26
-msgid "Predictive Policing"
-msgstr "Vigilancia Predictiva"
-
-#: mainSite/models.py:27
-msgid "Gunshot Detection Microphones (ShotSpotter)"
-msgstr "Micrófonos de Detección de Disparos (ShotSpotter)"
-
-#: mainSite/models.py:28
-msgid "Social Media Monitoring"
-msgstr "Monitoreo de Redes Sociales"
-
-#: mainSite/models.py:29
-msgid "IMSI-Catcher Equipment (Stingray)"
-msgstr "Equipo Receptor-IMSI (Stingray)"
-
-#: mainSite/models.py:30
-msgid "Police Misconduct - Based on the Officer's Name"
-msgstr "Mala Conducta Policial - Basado en el Nombre del Oficial"
-
-#: mainSite/models.py:31
-msgid "Police Misconduct - Based on the Incident"
-msgstr "Mala Conducta Policial - Basado en el Incidente"
-
-#: mainSite/models.py:73
-msgid "Police Review Boards and Commissions"
-msgstr "Juntas y Comisiones de Revisión Policial"
-
-#: mainSite/models.py:74
-msgid "Sheriff Review Boards and Commissions"
-msgstr "Juntas y Comisiones de Revisión del Sheriff"
-
-#: mainSite/models.py:241 mainSite/templates/base.html:32
-#: mainSite/templates/documentation.html:21 mainSite/templates/home.html:30
-#: mainSite/templates/pra.html:19
-msgid "PRA Templates"
-msgstr "Plantillas PRA"
-
-#: mainSite/models.py:242 mainSite/templates/oversight.html:19
-msgid "Oversight Commissions"
-msgstr "Comisiones de Vigilancia"
-
-#. Translators: This is a page title
-#: mainSite/models.py:243 mainSite/templates/badapple.html:8
-#: mainSite/templates/badapple.html:19 mainSite/templates/base.html:38
-#: mainSite/templates/documentation.html:40 mainSite/templates/home.html:38
-#: mainSite/templates/home.html:63
-msgid "Bad Apple Database"
-msgstr "Base de Datos Bad Apple"
-
-#: mainSite/models.py:244
-msgid "Report Police Misconduct"
-msgstr "Denunciar Mala Conducta Policial"
-
-#: mainSite/models.py:245
-msgid "Ask a Question"
-msgstr "Hacer una Pregunta"
-
-#: mainSite/models.py:246
-msgid "Media Inquiry"
-msgstr "Solicitudes de los Medios"
-
-#: mainSite/models.py:247
-msgid "Other"
-msgstr "Otra Cosa"
 
 #: mainSite/templates/badapple.html:20 mainSite/templates/documentation.html:16
 #: mainSite/templates/oversight.html:20 mainSite/templates/pra.html:20
@@ -197,14 +235,6 @@ msgstr "Información de Denuncias"
 #: mainSite/templates/commission.html:105
 msgid "More Info"
 msgstr "Más Información"
-
-#: mainSite/templates/commission.html:110
-msgid "Complaint Form"
-msgstr "Formulario para Denuncias"
-
-#: mainSite/templates/commission.html:115
-msgid "Other Complaint Form"
-msgstr "Otro Formulario para Denuncias"
 
 #: mainSite/templates/commission.html:120
 msgid "Members"

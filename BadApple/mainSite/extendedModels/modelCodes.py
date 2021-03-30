@@ -1,6 +1,48 @@
+from django.utils.translation import gettext_lazy as _
+
+
+# Types of Oversight Commissions:
+COMMISSIONS = [
+					('0' , _('Police Review Boards and Commissions')),
+					('1' , _('Sheriff Review Boards and Commissions'))
+				]
+
+# Types of Oversight Commission Complaint Forms:
+COMPLAINT_FORMS = [
+					('0' , _('Complaint Form')),
+					('1' , _('Complaint Form Menu')),
+					('2' , _('Printable Complaint Form')),
+					('a' , _('Complaint Form in Spanish')),
+					('2a' , _('Printable Complaint Form in Spanish'))
+				]
+
 # Alpha-3 Country Codes (maximum length = 3):
 COUNTRIES = [
 				('USA' , 'United States of America')
+			]
+
+# Types of Investigative Report Findings:
+FINDINGS = [
+				('0' , _('Sustained')),
+				('1' , _('Not Sustained')),
+				('2' , _('Exonerated')),
+				('3' , _('Unfounded'))
+			]
+
+# PRA Template Subjects:
+PRA_SUBJECTS = [
+				('0' , _('Body Worn Cameras')),
+				('1' , _('Unmanned Aerial Vehicles (Drones)')),
+				('2' , _('Facial Recognition')),
+				('3' , _('Thermographic Cameras (FLIR)')),
+				('4' , _('License Plate Readers')),
+				('5' , _('Federal MOUs (Memoranda of Understanding)')),
+				('6' , _('Predictive Policing')),
+				('7' , _('Gunshot Detection Microphones (ShotSpotter)')),
+				('8' , _('Social Media Monitoring')),
+				('9' , _('IMSI-Catcher Equipment (Stingray)')),
+				('10' , _('Police Misconduct - Based on the Officer\'s Name')),
+				('11' , _('Police Misconduct - Based on the Incident'))
 			]
 
 # Alpha-3 Country Codes + Alpha-2 Territory Codes (maximum length = 6):
@@ -62,3 +104,14 @@ STATES_TERRITORIES_PROVINCES = [
 								('USA-WI' , 'Wisconsin, USA'),
 								('USA-WY' , 'Wyoming, USA')
 							]
+
+# Topics for submitted tips:
+TIP_TOPICS = [
+			('0' , _('PRA Templates')),
+			('1' , _('Oversight Commissions')),
+			('2' , _('Bad Apple Database')),
+			('3' , _('Report Police Misconduct')),
+			('4' , _('Ask a Question')),
+			('5' , _('Media Inquiry')),
+			('6' , _('Other'))
+		]
