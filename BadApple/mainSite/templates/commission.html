@@ -105,14 +105,14 @@
                                 <a href="{{ complaintInfo2 }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'More Info' %}</p></a>
                             </div>
                             {% endif %}
-                            {% if complaintForm1 %}
+                            {% if complaintForm %}
                             <div class="col-6 col-md-3">
-                                <a href="{{ complaintForm1 }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Complaint Form' %}</p></a>
+                                <a href="{{ complaintForm }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Complaint Form' %}</p></a>
                             </div>
                             {% endif %}
-                            {% if complaintForm2 %}
+                            {% if alternateComplaintForm %}
                             <div class="col-6 col-md-3">
-                                <a href="{{ complaintForm2 }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Other Complaint Form' %}</p></a>
+                                <a href="{{ alternateComplaintForm }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{{ alternateComplaintFormLabel }}</p></a>
                             </div>
                             {% endif %}
                             {% if members %}

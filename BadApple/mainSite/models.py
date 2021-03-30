@@ -1,11 +1,10 @@
 # General imports:
-from django.utils.translation import gettext_lazy as _
 from django.db import models
 from uuid import uuid4
 from gnupg import GPG
 
 # Import reference data:
-from mainSite.extendedModels.modelCodes import *
+import mainSite.extendedModels.modelCodes as choices
 
 # Import administrative models:
 from mainSite.extendedModels.administrative import *
@@ -15,26 +14,10 @@ from mainSite.extendedModels.administrative import *
 # Main database models:
 
 class PRATemplate(models.Model):
-	# Choices:
-	SUBJECTS = [
-					('0' , _('Body Worn Cameras')),
-					('1' , _('Unmanned Aerial Vehicles (Drones)')),
-					('2' , _('Facial Recognition')),
-					('3' , _('Thermographic Cameras (FLIR)')),
-					('4' , _('License Plate Readers')),
-					('5' , _('Federal MOUs (Memoranda of Understanding)')),
-					('6' , _('Predictive Policing')),
-					('7' , _('Gunshot Detection Microphones (ShotSpotter)')),
-					('8' , _('Social Media Monitoring')),
-					('9' , _('IMSI-Catcher Equipment (Stingray)')),
-					('10' , _('Police Misconduct - Based on the Officer\'s Name')),
-					('11' , _('Police Misconduct - Based on the Incident'))
-				]
-
 	# Filters:
-	country = models.CharField('Country' , max_length = 3 , choices = COUNTRIES , default = 'USA')
-	stateTerritoryProvince = models.CharField('State/Territory/Province' , max_length = 6 , choices = STATES_TERRITORIES_PROVINCES , default = 'USA-CA')
-	subject = models.CharField('Subject' , max_length = 4 , choices = SUBJECTS , default = '0')
+	country = models.CharField('Country' , max_length = 3 , choices = choices.COUNTRIES , default = 'USA')
+	stateTerritoryProvince = models.CharField('State/Territory/Province' , max_length = 6 , choices = choices.STATES_TERRITORIES_PROVINCES , default = 'USA-CA')
+	subject = models.CharField('Subject' , max_length = 3 , choices = choices.PRA_SUBJECTS , default = '0')
 
 	# Template Contents:
 	title = models.CharField('Title' , max_length = 300 , blank = True)
@@ -68,20 +51,14 @@ class OversightCommission(models.Model):
 				return uniqueID
 
 
-	#Choices
-	TYPES = [
-					('0' , _('Police Review Boards and Commissions')),
-					('1' , _('Sheriff Review Boards and Commissions'))
-			]
-
 	# Profile:
 	name = models.CharField('Name' , max_length = 150)
-	type = models.CharField('Type' , max_length = 4 , choices = TYPES , default = '0')
+	type = models.CharField('Type' , max_length = 2 , choices = choices.COMMISSIONS , default = '0')
 	website = models.URLField('Website URL' , max_length = 300 , blank = True)
 
 	# Location:
-	country = models.CharField('Country' , max_length = 3 , choices = COUNTRIES , default = 'USA')
-	stateTerritoryProvince = models.CharField('State/Territory/Province' , max_length = 6 , choices = STATES_TERRITORIES_PROVINCES , default = 'USA-CA')
+	country = models.CharField('Country' , max_length = 3 , choices = choices.COUNTRIES , default = 'USA')
+	stateTerritoryProvince = models.CharField('State/Territory/Province' , max_length = 6 , choices = choices.STATES_TERRITORIES_PROVINCES , default = 'USA-CA')
 	cityTown = models.CharField('City/Town' , max_length = 60 , blank = True)
 	postalCode = models.CharField('Postal Code' , max_length = 15 , blank = True)
 	address1 = models.CharField('Address (Line 1)' , max_length = 100 , blank = True)
@@ -103,8 +80,9 @@ class OversightCommission(models.Model):
 	aboutSummary = models.TextField('About/Summary' , max_length = 10000 , blank = True)
 	complaintInfo1 = models.URLField('Complaint Information (URL 1)' , max_length = 300 , blank = True)
 	complaintInfo2 = models.URLField('Complaint Information (URL 2)' , max_length = 300 , blank = True)
-	complaintForm1 = models.URLField('Complaint Form 1 URL' , max_length = 300 , blank = True)
-	complaintForm2 = models.URLField('Complaint Form 2 URL' , max_length = 300 , blank = True)
+	complaintForm = models.URLField('Complaint Form URL' , max_length = 300 , blank = True)
+	alternateComplaintFormType = models.CharField('Alternate Complaint Form Type' , max_length = 2 , choices = choices.COMPLAINT_FORMS , default = '0')
+	alternateComplaintForm = models.URLField('Alternate Complaint Form URL' , max_length = 300 , blank = True)
 	membersPage = models.URLField('Members Page URL' , max_length = 300 , blank = True)
 	faqPage = models.URLField('FAQ Page URL' , max_length = 300 , blank = True)
 
@@ -198,14 +176,6 @@ class InvestigativeReport(models.Model):
 
 
 class InvestigativeReportFinding(models.Model):
-	# Choices:
-	FINDINGS = [
-					('0' , 'Sustained'),
-					('1' , 'Not Sustained'),
-					('2' , 'Exonerated'),
-					('3' , 'Unfounded')
-				]
-
 	# Related Models:
 	investigativeReport = models.ForeignKey(InvestigativeReport , on_delete = models.CASCADE , verbose_name = 'Investigative Report')
 
@@ -213,7 +183,7 @@ class InvestigativeReportFinding(models.Model):
 	findingSummary = models.TextField('Summary of Finding' , max_length = 10000 , blank = True)
 	findingBasis = models.CharField('Department Policy/Legal Code' , max_length = 500 , blank = True)
 	findingBasisQuote = models.TextField('Policy/Legal Code Quote' , max_length = 10000 , blank = True)
-	finding = models.CharField('Finding' , max_length = 2 , choices = FINDINGS , default = '0')
+	finding = models.CharField('Finding' , max_length = 2 , choices = choices.FINDINGS , default = '0')
 
 	# Administrative:
 	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
@@ -236,19 +206,8 @@ class InvestigativeReportFinding(models.Model):
 
 
 class Tip(models.Model):
-	# Choices:
-	TOPICS = [
-					('0' , _('PRA Templates')),
-					('1' , _('Oversight Commissions')),
-					('2' , _('Bad Apple Database')),
-					('3' , _('Report Police Misconduct')),
-					('4' , _('Ask a Question')),
-					('5' , _('Media Inquiry')),
-					('6' , _('Other'))
-				]
-
 	# Contents:
-	topic = models.CharField('Topic' , max_length = 2 , choices = TOPICS , default = '6')
+	topic = models.CharField('Topic' , max_length = 2 , choices = choices.TIP_TOPICS , default = '6')
 	message = models.TextField('Message' , max_length = 10000 , blank = False)
 
 	# Status:
