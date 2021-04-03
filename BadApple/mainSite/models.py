@@ -211,6 +211,7 @@ class Tip(models.Model):
 	message = models.TextField('Message' , max_length = 10000 , blank = False)
 
 	# Status:
+	encrypted = models.BooleanField('Encrypted' , default = False)
 	viewed = models.BooleanField('Tip Viewed' , default = False)
 	processed = models.BooleanField('Tip Processed' , default = False)
 	archive = models.BooleanField('Archive' , default = False)
@@ -228,8 +229,13 @@ class Tip(models.Model):
 
 	# Override the default save behavior to prevent unencrypted data from touching the database:
 	def save(self , *args , **kwargs):
+		if (self.encrypted):
+			super().save(*args , **kwargs)
+			return
+
 		plaintextMessage = self.message
 		self.message = 'This message has been saved in an encrypted format to an "Encrypted Message" object.'
+		self.encrypted = True
 		super().save(*args , **kwargs)
 
 		gpg = GPG(gnupghome = '/home/ubuntu/.gnupg/')

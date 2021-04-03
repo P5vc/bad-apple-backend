@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.models import User , Group
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
-from django.urls import path
+from django.utils.html import mark_safe
+from django.urls import path , reverse
 from django.conf import settings
 from mainSite.models import *
 from io import BytesIO
@@ -43,15 +44,24 @@ class DatabaseManagerPermissionsAdmin(admin.ModelAdmin):
 
 @admin.register(Tip , site = customAdminSite)
 class TipAdmin(admin.ModelAdmin):
-	list_display = ['topic' , 'viewed' , 'processed' , 'archived']
-	readonly_fields = ['topic' , 'message' , 'daysUntilDeletion' , 'archived']
+	list_display = ['id' , 'topic' , 'viewed' , 'processed' , 'archived']
+	readonly_fields = ['topic' , 'message' , 'daysUntilDeletion' , 'archived' , 'encrypted']
 
 
 
 @admin.register(EncryptedMessage , site = customAdminSite)
 class EncryptedMessageAdmin(admin.ModelAdmin):
-	list_display = ['primaryPubKeyFingerprint' , 'secondaryPubKeyFingerprint' , 'messageIsArchived']
-	readonly_fields = ['parentTip' , 'messageIsArchived' , 'primaryPubKeyFingerprint' , 'secondaryPubKeyFingerprint' , 'encryptedMessage']
+	list_display = ['id' , 'primaryPubKeyFingerprint' , 'secondaryPubKeyFingerprint' , 'messageIsArchived']
+	readonly_fields = ['parentTipURL' , 'parentTip' , 'messageIsArchived' , 'primaryPubKeyFingerprint' , 'secondaryPubKeyFingerprint' , 'encryptedMessage']
+
+
+
+	def parentTipURL(self , object):
+		parentTipLink = reverse('admin:mainSite_tip_change' , args = [object.parentTip.id])
+		return mark_safe('<a href="' + parentTipLink + '">Modify Tip</a>')
+
+
+	parentTipURL.short_description = 'Parent Tip URL'
 
 
 
