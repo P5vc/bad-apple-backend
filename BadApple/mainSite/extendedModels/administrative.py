@@ -19,6 +19,34 @@ class DatabaseManagerPermissions(models.Model):
 
 
 
+class WeeklyStats(models.Model):
+	# Identifiers:
+	week = models.IntegerField('Week')
+	year = models.IntegerField('Year')
+
+	# Page View Stats:
+	homeViews = models.IntegerField('Home Page Views' , default = 0)
+	documentationViews = models.IntegerField('Learn More Page Views' , default = 0)
+	praViews = models.IntegerField('PRA Templates Page Views' , default = 0)
+	oversightViews = models.IntegerField('Oversight Lookup Page Views' , default = 0)
+	commissionViews = models.IntegerField('Commission Page Views' , default = 0)
+	tipViews = models.IntegerField('Tip Page Views' , default = 0)
+	badAppleViews = models.IntegerField('Bad Apple Database Page Views' , default = 0)
+
+	# Action Stats:
+	praSearches = models.IntegerField('PRA Template Searches' , default = 0)
+	commissionSearches = models.IntegerField('Oversight Commission Searches' , default = 0)
+	tipSubmissions = models.IntegerField('Tip Submissions' , default = 0)
+
+
+
+	# Manage metadata:
+	class Meta:
+		verbose_name = 'Weekly Statistics'
+		verbose_name_plural = 'Weekly Statistics'
+
+
+
 class DatabaseDump(models.Model):
 	# Choices:
 	DATA_CATEGORIES = [
