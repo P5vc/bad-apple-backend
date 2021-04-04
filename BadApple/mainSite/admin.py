@@ -42,6 +42,13 @@ class DatabaseManagerPermissionsAdmin(admin.ModelAdmin):
 
 
 
+@admin.register(WeeklyStats , site = customAdminSite)
+class WeeklyStatsAdmin(admin.ModelAdmin):
+	list_display = ['week' , 'year']
+	readonly_fields = ['week' , 'year' , 'homeViews' , 'documentationViews' , 'praViews' , 'oversightViews' , 'commissionViews' , 'tipViews' , 'badAppleViews' , 'praSearches' , 'commissionSearches' , 'tipSubmissions']
+
+
+
 @admin.register(Tip , site = customAdminSite)
 class TipAdmin(admin.ModelAdmin):
 	list_display = ['id' , 'topic' , 'viewed' , 'processed' , 'archived']

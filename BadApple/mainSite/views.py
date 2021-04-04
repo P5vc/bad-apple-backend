@@ -1,9 +1,10 @@
 from django.utils.translation import gettext as _
 from django.shortcuts import redirect , render
 from django.forms import TextInput
-from mainSite.models import PRATemplate , OversightCommission , Tip
+from mainSite.models import PRATemplate , OversightCommission , Tip , WeeklyStats
 from mainSite.forms import PRATemplateForm , OversightCommissionForm , TipForm , TipFormCAPTCHA
 from random import choice
+from datetime import datetime
 
 # Import and configure BotBlock
 from mainSite import BotBlock
@@ -14,16 +15,50 @@ BotBlock.encryptText = True
 backgroundImages = ['img/andrew-ridley-jR4Zf-riEjI-unsplash.jpg' , 'img/ashkan-forouzani-5nwog4xjpNY-unsplash.jpg' , 'img/billy-huynh-W8KTS-mhFUE-unsplash.jpg' , 'img/bradley-jasper-ybanez-a1xlQq3HoJ0-unsplash.jpg' , 'img/clem-onojeghuo-Ud4GcZW3rOY-unsplash.jpg' , 'img/danist-bviex5lwf3s-unsplash.jpg' , 'img/denise-chan-pXmbsF70ulM-unsplash.jpg' , 'img/derek-thomson-NqJYQ3m_rVA-unsplash.jpg' , 'img/erfan-moradi-wKc-i5zwfok-unsplash.jpg' , 'img/fabio-ballasina-wEL2zPX3jDg-unsplash.jpg' , 'img/genessa-panainte-sBvK15KlpYk-unsplash.jpg' , 'img/henrik-donnestad-V6Qd6zA85ck-unsplash.jpg' , 'img/joel-filipe-WjnF1Tp-p3I-unsplash.jpg' , 'img/jr-korpa-SFT9G3pAxLY-unsplash.jpg' , 'img/kai-dahms-t--2nGjWLXc-unsplash.jpg' , 'img/lucas-benjamin-R79qkPYvrcM-unsplash.jpg' , 'img/lucas-benjamin-wQLAGv4_OYs-unsplash.jpg' , 'img/markus-spiske-Z7n-qSootxg-unsplash.jpg' , 'img/munmun-singh-xRwj5q7vSJ4-unsplash.jpg' , 'img/nareeta-martin-QP24FRmqDEc-unsplash.jpg' , 'img/paola-galimberti-Cawp7im-QMY-unsplash.jpg' , 'img/pawel-czerwinski-8PqU9b_cpbg-unsplash.jpg' , 'img/pawel-czerwinski-l8DUam8vtbc-unsplash.jpg' , 'img/rene-bohmer-YeUVDKZWSZ4-unsplash.jpg' , 'img/robert-katzki-jbtfM0XBeRc-unsplash.jpg' , 'img/rodion-kutsaev-pVoEPpLw818-unsplash.jpg' , 'img/sandro-katalina-k1bO_VTiZSs-unsplash.jpg' , 'img/scott-webb-FEQEQrF5M10-unsplash.jpg' , 'img/scott-webb-INeZJfQxMLE-unsplash.jpg' , 'img/scott-webb-l-TNipQzhRQ-unsplash.jpg' , 'img/scott-webb-lNxbROqJ8zo-unsplash.jpg' , 'img/scott-webb-wqh7V-nzhYo-unsplash.jpg' , 'img/sean-sinclair-C_NJKfnTR5A-unsplash.jpg' , 'img/sean-sinclair-FQ7cRFUU1y0-unsplash.jpg' , 'img/sora-sagano-C8lJ6WE5RNw-unsplash.jpg' , 'img/steve-johnson-ctRJMubyj4o-unsplash.jpg' , 'img/sylvia-szekely-YPW_SVDfJxk-unsplash.jpg' , 'img/thor-alvis-sgrCLKYdw5g-unsplash.jpg' , 'img/vinicius-amnx-amano-OHPdgstNFGs-unsplash.jpg' , 'img/wrongtog-PTIHdN4NDI8-unsplash.jpg' , 'img/zak-7wBFsHWQDlk-unsplash.jpg']
 
 
+# Support Functions:
+def incrementStat(originID):
+	dateObj = datetime.today().isocalendar()
+	statsObj = WeeklyStats.objects.get_or_create(week = dateObj[1] , year = dateObj[0])[0]
+
+	if (originID == 0):
+		statsObj.homeViews += 1
+	elif (originID == 1):
+		statsObj.documentationViews += 1
+	elif (originID == 2):
+		statsObj.praViews += 1
+	elif (originID == 3):
+		statsObj.oversightViews += 1
+	elif (originID == 4):
+		statsObj.commissionViews += 1
+	elif (originID == 5):
+		statsObj.tipViews += 1
+	elif (originID == 6):
+		statsObj.badAppleViews += 1
+	elif (originID == 7):
+		statsObj.praSearches += 1
+	elif (originID == 8):
+		statsObj.commissionSearches += 1
+	elif (originID == 9):
+		statsObj.tipSubmissions += 1
+
+	statsObj.save()
+
+
+# Request Handlers:
+
 def home(request):
+	incrementStat(0)
 	return render(request , 'home.html' , {})
 
 
 def documentation(request):
+	incrementStat(1)
 	return render(request , 'documentation.html' , {})
 
 
 def pra(request):
 	if (request.method == 'POST'):
+		incrementStat(7)
 		praForm = PRATemplateForm(request.POST)
 
 		resultFound = False
@@ -40,12 +75,14 @@ def pra(request):
 
 		return render(request , 'pra.html' , {'praForm' : praForm , 'showResults' : True , 'resultFound' : resultFound , 'letterTitle' : letterTitle , 'letterBody' : letterBody})
 	else:
+		incrementStat(2)
 		praForm = PRATemplateForm()
 		return render(request , 'pra.html' , {'praForm' : praForm , 'showResults' : False})
 
 
 def oversight(request):
 	if (request.method == 'POST'):
+		incrementStat(8)
 		oversightForm = OversightCommissionForm(request.POST)
 
 		resultFound = False
@@ -76,6 +113,7 @@ def oversight(request):
 
 		return render(request , 'oversight.html' , {'oversightForm' : oversightForm , 'showResults' : True , 'resultFound' : resultFound , 'commissions' : commissions})
 	else:
+		incrementStat(3)
 		oversightForm = OversightCommissionForm()
 		return render(request , 'oversight.html' , {'oversightForm' : oversightForm , 'showResults' : False})
 
@@ -83,6 +121,7 @@ def oversight(request):
 def commission(request , slug):
 	try:
 		commissionObject = OversightCommission.objects.get(commissionID = str(slug) , approved = True , public = True)
+		incrementStat(4)
 	except:
 		return redirect('oversight')
 
@@ -95,6 +134,7 @@ def tip(request):
 		return render(request , 'tip.html' , {'errorMessage' : _('We are unable to accept new tips at the moment, as our tip database is currently full. Please try again soon.') , 'successMessage' : False , 'showForm' : False})
 
 	if (request.method == 'POST'):
+		incrementStat(9)
 		if (databaseEntries >= 10):
 			tipForm = TipFormCAPTCHA(request.POST)
 			if (not(tipForm.is_valid())):
@@ -148,6 +188,7 @@ def tip(request):
 			return render(request , 'tip.html' , {'errorMessage' : _('Form invalid. Please try again.') , 'successMessage' : False , 'showForm' : True , 'tipForm' : tipForm , 'captcha' : False})
 
 	else:
+		incrementStat(5)
 		captchaEnabled = False
 		imageData = ''
 		tipForm = TipForm()
@@ -163,4 +204,5 @@ def tip(request):
 
 
 def badApple(request):
+	incrementStat(6)
 	return render(request , 'badapple.html' , {})
