@@ -29,6 +29,46 @@ FINDINGS = [
 				('3' , _('Unfounded'))
 			]
 
+# Investigative Report Findings Policy Categories:
+POLICY_CATEGORIES = [
+						('0' , _('Use of Force')),
+						('1' , _('Handcuffing and Restraints')),
+						('2' , _('Control Devices and Techniques')),
+						('3' , _('Conducted Energy Device')),
+						('4' , _('Officer-Involved Shooting')),
+						('5' , _('Firearms and Qualification')),
+						('6' , _('Response/Vehicle Pursuit')),
+						('7' , _('Response to Emergency Calls')),
+						('8' , _('Canine Program')),
+						('9' , _('Domestic Violence')),
+						('10' , _('Search and Seizure')),
+						('11' , _('Temporary Custody of Juveniles')),
+						('12' , _('Elder Abuse')),
+						('13' , _('Child Abuse')),
+						('14' , _('Missing Person Reporting')),
+						('15' , _('Public Alerts')),
+						('16' , _('Victim and Witness Assistance')),
+						('17' , _('Hate Crimes')),
+						('18' , _('Conduct')),
+						('19' , _('Department Computer Use')),
+						('20' , _('Report Preparation')),
+						('21' , _('News Media Relations')),
+						('22' , _('Court Appearance And Subpoenas')),
+						('23' , _('Reserve Officers')),
+						('24' , _('Mutual Aid and Outside Agency Assistance')),
+						('25' , _('Language Access Services')),
+						('26' , _('Death Investigation')),
+						('27' , _('Identity Theft')),
+						('28' , _('Private Persons Arrests')),
+						('29' , _('Damage to City Property')),
+						('30' , _('Arrest and Booking Procedures')),
+						('31' , _('Closed Circuit Television/Public Camera System')),
+						('32' , _('Child Safety')),
+						('33' , _('Wanted Persons')),
+						('34' , _('Volunteer Program')),
+						('X' , _('Other/Unknown'))
+					]
+
 # PRA Template Subjects:
 PRA_SUBJECTS = [
 				('0' , _('Body Worn Cameras')),
@@ -47,6 +87,7 @@ PRA_SUBJECTS = [
 
 # Alpha-3 Country Codes + Alpha-2 Territory Codes (maximum length = 6):
 STATES_TERRITORIES_PROVINCES = [
+								('USA-00' , 'Unknown'),
 								('USA-AL' , 'Alabama, USA'),
 								('USA-AK' , 'Alaska, USA'),
 								('USA-AS' , 'American Samoa, USA'),
