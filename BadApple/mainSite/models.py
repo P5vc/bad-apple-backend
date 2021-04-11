@@ -109,11 +109,20 @@ class OversightCommission(models.Model):
 
 
 class Officer(models.Model):
+	def generateUniqueID():
+		while (True):
+			uniqueID = str(uuid4())
+			if (len(Officer.objects.filter(officerID = uniqueID)) == 0):
+				return uniqueID
+
+
+	# Profile:
 	firstName = models.CharField('First Name(s)' , max_length = 150 , blank = True)
 	middleName = models.CharField('Middle Name/Initial' , max_length = 150 , blank = True)
 	lastName = models.CharField('Last Name(s)' , max_length = 150 , blank = True)
 
 	# Administrative:
+	officerID = models.CharField('Officer ID' , max_length = 36 , default = generateUniqueID)
 	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
 	updatedOn = models.DateTimeField('Record Last Updated On' , auto_now = True)
 	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
@@ -134,6 +143,13 @@ class Officer(models.Model):
 
 
 class InvestigativeReport(models.Model):
+	def generateUniqueID():
+		while (True):
+			uniqueID = str(uuid4())
+			if (len(InvestigativeReport.objects.filter(reportID = uniqueID)) == 0):
+				return uniqueID
+
+
 	# Related Models:
 	subjectOfInvestigation = models.ForeignKey(Officer , null = True , on_delete = models.SET_NULL , verbose_name = 'Subject of Investigation (Officer)')
 
@@ -156,6 +172,7 @@ class InvestigativeReport(models.Model):
 	originalPRARequestURL = models.URLField('Original PRA Request URL' , max_length = 300 , blank = True)
 
 	# Administrative:
+	reportID = models.CharField('Report ID' , max_length = 36 , default = generateUniqueID)
 	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
 	updatedOn = models.DateTimeField('Record Last Updated On' , auto_now = True)
 	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
