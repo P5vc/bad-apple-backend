@@ -153,6 +153,11 @@ class InvestigativeReport(models.Model):
 	# Related Models:
 	subjectOfInvestigation = models.ForeignKey(Officer , null = True , on_delete = models.SET_NULL , verbose_name = 'Subject of Investigation (Officer)')
 
+	# Location:
+	country = models.CharField('Country' , max_length = 3 , choices = choices.COUNTRIES , default = 'USA')
+	stateTerritoryProvince = models.CharField('State/Territory/Province' , max_length = 6 , choices = choices.STATES_TERRITORIES_PROVINCES , default = 'USA-CA')
+	cityTown = models.CharField('City/Town' , max_length = 60 , blank = True)
+
 	# Investigator Metadata:
 	investigator = models.CharField('Investigator' , max_length = 500 , blank = True)
 	license = models.CharField('Investigator License' , max_length = 500 , blank = True)
