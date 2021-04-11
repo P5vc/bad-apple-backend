@@ -129,7 +129,7 @@ class OversightCommissionAdmin(admin.ModelAdmin):
 @admin.register(Officer , site = customAdminSite)
 class OfficerAdmin(admin.ModelAdmin):
 	list_display = ['firstName' , 'lastName']
-	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion']
+	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion' , 'officerID']
 
 
 	# Override save behavior:
@@ -145,7 +145,7 @@ class OfficerAdmin(admin.ModelAdmin):
 @admin.register(InvestigativeReport , site = customAdminSite)
 class InvestigativeReportAdmin(admin.ModelAdmin):
 	list_display = ['client' , 'date']
-	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion']
+	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion' , 'reportID']
 
 
 	# Override save behavior:
