@@ -117,9 +117,9 @@ class Officer(models.Model):
 
 
 	# Profile:
-	firstName = models.CharField('First Name(s)' , max_length = 150 , blank = True)
+	firstName = models.CharField('First Name(s)' , max_length = 150)
 	middleName = models.CharField('Middle Name/Initial' , max_length = 150 , blank = True)
-	lastName = models.CharField('Last Name(s)' , max_length = 150 , blank = True)
+	lastName = models.CharField('Last Name(s)' , max_length = 150)
 
 	# Administrative:
 	officerID = models.CharField('Officer ID' , max_length = 36 , default = generateUniqueID)
@@ -155,8 +155,8 @@ class InvestigativeReport(models.Model):
 
 	# Location:
 	country = models.CharField('Country' , max_length = 3 , choices = choices.COUNTRIES , default = 'USA')
-	stateTerritoryProvince = models.CharField('State/Territory/Province' , max_length = 6 , choices = choices.STATES_TERRITORIES_PROVINCES , blank = True)
-	cityTown = models.CharField('City/Town/County' , max_length = 60 , blank = True)
+	stateTerritoryProvince = models.CharField('State/Territory/Province' , max_length = 6 , choices = choices.STATES_TERRITORIES_PROVINCES)
+	cityTown = models.CharField('City/Town/County' , max_length = 60)
 
 	# Investigator Metadata:
 	investigator = models.CharField('Investigator' , max_length = 500 , blank = True)
@@ -165,8 +165,8 @@ class InvestigativeReport(models.Model):
 
 	# Contents Metadata:
 	client = models.CharField('Client' , max_length = 300 , blank = True)
-	incidentDate = models.DateTimeField('Incident Date' , auto_now_add = True)
-	reportDate = models.DateTimeField('Report Date' , auto_now_add = True)
+	incidentDate = models.DateTimeField('Incident Date' , null = True)
+	reportDate = models.DateTimeField('Report Date' , null = True)
 
 	# Contents:
 	findingsSummary = models.TextField('Summary of Findings' , max_length = 10000 , blank = True)
@@ -203,7 +203,7 @@ class InvestigativeReportFinding(models.Model):
 	investigativeReport = models.ForeignKey(InvestigativeReport , on_delete = models.CASCADE , verbose_name = 'Investigative Report')
 
 	# Contents:
-	findingPolicyCategory = models.CharField('Finding Policy Category' , max_length = 3 , choices = choices.POLICY_CATEGORIES , blank = True)
+	findingPolicyCategory = models.CharField('Finding Policy Category' , max_length = 3 , choices = choices.POLICY_CATEGORIES)
 	findingSummary = models.TextField('Summary of Finding' , max_length = 10000 , blank = True)
 	findingBasis = models.CharField('Department Policy/Legal Code' , max_length = 500 , blank = True)
 	findingBasisQuote = models.TextField('Policy/Legal Code Quote' , max_length = 10000 , blank = True)
