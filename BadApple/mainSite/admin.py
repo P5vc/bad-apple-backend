@@ -144,7 +144,7 @@ class OfficerAdmin(admin.ModelAdmin):
 
 @admin.register(InvestigativeReport , site = customAdminSite)
 class InvestigativeReportAdmin(admin.ModelAdmin):
-	list_display = ['client' , 'date']
+	list_display = ['client' , 'reportDate']
 	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion' , 'reportID']
 
 

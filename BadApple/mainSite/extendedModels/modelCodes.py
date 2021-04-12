@@ -65,8 +65,7 @@ POLICY_CATEGORIES = [
 						('31' , _('Closed Circuit Television/Public Camera System')),
 						('32' , _('Child Safety')),
 						('33' , _('Wanted Persons')),
-						('34' , _('Volunteer Program')),
-						('X' , _('Other/Unknown'))
+						('34' , _('Volunteer Program'))
 					]
 
 # PRA Template Subjects:
@@ -87,7 +86,6 @@ PRA_SUBJECTS = [
 
 # Alpha-3 Country Codes + Alpha-2 Territory Codes (maximum length = 6):
 STATES_TERRITORIES_PROVINCES = [
-								('USA-00' , 'Unknown'),
 								('USA-AL' , 'Alabama, USA'),
 								('USA-AK' , 'Alaska, USA'),
 								('USA-AS' , 'American Samoa, USA'),

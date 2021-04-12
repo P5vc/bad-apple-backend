@@ -155,7 +155,7 @@ class InvestigativeReport(models.Model):
 
 	# Location:
 	country = models.CharField('Country' , max_length = 3 , choices = choices.COUNTRIES , default = 'USA')
-	stateTerritoryProvince = models.CharField('State/Territory/Province' , max_length = 6 , choices = choices.STATES_TERRITORIES_PROVINCES , default = 'USA-CA')
+	stateTerritoryProvince = models.CharField('State/Territory/Province' , max_length = 6 , choices = choices.STATES_TERRITORIES_PROVINCES , blank = True)
 	cityTown = models.CharField('City/Town/County' , max_length = 60 , blank = True)
 
 	# Investigator Metadata:
@@ -165,7 +165,8 @@ class InvestigativeReport(models.Model):
 
 	# Contents Metadata:
 	client = models.CharField('Client' , max_length = 300 , blank = True)
-	date = models.DateTimeField('Date' , blank = True)
+	incidentDate = models.DateTimeField('Incident Date' , auto_now_add = True)
+	reportDate = models.DateTimeField('Report Date' , auto_now_add = True)
 
 	# Contents:
 	findingsSummary = models.TextField('Summary of Findings' , max_length = 10000 , blank = True)
@@ -202,7 +203,7 @@ class InvestigativeReportFinding(models.Model):
 	investigativeReport = models.ForeignKey(InvestigativeReport , on_delete = models.CASCADE , verbose_name = 'Investigative Report')
 
 	# Contents:
-	findingPolicyCategory = models.CharField('Finding Policy Category' , max_length = 3 , choices = choices.POLICY_CATEGORIES , default = '0' , blank = True)
+	findingPolicyCategory = models.CharField('Finding Policy Category' , max_length = 3 , choices = choices.POLICY_CATEGORIES , blank = True)
 	findingSummary = models.TextField('Summary of Finding' , max_length = 10000 , blank = True)
 	findingBasis = models.CharField('Department Policy/Legal Code' , max_length = 500 , blank = True)
 	findingBasisQuote = models.TextField('Policy/Legal Code Quote' , max_length = 10000 , blank = True)
