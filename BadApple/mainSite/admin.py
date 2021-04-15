@@ -128,8 +128,8 @@ class OversightCommissionAdmin(admin.ModelAdmin):
 
 @admin.register(Officer , site = customAdminSite)
 class OfficerAdmin(admin.ModelAdmin):
-	list_display = ['firstName' , 'lastName']
-	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion' , 'officerID']
+	list_display = ['id' , 'firstName' , 'lastName' , 'public' , 'approved']
+	readonly_fields = ['id' , 'createdOn' , 'updatedOn' , 'daysUntilDeletion' , 'officerID']
 
 
 	# Override save behavior:
@@ -144,8 +144,8 @@ class OfficerAdmin(admin.ModelAdmin):
 
 @admin.register(InvestigativeReport , site = customAdminSite)
 class InvestigativeReportAdmin(admin.ModelAdmin):
-	list_display = ['client' , 'reportDate']
-	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion' , 'reportID']
+	list_display = ['id' , 'subjectOfInvestigation' , 'client' , 'reportDate' , 'public' , 'approved']
+	readonly_fields = ['id' , 'createdOn' , 'updatedOn' , 'daysUntilDeletion' , 'reportID']
 
 
 	# Override save behavior:
@@ -160,7 +160,7 @@ class InvestigativeReportAdmin(admin.ModelAdmin):
 
 @admin.register(InvestigativeReportFinding , site = customAdminSite)
 class InvestigativeReportFindingAdmin(admin.ModelAdmin):
-	list_display = ['finding' , 'findingBasis']
+	list_display = ['investigativeReport' , 'findingPolicyCategory' , 'finding' , 'public' , 'approved']
 	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion']
 
 
