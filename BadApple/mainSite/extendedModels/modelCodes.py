@@ -65,7 +65,8 @@ POLICY_CATEGORIES = [
 						('31' , _('Closed Circuit Television/Public Camera System')),
 						('32' , _('Child Safety')),
 						('33' , _('Wanted Persons')),
-						('34' , _('Volunteer Program'))
+						('34' , _('Volunteer Program')),
+						('35' , _('Uniform Regulations'))
 					]
 
 # PRA Template Subjects:

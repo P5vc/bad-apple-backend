@@ -169,12 +169,12 @@ class InvestigativeReport(models.Model):
 	reportDate = models.DateTimeField('Report Date' , null = True)
 
 	# Contents:
-	findingsSummary = models.TextField('Summary of Findings' , max_length = 10000 , blank = True)
+	findingsSummary = models.TextField('Summary' , max_length = 10000 , blank = True)
 	conclusion = models.TextField('Conclusion' , max_length = 10000 , blank = True)
 
 	# References:
-	fullReportURL = models.URLField('Full Report URL' , max_length = 300 , blank = True)
-	fullArchiveURL = models.URLField('Full Archive URL' , max_length = 300 , blank = True)
+	fullReportURL = models.URLField('Full Report Download URL' , max_length = 300 , blank = True)
+	fullArchiveURL = models.URLField('Full Archive Download URL' , max_length = 300 , blank = True)
 	originalPRARequestURL = models.URLField('Original PRA Request URL' , max_length = 300 , blank = True)
 
 	# Administrative:
@@ -206,7 +206,6 @@ class InvestigativeReportFinding(models.Model):
 	findingPolicyCategory = models.CharField('Finding Policy Category' , max_length = 3 , choices = choices.POLICY_CATEGORIES)
 	findingSummary = models.TextField('Summary of Finding' , max_length = 10000 , blank = True)
 	findingBasis = models.CharField('Department Policy/Legal Code' , max_length = 500 , blank = True)
-	findingBasisQuote = models.TextField('Policy/Legal Code Quote' , max_length = 10000 , blank = True)
 	finding = models.CharField('Finding' , max_length = 2 , choices = choices.FINDINGS , default = '0')
 
 	# Administrative:
