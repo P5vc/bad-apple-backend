@@ -41,9 +41,9 @@ class TipFormCAPTCHA(ModelForm):
 
 
 class BadAppleForm(Form):
-	firstName = CharField(max_length = 150 , required = False , widget = TextInput(attrs = {'class' : 'form-control' , 'placeholder' : _('First Name')}))
-	lastName = CharField(max_length = 150 , required = False , widget = TextInput(attrs = {'class' : 'form-control' , 'placeholder' : _('Last Name')}))
-	cityTownCounty = CharField(max_length = 150 , required = False , widget = TextInput(attrs = {'class' : 'form-control' , 'placeholder' : _('City, Town, or County')}))
+	firstName = CharField(max_length = 150 , min_length = 2 , required = False , widget = TextInput(attrs = {'class' : 'form-control' , 'placeholder' : _('First Name')}))
+	lastName = CharField(max_length = 150 , min_length = 2 , required = False , widget = TextInput(attrs = {'class' : 'form-control' , 'placeholder' : _('Last Name')}))
+	cityTownCounty = CharField(max_length = 150 , min_length = 2 , required = False , widget = TextInput(attrs = {'class' : 'form-control' , 'placeholder' : _('City, Town, or County')}))
 	stateTerritoryProvince = ChoiceField(choices = ([('' , _('Any'))] + choices.STATES_TERRITORIES_PROVINCES) , required = False , widget = Select(attrs = {'class' : 'form-control'}))
 	year = IntegerField(max_value = 3000 , min_value = 1000 , required = False , widget = TextInput(attrs = {'class' : 'form-control' , 'placeholder' : _('Year of Incident')}))
 	policyCategory = ChoiceField(choices = ([('' , _('Any'))] + choices.POLICY_CATEGORIES) , required = False , widget = Select(attrs = {'class' : 'form-control'}))
