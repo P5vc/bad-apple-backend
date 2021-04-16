@@ -1,8 +1,8 @@
 from django.utils.translation import gettext as _
 from django.shortcuts import redirect , render
 from django.forms import TextInput
-from mainSite.models import PRATemplate , OversightCommission , Tip , WeeklyStats
-from mainSite.forms import PRATemplateForm , OversightCommissionForm , TipForm , TipFormCAPTCHA
+from mainSite.models import PRATemplate , OversightCommission , Tip , WeeklyStats , Officer , InvestigativeReport , InvestigativeReportFinding
+from mainSite.forms import *
 from random import choice
 from datetime import datetime
 
@@ -40,6 +40,8 @@ def incrementStat(originID):
 		statsObj.commissionSearches += 1
 	elif (originID == 9):
 		statsObj.tipSubmissions += 1
+	elif (originID == 10):
+		statsObj.badAppleSearches += 1
 
 	statsObj.save()
 
@@ -204,5 +206,73 @@ def tip(request):
 
 
 def badApple(request):
-	incrementStat(6)
-	return render(request , 'badapple.html' , {})
+	if (request.method == 'POST'):
+		incrementStat(10)
+		badAppleForm = BadAppleForm(request.POST)
+
+		resultFound = False
+		errorMessage = False
+		finalResults = []
+		if (badAppleForm.is_valid()):
+			numberFilled = 0
+			for entry in badAppleForm.cleaned_data.values():
+				if (entry):
+					numberFilled += 1
+
+			if (numberFilled < 2):
+				return render(request , 'badapple.html' , {'badAppleForm' : badAppleForm , 'showResults' : resultFound , 'errorMessage' : _('Please fill in at least two fields.') , 'results' : finalResults})
+
+			try:
+				applicableOfficers = Officer.objects.filter(firstName__icontains = badAppleForm.cleaned_data['firstName'] , lastName__icontains = badAppleForm.cleaned_data['lastName'] , public = True , approved = True)
+
+				applicableReports = []
+				if (badAppleForm.cleaned_data['year']):
+					applicableReports = InvestigativeReport.objects.filter(cityTown__icontains = badAppleForm.cleaned_data['cityTownCounty'] , stateTerritoryProvince__icontains = badAppleForm.cleaned_data['stateTerritoryProvince'] , incidentDate__year = int(badAppleForm.cleaned_data['year']) , subjectOfInvestigation__in = applicableOfficers , public = True , approved = True)
+				else:
+					applicableReports = InvestigativeReport.objects.filter(cityTown__icontains = badAppleForm.cleaned_data['cityTownCounty'] , stateTerritoryProvince__icontains = badAppleForm.cleaned_data['stateTerritoryProvince'] , subjectOfInvestigation__in = applicableOfficers , public = True , approved = True)
+
+				applicableFindings = InvestigativeReportFinding.objects.filter(findingPolicyCategory__icontains = badAppleForm.cleaned_data['policyCategory'] , investigativeReport__in = applicableReports , public = True , approved = True)
+			except:
+				return render(request , 'badapple.html' , {'badAppleForm' : badAppleForm , 'showResults' : False , 'errorMessage' : _('An error occurred. Please try again.') , 'results' : finalResults})
+
+			officers = set()
+			for finding in applicableFindings:
+				officers.add(finding.investigativeReport.subjectOfInvestigation)
+
+			for currentOfficer in officers:
+				officer = {'firstName' : '' , 'middleName' : '' , 'lastName' : '' , 'sustainedFindings' : 0 , 'notSustainedFindings' : 0 , 'exoneratedFindings' : 0 , 'unfoundedFindings' : 0 , 'reportLocations' : [] , 'reportDates' : []}
+
+				officer['firstName'] = currentOfficer.firstName
+				officer['middleName'] = currentOfficer.middleName
+				officer['lastName'] = currentOfficer.lastName
+
+				for officerReport in InvestigativeReport.objects.filter(subjectOfInvestigation = currentOfficer , public = True , approved = True):
+					reportLocation = (officerReport.cityTown + ', ' + officerReport.get_stateTerritoryProvince_display())
+					officer['reportLocations'].append(reportLocation)
+					officer['reportDates'].append(officerReport.reportDate.strftime('%B %d, %Y'))
+
+					for reportFinding in InvestigativeReportFinding.objects.filter(investigativeReport = officerReport , public = True , approved = True):
+						if (reportFinding.finding == '0'):
+							officer['sustainedFindings'] += 1
+						elif(reportFinding.finding == '1'):
+							officer['notSustainedFindings'] += 1
+						elif(reportFinding.finding == '2'):
+							officer['exoneratedFindings'] += 1
+						elif(reportFinding.findgin == '3'):
+							officer['unfoundedFindings'] += 1
+
+				finalResults.append(officer)
+
+			if (finalResults):
+				resultFound = True
+			else:
+				errorMessage = _('No results found.')
+
+		else:
+			errorMessage = _('Form invalid. Please try again.')
+
+		return render(request , 'badapple.html' , {'badAppleForm' : badAppleForm , 'showResults' : resultFound , 'errorMessage' : errorMessage , 'results' : finalResults})
+	else:
+		incrementStat(6)
+		badAppleForm = BadAppleForm()
+		return render(request , 'badapple.html' , {'badAppleForm' : badAppleForm , 'showResults' : False , 'errorMessage' : False})

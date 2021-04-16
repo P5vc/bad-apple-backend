@@ -37,6 +37,7 @@ class WeeklyStats(models.Model):
 	praSearches = models.IntegerField('PRA Template Searches' , default = 0)
 	commissionSearches = models.IntegerField('Oversight Commission Searches' , default = 0)
 	tipSubmissions = models.IntegerField('Tip Submissions' , default = 0)
+	badAppleSearches = models.IntegerField('Bad Apple Database Searches' , default = 0)
 
 
 

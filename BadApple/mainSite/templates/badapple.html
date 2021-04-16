@@ -18,8 +18,112 @@
                 <div class="col-12 mb-3 mt-3">
                     <h1 class="display-1 mb-0">{% translate 'Bad Apple Database' %}</h1>
                     <h5><a href="{% url 'documentation' %}#BadApple" class="fw-light linkBlue linkExpand">{% translate 'Learn More' %}</a></h5>
-                    <h1 class="display-4 mt-5 text-primary">{% translate 'Coming Soon' %}</h1>
                 </div>
+                <form role="form" action="." method="post">
+                    <div class="justify-content-center mb-5 min-vw-100 mt-5 row text-center w-100">
+                        <div class="col-12 col-md-5 mt-2">
+                            <div class="form-group ">
+                                <label for="{{ badAppleForm.firstName.id_for_label }}">{% translate 'Officer First Name' %}</label>
+                                {{ badAppleForm.firstName }}
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-5 mt-2">
+                            <div class="form-group ">
+                                <label for="{{ badAppleForm.lastName.id_for_label }}">{% translate 'Officer Last Name' %}</label>
+                                {{ badAppleForm.lastName }}
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-5 mt-2">
+                            <div class="form-group ">
+                                <label for="{{ badAppleForm.cityTownCounty.id_for_label }}">{% translate 'City' %}</label>
+                                {{ badAppleForm.cityTownCounty }}
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-5 mt-2">
+                            <div class="form-group">
+                                <label for="{{ badAppleForm.stateTerritoryProvince.id_for_label }}">{% translate 'State' %}</label>
+                                {{ badAppleForm.stateTerritoryProvince }}
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-5 mt-2">
+                            <div class="form-group ">
+                                <label for="{{ badAppleForm.year.id_for_label }}">{% translate 'Year' %}</label>
+                                {{ badAppleForm.year }}
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-5 mt-2">
+                            <div class="form-group">
+                                <label for="{{ badAppleForm.policyCategory.id_for_label }}">{% translate 'Violated Policy' %}</label>
+                                {{ badAppleForm.policyCategory }}
+                            </div>
+                        </div>
+                        <div class="col-12 mt-1">
+                            <small>{% blocktranslate %}Don't know what to put? No problem! You may leave up to four fields blank!{% endblocktranslate %}</small>
+                        </div>
+                        <div class="col-12 mt-1">
+                            {% csrf_token %}
+                            {# Translators: This text appears on a search button #}
+                            <button type="submit" class="btn btn-primary">{% translate 'Search' %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="justify-content-center min-vw-100 row w-100 mb-5">
+                {% if errorMessage %}
+                <h5 class="display-5 text-center text-danger">{{ errorMessage }}</h5>
+                {% endif %}
+                {% if showResults %}
+                {% for officer in results %}
+                <div class="col-12 col-lg-6 mb-3 mt-3">
+                    <div class="card">
+                        <h1 class="card-header"><a href=".">{{ officer.firstName }} {% if officer.middleName %}{{ officer.middleName }} {% endif %}{{ officer.lastName }}</a></h1>
+                        <div class="card-body">
+                            <div class="row">
+                                <h5 class="card-title">{% translate 'Total Findings' %}:</h5>
+                                <div class="col-6 col-lg-6 col-sm-3 col-xl-3 mt-2 text-center">
+                                    <h3 class="align-middle d-inline display-3 text-danger">{{ officer.sustainedFindings }}</h3>
+                                    <svg width="3em" height="3em" fill="currentColor" class="bi bi-shield-fill-x text-danger" viewBox="0 0 16 16">
+                                        <path d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zM6.854 5.146L8 6.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 7l1.147 1.146a.5.5 0 0 1-.708.708L8 7.707 6.854 8.854a.5.5 0 1 1-.708-.708L7.293 7 6.146 5.854a.5.5 0 1 1 .708-.708z"/>
+                                    </svg>
+                                </div>
+                                <div class="col-6 col-lg-6 col-sm-3 col-xl-3 mt-2 text-center">
+                                    <h3 class="align-middle d-inline display-3 text-warning">{{ officer.notSustainedFindings }}</h3>
+                                    <svg width="3em" height="3em" fill="currentColor" class="bi bi-shield-fill-exclamation text-warning" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm-.55 8.502L7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0zM8.002 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                    </svg>
+                                </div>
+                                <div class="col-6 col-lg-6 col-sm-3 col-xl-3 mt-2 text-center">
+                                    <h3 class="align-middle d-inline display-3 text-success">{{ officer.exoneratedFindings }}</h3>
+                                    <svg width="3em" height="3em" fill="currentColor" class="bi bi-shield-fill-check text-success" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm2.146 5.146a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647z"/>
+                                    </svg>
+                                </div>
+                                <div class="col-6 col-lg-6 col-sm-3 col-xl-3 mt-2 text-center">
+                                    <h3 class="align-middle d-inline display-3 text-secondary">{{ officer.unfoundedFindings }}</h3>
+                                    <svg width="3em" height="3em" fill="currentColor" class="bi bi-shield-slash-fill text-secondary" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1.093 3.093c-.465 4.275.885 7.46 2.513 9.589a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.32 11.32 0 0 0 1.733-1.525L1.093 3.093zm12.215 8.215L3.128 1.128A61.369 61.369 0 0 1 5.073.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.483 3.626-.332 6.491-1.551 8.616zm.338 3.046l-13-13 .708-.708 13 13-.707.707z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="mt-2 row">
+                                <div class="col-12 col-sm-6 mt-2">
+                                    <h5 class="card-title">{% translate 'Report Locations' %}:</h5>
+                                    {% for location in officer.reportLocations %}
+                                    <p class="mb-0">{{ location }}</p>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-12 col-sm-6 mt-2">
+                                    <h5 class="card-title">{% translate 'Report Dates' %}:</h5>
+                                    {% for date in officer.reportDates %}
+                                    <p class="mb-0">{{ date }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
             </div>
         </div>
 {% endblock content %}
