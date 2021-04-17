@@ -47,6 +47,19 @@
         </nav>
         {% block content %}
         {% endblock %}
+        <div class="container mb-3 mt-5">
+            <div class="row">
+                <div class="col-4 text-center">
+                    <p class="fs-5 linkThin mb-0 text-secondary"><a href="https://GitHub.com/P5vc" class="text-reset">{% translate 'View Our Code' %}</a></p> 
+                </div>
+                <div class="col-4 text-center">
+                    <p class="fs-5 mb-0 text-secondary">CC-BY-SA-4.0</p>
+                </div>
+                <div class="col-4 text-center">
+                    <p class="fs-5 linkThin mb-0 text-secondary"><a href="mailto:info@badapple.tools" class="text-reset">Info@BadApple.tools</a></p>
+                </div>
+            </div>
+        </div>
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
         {% block customJS %}
         {% endblock %}
