@@ -73,13 +73,37 @@
                 <h5 class="display-5 text-center text-danger">{{ errorMessage }}</h5>
                 {% endif %}
                 {% if showResults %}
+                <div class="col-6 col-lg-3 mb-2 mt-2 text-center">
+                    <svg width="1.5em" height="1.5em" class="bi bi-shield-fill-x text-danger" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zM6.854 5.146L8 6.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 7l1.147 1.146a.5.5 0 0 1-.708.708L8 7.707 6.854 8.854a.5.5 0 1 1-.708-.708L7.293 7 6.146 5.854a.5.5 0 1 1 .708-.708z"/>
+                    </svg>
+                    <p class="d-inline text-danger">{% translate 'Sustained Findings' %}</p>
+                </div>
+                <div class="col-6 col-lg-3 mb-2 mt-2 text-center">
+                    <svg width="1.5em" height="1.5em" fill="currentColor" class="bi bi-shield-fill-exclamation text-warning" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm-.55 8.502L7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0zM8.002 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                    </svg>
+                    <p class="d-inline text-warning">{% translate 'Not Sustained Findings' %}</p>
+                </div>
+                <div class="col-6 col-lg-3 mb-2 mt-2 text-center">
+                    <svg width="1.5em" height="1.5em" fill="currentColor" class="bi bi-shield-fill-check text-success" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm2.146 5.146a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647z"/>
+                    </svg>
+                    <p class="d-inline text-success">{% translate 'Exonerated Findings' %}</p>
+                </div>
+                <div class="col-6 col-lg-3 mb-2 mt-2 text-center">
+                    <svg width="1.5em" height="1.5em" fill="currentColor" class="bi bi-shield-slash-fill text-secondary" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.093 3.093c-.465 4.275.885 7.46 2.513 9.589a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.32 11.32 0 0 0 1.733-1.525L1.093 3.093zm12.215 8.215L3.128 1.128A61.369 61.369 0 0 1 5.073.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.483 3.626-.332 6.491-1.551 8.616zm.338 3.046l-13-13 .708-.708 13 13-.707.707z"/>
+                    </svg>
+                    <p class="d-inline text-secondary">{% translate 'Unfounded Findings' %}</p>                      
+                </div>
                 {% for officer in results %}
                 <div class="col-12 col-lg-6 mb-3 mt-3">
                     <div class="card">
                         <h1 class="card-header"><a href=".">{{ officer.firstName }} {% if officer.middleName %}{{ officer.middleName }} {% endif %}{{ officer.lastName }}</a></h1>
                         <div class="card-body">
                             <div class="row">
-                                <h5 class="card-title">{% translate 'Total Findings' %}:</h5>
+                                <h5 class="card-title text-center">{% translate 'Total Findings' %}:</h5>
                                 <div class="col-6 col-lg-6 col-sm-3 col-xl-3 mt-2 text-center">
                                     <h3 class="align-middle d-inline display-3 text-danger">{{ officer.sustainedFindings }}</h3>
                                     <svg width="3em" height="3em" fill="currentColor" class="bi bi-shield-fill-x text-danger" viewBox="0 0 16 16">
@@ -105,7 +129,7 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="mt-2 row">
+                            <div class="mt-2 row text-center">
                                 <div class="col-12 col-sm-6 mt-2">
                                     <h5 class="card-title">{% translate 'Report Locations' %}:</h5>
                                     {% for location in officer.reportLocations %}
