@@ -165,6 +165,7 @@ class InvestigativeReport(models.Model):
 
 	# Contents Metadata:
 	client = models.CharField('Client' , max_length = 300 , blank = True)
+	investigationID = models.CharField('Investigation ID' , max_length = 60 , blank = True)
 	incidentDate = models.DateTimeField('Incident Date' , null = True)
 	reportDate = models.DateTimeField('Report Date' , null = True)
 
@@ -175,7 +176,7 @@ class InvestigativeReport(models.Model):
 	# References:
 	fullReportURL = models.URLField('Full Report Download URL' , max_length = 300 , blank = True)
 	fullArchiveURL = models.URLField('Full Archive Download URL' , max_length = 300 , blank = True)
-	originalPRARequestURL = models.URLField('Original PRA Request URL' , max_length = 300 , blank = True)
+	sourceURL = models.URLField('Source URL' , max_length = 300 , blank = True)
 
 	# Administrative:
 	reportID = models.CharField('Report ID' , max_length = 36 , default = generateUniqueID)
