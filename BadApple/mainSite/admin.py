@@ -96,7 +96,7 @@ def customSaveBehavior(request):
 
 @admin.register(PRATemplate , site = customAdminSite)
 class PRATemplateAdmin(admin.ModelAdmin):
-	list_display = ['subject' , 'stateTerritoryProvince' , 'public' , 'approved']
+	list_display = ['subject' , 'stateTerritoryProvince' , 'public' , 'approved' , 'toBeDeleted']
 	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion']
 
 
@@ -112,7 +112,7 @@ class PRATemplateAdmin(admin.ModelAdmin):
 
 @admin.register(OversightCommission , site = customAdminSite)
 class OversightCommissionAdmin(admin.ModelAdmin):
-	list_display = ['name' , 'stateTerritoryProvince' , 'cityTown' , 'public' , 'approved' , 'completed']
+	list_display = ['name' , 'stateTerritoryProvince' , 'cityTown' , 'public' , 'approved' , 'completed' , 'toBeDeleted']
 	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion' , 'commissionID']
 
 
@@ -128,7 +128,7 @@ class OversightCommissionAdmin(admin.ModelAdmin):
 
 @admin.register(Officer , site = customAdminSite)
 class OfficerAdmin(admin.ModelAdmin):
-	list_display = ['id' , 'firstName' , 'lastName' , 'public' , 'approved']
+	list_display = ['id' , 'firstName' , 'lastName' , 'public' , 'approved' , 'toBeDeleted']
 	readonly_fields = ['id' , 'createdOn' , 'updatedOn' , 'daysUntilDeletion' , 'officerID']
 
 
@@ -144,7 +144,7 @@ class OfficerAdmin(admin.ModelAdmin):
 
 @admin.register(InvestigativeReport , site = customAdminSite)
 class InvestigativeReportAdmin(admin.ModelAdmin):
-	list_display = ['id' , 'subjectOfInvestigation' , 'client' , 'reportDate' , 'public' , 'approved']
+	list_display = ['id' , 'subjectOfInvestigation' , 'client' , 'reportDate' , 'public' , 'approved' , 'toBeDeleted']
 	readonly_fields = ['id' , 'createdOn' , 'updatedOn' , 'daysUntilDeletion' , 'reportID']
 
 
@@ -160,7 +160,7 @@ class InvestigativeReportAdmin(admin.ModelAdmin):
 
 @admin.register(InvestigativeReportFinding , site = customAdminSite)
 class InvestigativeReportFindingAdmin(admin.ModelAdmin):
-	list_display = ['investigativeReport' , 'findingPolicyCategory' , 'finding' , 'public' , 'approved']
+	list_display = ['investigativeReport' , 'findingPolicyCategory' , 'finding' , 'public' , 'approved' , 'toBeDeleted']
 	readonly_fields = ['createdOn' , 'updatedOn' , 'daysUntilDeletion']
 
 
