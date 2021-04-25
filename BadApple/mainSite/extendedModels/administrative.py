@@ -32,6 +32,8 @@ class WeeklyStats(models.Model):
 	commissionViews = models.IntegerField('Commission Page Views' , default = 0)
 	tipViews = models.IntegerField('Tip Page Views' , default = 0)
 	badAppleViews = models.IntegerField('Bad Apple Database Page Views' , default = 0)
+	officerViews = models.IntegerField('Officer Page Views' , default = 0)
+	reportViews = models.IntegerField('Report Page Views' , default = 0)
 
 	# Action Stats:
 	praSearches = models.IntegerField('PRA Template Searches' , default = 0)

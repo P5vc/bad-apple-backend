@@ -42,6 +42,10 @@ def incrementStat(originID):
 		statsObj.tipSubmissions += 1
 	elif (originID == 10):
 		statsObj.badAppleSearches += 1
+	elif (originID == 11):
+		statsObj.officerViews += 1
+	elif (originID == 12):
+		statsObj.reportViews += 1
 
 	statsObj.save()
 
@@ -240,8 +244,9 @@ def badApple(request):
 				officers.add(finding.investigativeReport.subjectOfInvestigation)
 
 			for currentOfficer in officers:
-				officer = {'firstName' : '' , 'middleName' : '' , 'lastName' : '' , 'sustainedFindings' : 0 , 'notSustainedFindings' : 0 , 'exoneratedFindings' : 0 , 'unfoundedFindings' : 0 , 'reportLocations' : [] , 'reportDates' : []}
+				officer = {'officerID' : '' , 'firstName' : '' , 'middleName' : '' , 'lastName' : '' , 'sustainedFindings' : 0 , 'notSustainedFindings' : 0 , 'exoneratedFindings' : 0 , 'unfoundedFindings' : 0 , 'reportLocations' : [] , 'reportDates' : []}
 
+				officer['officerID'] = currentOfficer.officerID
 				officer['firstName'] = currentOfficer.firstName
 				officer['middleName'] = currentOfficer.middleName
 				officer['lastName'] = currentOfficer.lastName
@@ -276,3 +281,37 @@ def badApple(request):
 		incrementStat(6)
 		badAppleForm = BadAppleForm()
 		return render(request , 'badapple.html' , {'badAppleForm' : badAppleForm , 'showResults' : False , 'errorMessage' : False})
+
+
+def officer(request , slug):
+	try:
+		officerObject = Officer.objects.get(officerID = str(slug) , approved = True , public = True)
+		incrementStat(11)
+	except:
+		return redirect('badApple')
+
+	reportObjects = InvestigativeReport.objects.filter(subjectOfInvestigation = officerObject , approved = True , public = True)
+
+	reports = []
+	sustainedFindings = []
+	notSustainedFindings = []
+	exoneratedFindings = []
+	unfoundedFindings = []
+	for report in reportObjects:
+		reportDate = report.reportDate.strftime('%B %d, %Y')
+		reports.append({'reportID' : report.reportID , 'reportDate' : reportDate})
+
+		reportLocation = (report.cityTown + ', ' + report.get_stateTerritoryProvince_display())
+		findings = InvestigativeReportFinding.objects.filter(investigativeReport = report , approved = True , public = True)
+		for finding in findings:
+			if (finding.finding == '0'):
+				sustainedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'location' : reportLocation , 'date' : reportDate , 'reportID' : report.reportID})
+			elif (finding.finding == '1'):
+				notSustainedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'location' : reportLocation , 'date' : reportDate , 'reportID' : report.reportID})
+			elif (finding.finding == '2'):
+				exoneratedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'location' : reportLocation , 'date' : reportDate , 'reportID' : report.reportID})
+			elif (finding.finding == '3'):
+				unfoundedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'location' : reportLocation , 'date' : reportDate , 'reportID' : report.reportID})
+
+
+	return render(request , 'officer.html' , {'firstName' : officerObject.firstName , 'middleName' : officerObject.middleName , 'lastName' : officerObject.lastName , 'reports' : reports , 'sustained' : sustainedFindings , 'notSustained' : notSustainedFindings , 'exonerated' : exoneratedFindings , 'unfounded' : unfoundedFindings , 'addedOn' : officerObject.createdOn.strftime('%B %d, %Y') , 'updatedOn' : officerObject.updatedOn.strftime('%B %d, %Y')})
