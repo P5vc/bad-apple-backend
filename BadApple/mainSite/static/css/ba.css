@@ -1,3 +1,35 @@
+.finding-sustained {
+    color: #d64541;
+}
+
+.finding-sustained-border {
+    border-color: #d64541 !important;
+}
+
+.finding-not-sustained {
+    color: #ec670e;
+}
+
+.finding-not-sustained-border {
+    border-color: #ec670e !important;
+}
+
+.finding-exonerated {
+    color: #24a159;
+}
+
+.finding-exonerated-border {
+    border-color: #24a159 !important;
+}
+
+.finding-unfounded {
+    color: #8f8f8f;
+}
+
+.finding-unfounded-border {
+    border-color: #8f8f8f !important;
+}
+
 .grow {
     border: 8px solid rgba(0, 0, 0, 0);
     transition: all 250ms;
@@ -55,6 +87,14 @@
     .maxWidthReduced {
         max-width: 75%;
     }
+}
+
+.officer-primary {
+    color: #52b3d9;
+}
+
+.officer-secondary {
+    color: #be90d4;
 }
 
 .palette-primary {
