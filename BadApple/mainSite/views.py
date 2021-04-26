@@ -286,10 +286,10 @@ def badApple(request):
 def officer(request , slug):
 	try:
 		officerObject = Officer.objects.get(officerID = str(slug) , approved = True , public = True)
-		incrementStat(11)
 	except:
 		return redirect('badApple')
 
+	incrementStat(11)
 	reportObjects = InvestigativeReport.objects.filter(subjectOfInvestigation = officerObject , approved = True , public = True)
 
 	reports = []
@@ -297,13 +297,20 @@ def officer(request , slug):
 	notSustainedFindings = []
 	exoneratedFindings = []
 	unfoundedFindings = []
+	lastUpdated = officerObject.updatedOn
 	for report in reportObjects:
+		if (report.updatedOn > lastUpdated):
+			lastUpdated = report.updatedOn
+
 		reportDate = report.reportDate.strftime('%B %d, %Y')
 		reports.append({'reportID' : report.reportID , 'reportDate' : reportDate})
 
 		reportLocation = (report.cityTown + ', ' + report.get_stateTerritoryProvince_display())
 		findings = InvestigativeReportFinding.objects.filter(investigativeReport = report , approved = True , public = True)
 		for finding in findings:
+			if (finding.updatedOn > lastUpdated):
+				lastUpdated = finding.updatedOn
+
 			if (finding.finding == '0'):
 				sustainedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'location' : reportLocation , 'date' : reportDate , 'reportID' : report.reportID})
 			elif (finding.finding == '1'):
@@ -314,4 +321,33 @@ def officer(request , slug):
 				unfoundedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'location' : reportLocation , 'date' : reportDate , 'reportID' : report.reportID})
 
 
-	return render(request , 'officer.html' , {'firstName' : officerObject.firstName , 'middleName' : officerObject.middleName , 'lastName' : officerObject.lastName , 'reports' : reports , 'sustained' : sustainedFindings , 'notSustained' : notSustainedFindings , 'exonerated' : exoneratedFindings , 'unfounded' : unfoundedFindings , 'addedOn' : officerObject.createdOn.strftime('%B %d, %Y') , 'updatedOn' : officerObject.updatedOn.strftime('%B %d, %Y')})
+	return render(request , 'officer.html' , {'firstName' : officerObject.firstName , 'middleName' : officerObject.middleName , 'lastName' : officerObject.lastName , 'reports' : reports , 'sustained' : sustainedFindings , 'notSustained' : notSustainedFindings , 'exonerated' : exoneratedFindings , 'unfounded' : unfoundedFindings , 'addedOn' : officerObject.createdOn.strftime('%B %d, %Y') , 'updatedOn' : lastUpdated.strftime('%B %d, %Y')})
+
+
+def report(request , slug):
+	try:
+		reportObject = InvestigativeReport.objects.get(reportID = str(slug) , approved = True , public = True)
+
+	except:
+		return redirect('badApple')
+
+	incrementStat(12)
+	sustainedFindings = []
+	notSustainedFindings = []
+	exoneratedFindings = []
+	unfoundedFindings = []
+	for finding in InvestigativeReportFinding.objects.filter(investigativeReport = reportObject , approved = True , public = True):
+		if (finding.finding == '0'):
+			sustainedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'summary' : finding.findingSummary})
+		elif (finding.finding == '1'):
+			notSustainedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'summary' : finding.findingSummary})
+		elif (finding.finding == '2'):
+			exoneratedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'summary' : finding.findingSummary})
+		elif (finding.finding == '3'):
+			unfoundedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'summary' : finding.findingSummary})
+
+
+	reportLocation = (reportObject.cityTown + ', ' + reportObject.get_stateTerritoryProvince_display())
+	subjectOfInvestigation = (reportObject.subjectOfInvestigation.firstName + ' ' + reportObject.subjectOfInvestigation.middleName + ' ' + reportObject.subjectOfInvestigation.lastName).strip()
+
+	return render(request , 'report.html' , {'investigationID' : reportObject.investigationID , 'location' : reportLocation , 'subject' : subjectOfInvestigation , 'officerID' : reportObject.subjectOfInvestigation.officerID , 'reportDate' : reportObject.reportDate.strftime('%B %d, %Y') , 'client' : reportObject.client , 'incidentDate' : reportObject.incidentDate.strftime('%B %d, %Y') , 'investigator' : reportObject.investigator , 'license' : reportObject.license , 'employer' : reportObject.investigatorEmployer , 'summary' : reportObject.findingsSummary , 'conclusion' : reportObject.conclusion , 'reportURL' : reportObject.fullReportURL , 'archiveURL' : reportObject.fullArchiveURL , 'commissionReportURL' : reportObject.oversightCommissionReport , 'source' : reportObject.sourceURL , 'added' : reportObject.createdOn.strftime('%B %d, %Y') , 'sustained' : sustainedFindings , 'notSustained' : notSustainedFindings , 'exonerated' : exoneratedFindings , 'unfounded' : unfoundedFindings})

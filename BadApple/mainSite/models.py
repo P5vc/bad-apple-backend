@@ -176,6 +176,7 @@ class InvestigativeReport(models.Model):
 	# References:
 	fullReportURL = models.URLField('Full Report Download URL' , max_length = 300 , blank = True)
 	fullArchiveURL = models.URLField('Full Archive Download URL' , max_length = 300 , blank = True)
+	oversightCommissionReport = models.URLField('Oversight Commission Report Download URL' , max_length = 300 , blank = True)
 	sourceURL = models.URLField('Source URL' , max_length = 300 , blank = True)
 
 	# Administrative:

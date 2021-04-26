@@ -6,12 +6,20 @@
     border-color: #d64541 !important;
 }
 
+.finding-sustained-background {
+    background-color: #d64541 !important;
+}
+
 .finding-not-sustained {
     color: #ec670e;
 }
 
 .finding-not-sustained-border {
     border-color: #ec670e !important;
+}
+
+.finding-not-sustained-background {
+    background-color: #ec670e !important;
 }
 
 .finding-exonerated {
@@ -22,12 +30,20 @@
     border-color: #24a159 !important;
 }
 
+.finding-exonerated-background {
+    background-color: #24a159 !important;
+}
+
 .finding-unfounded {
     color: #8f8f8f;
 }
 
 .finding-unfounded-border {
     border-color: #8f8f8f !important;
+}
+
+.finding-unfounded-background {
+    background-color: #8f8f8f !important;
 }
 
 .grow {

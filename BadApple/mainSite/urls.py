@@ -9,5 +9,6 @@ urlpatterns = [
 				path('Commission/<slug:slug>/' , views.commission , name = 'commission'),
 				path('Tip/' , views.tip , name = 'tip'),
 				path('BadAppleDatabase/' , views.badApple , name = 'badApple'),
-				path('Officer/<slug:slug>/' , views.officer , name = 'officer')
+				path('Officer/<slug:slug>/' , views.officer , name = 'officer'),
+				path('Report/<slug:slug>/' , views.report , name = 'report')
 			]

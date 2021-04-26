@@ -26,7 +26,7 @@
         		</div>
                 {% for report in reports %}
                 <div class="col-12 col-lg-3 col-md-4 col-sm-6">
-        			<h5><a href="." class="text-light">{{ report.reportDate }}</a></h5>
+        			<h5><a href="{% url 'report' report.reportID %}" class="text-light">{{ report.reportDate }}</a></h5>
         		</div>
                 {% endfor %}
         	</div>
@@ -43,11 +43,10 @@
         			<div class="border-4 card finding-sustained-border h-100 rounded-2">
         				<div class="card-body">
         					<h5 class="card-title">{{ finding.category }}</h5>
-        					<p class="card-text mb-2">{{ finding.policy }}</p>
         					<p class="card-text mb-2">{{ finding.location }}</p>
         					<p class="card-text ">{{ finding.date }}</p>
         				</div>
-                        <a href="." class="btn btn-primary mb-1">{% translate 'View Report' %}</a>
+                        <a href="{% url 'report' finding.reportID %}" class="btn btn-primary mb-1">{% translate 'View Report' %}</a>
         			</div>
         		</div>
                 {% endfor %}
@@ -71,11 +70,10 @@
         			<div class="border-4 card finding-not-sustained-border h-100 rounded-2">
         				<div class="card-body">
         					<h5 class="card-title">{{ finding.category }}</h5>
-        					<p class="card-text mb-2">{{ finding.policy }}</p>
         					<p class="card-text mb-2">{{ finding.location }}</p>
         					<p class="card-text ">{{ finding.date }}</p>
         				</div>
-                        <a href="." class="btn btn-primary mb-1">{% translate 'View Report' %}</a>
+                        <a href="{% url 'report' finding.reportID %}" class="btn btn-primary mb-1">{% translate 'View Report' %}</a>
         			</div>
         		</div>
                 {% endfor %}
@@ -99,11 +97,10 @@
         			<div class="border-4 card finding-exonerated-border h-100 rounded-2">
         				<div class="card-body">
         					<h5 class="card-title">{{ finding.category }}</h5>
-        					<p class="card-text mb-2">{{ finding.policy }}</p>
         					<p class="card-text mb-2">{{ finding.location }}</p>
         					<p class="card-text ">{{ finding.date }}</p>
         				</div>
-                        <a href="." class="btn btn-primary mb-1">{% translate 'View Report' %}</a>
+                        <a href="{% url 'report' finding.reportID %}" class="btn btn-primary mb-1">{% translate 'View Report' %}</a>
         			</div>
         		</div>
                 {% endfor %}
@@ -127,11 +124,10 @@
         			<div class="border-4 card finding-unfounded-border h-100 rounded-2">
         				<div class="card-body">
         					<h5 class="card-title">{{ finding.category }}</h5>
-        					<p class="card-text mb-2">{{ finding.policy }}</p>
         					<p class="card-text mb-2">{{ finding.location }}</p>
         					<p class="card-text ">{{ finding.date }}</p>
         				</div>
-                        <a href="." class="btn btn-primary mb-1">{% translate 'View Report' %}</a>
+                        <a href="{% url 'report' finding.reportID %}" class="btn btn-primary mb-1">{% translate 'View Report' %}</a>
         			</div>
         		</div>
                 {% endfor %}
