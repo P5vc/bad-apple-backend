@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block title %}
+        {# Translators: This is a page title #}
+        <title>{% translate 'Bad Apple - Report' %}</title>
+{% endblock %}
+
+
+{% block pageThreeActive %}{% endblock %}
+
+
+{% block bodyClasses %}bg-dark{% endblock %}
+
+
+{% block content %}
+		<div class="align-content-center align-items-center container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 w-100">
+			<div class="container maxWidthReduced mb-4 mt-4">
+				<div class="card h-100">
+					<div class="bg-light card-body">
+						<div class="mb-2 row">
+							<div class="col-12">
+								<h5 class="card-title display-5 mb-0 palette-primary text-center">{% translate 'Investigative Report' %}</h5>
+							</div>
+							{% if investigationID %}
+							<div class="col-12 text-center">
+								<small class="palette-secondary">{{ investigationID }}</small>
+							</div>
+							{% endif %}
+						</div>
+						<div class="mb-4 row text-center">
+							{% if location %}
+							<div class="col-12 col-md-4 mb-2 mt-2">
+								<p class="mb-2 palette-title smallLineSpacing">{% translate 'Location' %}:</p>
+								<p class="mb-0 palette-data smallLineSpacing">{{ location }}</p>
+							</div>
+							{% endif %}
+							{% if subject %}
+							<div class="col-12 col-md-4 mb-2 mt-2">
+								<p class="mb-2 palette-title smallLineSpacing">{% translate 'Subject of Investigation' %}:</p>
+								<h4 class="fs-4 fw-normal mb-0 smallLineSpacing"><a href="{% url 'officer' officerID %}" class="palette-data">{{ subject }}</a></h4>
+							</div>
+							{% endif %}
+							{% if reportDate %}
+							<div class="col-12 col-md-4 mb-2 mt-2">
+								<p class="mb-2 palette-title smallLineSpacing">{% translate 'Report Date' %}:</p>
+								<p class="mb-0 palette-data smallLineSpacing">{{ reportDate }}</p>
+							</div>
+							{% endif %}
+						</div>
+						<div class="mb-2 row">
+							<div class="col-12">
+								<h4 class="fs-4 fw-normal palette-title">{% translate 'Report Metadata' %}</h4>
+							</div>
+							{% if client %}
+							<div class="col-12 col-md-4 col-sm-6 col-xl-3 mb-2">
+								<p class="fs-5 mb-0">{% translate 'Client' %}:</p>
+								<small class="fs-6 palette-data">{{ client }}</small>
+							</div>
+							{% endif %}
+							{% if incidentDate %}
+							<div class="col-12 col-md-4 col-sm-6 col-xl-3 mb-2">
+								<p class="fs-5 mb-0">{% translate 'Incident Date' %}:</p>
+								<small class="fs-6 palette-data">{{ incidentDate }}</small>
+							</div>
+							{% endif %}
+							{% if investigator %}
+							<div class="col-12 col-md-4 col-sm-6 col-xl-3 mb-2">
+								<p class="fs-5 mb-0">{% translate 'Investigator' %}:</p>
+								<small class="fs-6 palette-data">{{ investigator }}</small>
+							</div>
+							{% endif %}
+							{% if license %}
+							<div class="col-12 col-md-4 col-sm-6 col-xl-3 mb-2">
+								<p class="fs-5 mb-0">{% translate 'Investigator License' %}:</p>
+								<small class="fs-6 palette-data">{{ license }}</small>
+							</div>
+							{% endif %}
+							{% if employer %}
+							<div class="col-12 col-md-4 col-sm-6 col-xl-3 mb-2">
+								<p class="fs-5 mb-0">{% translate 'Investigator Employer' %}:</p>
+								<small class="fs-6 palette-data">{{ employer }}</small>
+							</div>
+							{% endif %}
+						</div>
+						<div class="mb-4 mt-3 row">
+							{% if summary %}
+							<div class="col-12">
+								<h4 class="fs-4 fw-normal palette-title">{% translate 'Findings Summary' %}</h4>
+								<p class="mb-0 palette-text smallLineSpacing">{{ summary }}</p>
+							</div>
+							{% endif %}
+							{% if conclusion %}
+							<div class="col-12 mt-4">
+								<h4 class="fs-4 fw-normal palette-title">{% translate 'Findings Conclusion' %}</h4>
+								<p class="mb-0 palette-text smallLineSpacing">{{ conclusion }}</p>
+							</div>
+							{% endif %}
+						</div>
+						<div class="mb-2 row">
+							<div class="col-12">
+								<h4 class="fs-4 fw-normal palette-title">{% translate 'Additional Links' %}</h4>
+							</div>
+							{% if reportURL %}
+							<div class="col-12 col-md-4 col-sm-6 col-xl-3">
+								<a href="{{ reportURL }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Download Full Report' %}</p></a>
+							</div>
+							{% endif %}
+							{% if archiveURL %}
+							<div class="col-12 col-md-4 col-sm-6 col-xl-3">
+								<a href="{{ archiveURL }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Download Full Archive' %}</p></a>
+							</div>
+							{% endif %}
+							{% if commissionReportURL %}
+							<div class="col-12 col-md-4 col-sm-6 col-xl-3">
+								<a href="{{ commissionReportURL }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Oversight Commission Report' %}</p></a>
+							</div>
+							{% endif %}
+							{% if source %}
+							<div class="col-12 col-md-4 col-sm-6 col-xl-3">
+								<a href="{{ source }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Source' %}</p></a>
+							</div>
+							{% endif %}
+						</div>
+						<small class="card-text palette-secondary">{% blocktranslate %}This report was added on{% endblocktranslate %} {{ added }}.</small>
+					</div>
+				</div>
+				{% if sustained %}
+				<div class="card finding-sustained-background h-100 mt-4 text-light">
+					<div class="text-center">
+						<div class="mb-2 row">
+							<div class="col-12">
+								<h2 class="display-6 fw-normal mb-0">{% translate 'Sustained Findings' %}</h2>
+								<small class="fw-bolder">{% blocktranslate %}When the investigation discloses sufficient evidence to establish that the act occurred and that it constituted misconduct{% endblocktranslate %}</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="flex-nowrap flex-row mb-2 ms-0 mt-2 overflow-scroll row w-100">
+					{% for finding in sustained %}
+					<div class="col-11 col-lg-9 col-md-10 col-xl-8 col-xxl-7 ps-0">
+						<div class="card finding-sustained-background h-100">
+							<div class="card-body text-dark">
+								<h3 class="card-title fs-3 mb-0 text-center">{{ finding.category }}</h3>
+								<p class="mb-2 text-black-50 text-center">{{ finding.policy }}</p>
+								<p class="card-text mb-2">{{ finding.summary }}</p>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				{% endif %}
+				{% if notSustained %}
+				<div class="card finding-not-sustained-background h-100 mt-4 text-light">
+					<div class="text-center">
+						<div class="mb-2 row">
+							<div class="col-12">
+								<h2 class="display-6 fw-normal mb-0">{% translate 'Not Sustained Findings' %}</h2>
+								<small class="fw-bolder">{% blocktranslate %}When the investigation discloses that there is insufficient evidence to sustain the complaint or fully exonerate the employee{% endblocktranslate %}</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="flex-nowrap flex-row mb-2 ms-0 mt-2 overflow-scroll row w-100">
+					{% for finding in notSustained %}
+					<div class="col-11 col-lg-9 col-md-10 col-xl-8 col-xxl-7 ps-0">
+						<div class="card finding-not-sustained-background h-100">
+							<div class="card-body text-dark">
+								<h3 class="card-title fs-3 mb-0 text-center">{{ finding.category }}</h3>
+								<p class="mb-2 text-black-50 text-center">{{ finding.policy }}</p>
+								<p class="card-text mb-2">{{ finding.summary }}</p>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				{% endif %}
+				{% if exonerated %}
+				<div class="card finding-exonerated-background h-100 mt-4 text-light">
+					<div class="text-center">
+						<div class="mb-2 row">
+							<div class="col-12">
+								<h2 class="display-6 fw-normal mb-0">{% translate 'Exonerated Findings' %}</h2>
+								<small class="fw-bolder">{% blocktranslate %}When the investigation discloses that the alleged act occurred, but the act was justified and/or proper under the city's policy{% endblocktranslate %}</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="flex-nowrap flex-row mb-2 ms-0 mt-2 overflow-scroll row w-100">
+					{% for finding in exonerated %}
+					<div class="col-11 col-lg-9 col-md-10 col-xl-8 col-xxl-7 ps-0">
+						<div class="card finding-exonerated-background h-100">
+							<div class="card-body text-dark">
+								<h3 class="card-title fs-3 mb-0 text-center">{{ finding.category }}</h3>
+								<p class="mb-2 text-black-50 text-center">{{ finding.policy }}</p>
+								<p class="card-text mb-2">{{ finding.summary }}</p>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				{% endif %}
+				{% if unfounded %}
+				<div class="card finding-unfounded-background h-100 mt-4 text-light">
+					<div class="text-center">
+						<div class="mb-2 row">
+							<div class="col-12">
+								<h2 class="display-6 fw-normal mb-0">{% translate 'Unfounded Findings' %}</h2>
+								<small class="fw-bolder">{% blocktranslate %}When the investigation discloses that the alleged act did not occur or did not involve city personnel{% endblocktranslate %}</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="flex-nowrap flex-row mb-2 ms-0 mt-2 overflow-scroll row w-100">
+					{% for finding in unfounded %}
+					<div class="col-11 col-lg-9 col-md-10 col-xl-8 col-xxl-7 ps-0">
+						<div class="card finding-unfounded-background h-100">
+							<div class="card-body text-dark">
+								<h3 class="card-title fs-3 mb-0 text-center">{{ finding.category }}</h3>
+								<p class="mb-2 text-black-50 text-center">{{ finding.policy }}</p>
+								<p class="card-text mb-2">{{ finding.summary }}</p>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				{% endif %}
+			</div>
+		</div>
+{% endblock %}
