@@ -13,147 +13,109 @@
 
 
 {% block content %}
-        <div class="bg-dark border border-5 border-dark container mt-4 rounded rounded-3 shadow-lg">
-        	<div class=" row">
-        		<div class="col-12">
-        			<h4 class="display-4 officer-primary text-center">{{ firstName }} {{ middleName }} {{ lastName }}</h4>
-        		</div>
-        	</div>
-            {% if reports %}
-        	<div class="mt-2  row">
-        		<div class="col-12">
-        			<h2 class="display-6 officer-secondary">{% translate 'Reports' %}</h2>
-        		</div>
+        <div class="container mt-4">
+            <div class="bg-dark rounded row">
+                <div class="col-12">
+                    <h4 class="display-4 mb-1 mt-1 officer-primary text-center">{{ firstName }} {{ middleName }} {{ lastName }}</h4>
+                </div>
+            </div>
+            <div class="justify-content-evenly row">
+                <div class="col-11 col-md-5 mt-3">
+                    <div class="bg-dark rounded row">
+                        <div class="col-12">
+                            <h5 class="display-5 mb-1 mt-1 officer-secondary text-center">{% translate 'Details' %}</h5>
+                        </div>
+                    </div>
+                    <div class="bg-dark mt-2 rounded row">
+                        <div class="col-12 pb-1">
+                            <p class="fs-5 fw-bold mb-1 mt-1 text-center text-decoration-underline text-light">{% translate 'Known Locations' %}</p>
+                            {% if locations %}
+                            {% for location in locations %}
+                            <p class="mb-0 mt-0 text-light text-start">{{ location }}</p>
+                            {% endfor %}
+                            {% else %}
+                            <p class="mb-0 mt-0 text-light text-center">None</p>
+                            {% endif %}
+                            <p class="fs-5 fw-bold mb-1 mt-1 text-center text-decoration-underline text-light">{% translate 'Known Badge Numbers' %}</p>
+                            {% if badgeNumbers %}
+                            {% for number in badgeNumbers %}
+                            <p class="mb-0 mt-0 text-light text-start">{{ number }}</p>
+                            {% endfor %}
+                            {% else %}
+                            <p class="mb-0 mt-0 text-light text-center">None</p>
+                            {% endif %}
+                            <p class="fs-5 fw-bold mb-1 mt-1 text-center text-decoration-underline text-light">{% translate 'Metadata' %}</p>
+                            <p class="mb-0 mt-0 text-light text-start">{% blocktranslate %}Added{% endblocktranslate %}: {{ addedOn }}</p>
+                            <p class="mb-0 mt-0 text-light text-start">{% blocktranslate %}Updated{% endblocktranslate %}: {{ updatedOn }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-11 col-md-5 mt-3">
+                    <div class="bg-dark rounded row">
+                        <div class="col-12">
+                            <h5 class="display-5 mb-1 mt-1 officer-secondary text-center">{% translate 'Overview' %}</h5>
+                        </div>
+                    </div>
+                    <div class="bg-dark mt-2 rounded row">
+                        <div class="col-12 pb-1">
+                            <p class="fs-5 fw-bold mb-1 mt-1 text-center text-decoration-underline text-light">{% translate 'Total Findings' %}</p>
+                            <p class="finding-sustained mb-0 mt-0 text-start">{% blocktranslate %}Sustained{% endblocktranslate %}: {{ sustained }}</p>
+                            <p class="finding-not-sustained mb-0 mt-0 text-start">{% blocktranslate %}Not Sustained{% endblocktranslate %}: {{ notSustained }}</p>
+                            <p class="finding-exonerated mb-0 mt-0 text-start">{% blocktranslate %}Exonerated{% endblocktranslate %}: {{ exonerated }}</p>
+                            <p class="finding-unfounded mb-0 mt-0 text-start">{% blocktranslate %}Unfounded{% endblocktranslate %}: {{ unfounded }}</p>
+                            <p class="fs-5 fw-bold mb-1 mt-1 text-center text-decoration-underline text-light">{% translate 'Report Dates' %}</p>
+                            <p class="mb-0 mt-0 text-light text-start">{% blocktranslate %}Earliest Report{% endblocktranslate %}: {{ earliestReport }}</p>
+                            <p class="mb-0 mt-0 text-light text-start">{% blocktranslate %}Latest Report{% endblocktranslate %}: {{ latestReport }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="justify-content-evenly mt-3 row">
+                <div class="bg-dark col-11 col-md-12 rounded">
+                    <h5 class="display-5 mb-1 mt-1 officer-secondary text-center">{% translate 'Reports' %}</h5>
+                </div>
+                {% if reports %}
                 {% for report in reports %}
-                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
-        			<h5><a href="{% url 'report' report.reportID %}" class="text-light">{{ report.reportDate }}</a></h5>
-        		</div>
-                {% endfor %}
-        	</div>
-        	<div class="mt-3 row">
-        		<div class="col-12">
-        			<h2 class="display-6 finding-sustained mb-0">{% translate 'Sustained Findings' %}</h2>
-        			<small class="finding-sustained">{% blocktranslate %}When the investigation discloses sufficient evidence to establish that the act occurred and that it constituted misconduct{% endblocktranslate %}</small>
-        		</div>
-                {% if sustained %}
-            </div>
-            <div class="flex-nowrap flex-row mb-2 mt-2 overflow-scroll row">
-                {% for finding in sustained %}
-                <div class="col-11 col-lg-5 col-md-7 col-sm-9 col-xxl-3">
-        			<div class="border-4 card finding-sustained-border h-100 rounded-2">
-        				<div class="card-body">
-        					<h5 class="card-title">{{ finding.category }}</h5>
-        					<p class="card-text mb-2">{{ finding.location }}</p>
-        					<p class="card-text ">{{ finding.date }}</p>
-        				</div>
-                        <a href="{% url 'report' finding.reportID %}" class="btn btn-primary mb-1">{% translate 'View Report' %}</a>
-        			</div>
-        		</div>
-                {% endfor %}
-            </div>
-                {% else %}
-                <div class="col-12 mt-2">
-                    <h1 class="text-center text-warning">{% translate 'None Found' %}</h1>
+                <div class="bg-dark col-11 col-md-5 mt-3 rounded">
+                    <a href="{% url 'report' report.reportID %}" class="link-light"><p class="fs-2 mb-0 text-center text-light">{% translate 'Investigative Report' %}</p></a>
+                    <p class="mb-0 text-center text-light">{{ report.reportLocation }}</p>
+                    <p class="mb-0 text-center text-light">{{ report.reportDate }}</p>
+                    {% if report.sustained %}
+                    <p class="finding-sustained fs-5 fw-bold mb-0 text-center">{% translate 'Sustained Findings' %}</p>
+                    {% for policy in report.sustained %}
+                    <p class="finding-sustained mb-0 mt-0 text-start">{{ policy }}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% if report.notSustained %}
+                    <p class="finding-not-sustained fs-5 fw-bold mb-0 text-center">{% translate 'Not Sustained Findings' %}</p>
+                    {% for policy in report.notSustained %}
+                    <p class="finding-not-sustained mb-0 mt-0 text-start">{{ policy }}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% if report.exonerated %}
+                    <p class="finding-exonerated fs-5 fw-bold mb-0 text-center">{% translate 'Exonerated Findings' %}</p>
+                    {% for policy in report.exonerated %}
+                    <p class="finding-exonerated mb-0 mt-0 text-start">{{ policy }}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% if report.unfounded %}
+                    <p class="finding-unfounded fs-5 fw-bold mb-0 text-center">{% translate 'Unfounded Findings' %}</p>
+                    {% for policy in report.unfounded %}
+                    <p class="finding-unfounded mb-0 mt-0 text-start">{{ policy }}</p>
+                    {% endfor %}
+                    {% endif %}
+                    <div class="justify-content-evenly mb-2 mt-2 row">
+                        <div class="col-11 text-center">
+                            <a class="btn btn-primary text-light" href="{% url 'report' report.reportID %}">{% translate 'View Report' %}</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-                {% endif %}
-        	<div class="mt-3 row">
-        		<div class="col-12">
-        			<h2 class="display-6 finding-not-sustained mb-0">{% translate 'Not Sustained Findings' %}</h2>
-        			<small class="finding-not-sustained">{% blocktranslate %}When the investigation discloses that there is insufficient evidence to sustain the complaint or fully exonerate the employee{% endblocktranslate %}</small>
-        		</div>
-                {% if notSustained %}
-            </div>
-            <div class="flex-nowrap flex-row mb-2 mt-2 overflow-scroll row">
-                {% for finding in notSustained %}
-                <div class="col-11 col-lg-5 col-md-7 col-sm-9 col-xxl-3">
-        			<div class="border-4 card finding-not-sustained-border h-100 rounded-2">
-        				<div class="card-body">
-        					<h5 class="card-title">{{ finding.category }}</h5>
-        					<p class="card-text mb-2">{{ finding.location }}</p>
-        					<p class="card-text ">{{ finding.date }}</p>
-        				</div>
-                        <a href="{% url 'report' finding.reportID %}" class="btn btn-primary mb-1">{% translate 'View Report' %}</a>
-        			</div>
-        		</div>
                 {% endfor %}
-            </div>
                 {% else %}
-                <div class="col-12 mt-2">
-                    <h1 class="text-center text-warning">{% translate 'None Found' %}</h1>
+                <div class="bg-dark col-8 col-md-5 mt-2 rounded">
+                    <h6 class="display-6 mb-1 mt-1 text-center text-warning">{% translate 'None' %}</h6>
                 </div>
-            </div>
                 {% endif %}
-        	<div class="mt-3 row">
-        		<div class="col-12">
-        			<h2 class="display-6 finding-exonerated mb-0">{% translate 'Exonerated Findings' %}</h2>
-        			<small class="finding-exonerated">{% blocktranslate %}When the investigation discloses that the alleged act occurred, but the act was justified and/or proper under the city's policy{% endblocktranslate %}</small>
-        		</div>
-                {% if exonerated %}
             </div>
-            <div class="flex-nowrap flex-row mb-2 mt-2 overflow-scroll row">
-                {% for finding in exonerated %}
-                <div class="col-11 col-lg-5 col-md-7 col-sm-9 col-xxl-3">
-        			<div class="border-4 card finding-exonerated-border h-100 rounded-2">
-        				<div class="card-body">
-        					<h5 class="card-title">{{ finding.category }}</h5>
-        					<p class="card-text mb-2">{{ finding.location }}</p>
-        					<p class="card-text ">{{ finding.date }}</p>
-        				</div>
-                        <a href="{% url 'report' finding.reportID %}" class="btn btn-primary mb-1">{% translate 'View Report' %}</a>
-        			</div>
-        		</div>
-                {% endfor %}
-            </div>
-                {% else %}
-                <div class="col-12 mt-2">
-                    <h1 class="text-center text-warning">{% translate 'None Found' %}</h1>
-                </div>
-            </div>
-                {% endif %}
-        	<div class="mt-3 row">
-        		<div class="col-12">
-        			<h2 class="display-6 finding-unfounded mb-0">{% translate 'Unfounded Findings' %}</h2>
-        			<small class="finding-unfounded">{% blocktranslate %}When the investigation discloses that the alleged act did not occur or did not involve city personnel{% endblocktranslate %}</small>
-        		</div>
-                {% if unfounded %}
-            </div>
-            <div class="flex-nowrap flex-row mb-2 mt-2 overflow-scroll row">
-                {% for finding in unfounded %}
-                <div class="col-11 col-lg-5 col-md-7 col-sm-9 col-xxl-3">
-        			<div class="border-4 card finding-unfounded-border h-100 rounded-2">
-        				<div class="card-body">
-        					<h5 class="card-title">{{ finding.category }}</h5>
-        					<p class="card-text mb-2">{{ finding.location }}</p>
-        					<p class="card-text ">{{ finding.date }}</p>
-        				</div>
-                        <a href="{% url 'report' finding.reportID %}" class="btn btn-primary mb-1">{% translate 'View Report' %}</a>
-        			</div>
-        		</div>
-                {% endfor %}
-            </div>
-                {% else %}
-                <div class="col-12 mt-2">
-                    <h1 class="text-center text-warning">{% translate 'None Found' %}</h1>
-                </div>
-            </div>
-                {% endif %}
-            {% else %}
-            <div class="mt-2  row">
-        		<div class="col-12">
-        			<h2 class="display-6 officer-secondary">{% translate 'There are no reports for this officer.' %}</h2>
-        		</div>
-            </div>
-            {% endif %}
-        	<div class="row">
-        		<div class="col-12 col-sm-6 text-center">
-                    {# Translators: Although it is not visible, a date value will be automatically included at the end of this phrase #}
-        			<small class="text-white-50">{% translate 'Added On' %}: {{ addedOn }}</small>
-        		</div>
-        		<div class="col-12 col-sm-6 text-center">
-                    {# Translators: Although it is not visible, a date value will be automatically included at the end of this phrase #}
-        			<small class="text-white-50">{% translate 'Last Updated' %}: {{ updatedOn }}</small>
-        		</div>
-        	</div>
         </div>
 {% endblock %}
