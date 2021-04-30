@@ -166,6 +166,7 @@ class InvestigativeReport(models.Model):
 	# Contents Metadata:
 	client = models.CharField('Client' , max_length = 300 , blank = True)
 	investigationID = models.CharField('Investigation ID' , max_length = 60 , blank = True)
+	officerBadgeNumber = models.CharField('Officer Badge Number' , max_length = 60 , blank = True)
 	incidentDate = models.DateTimeField('Incident Date' , null = True)
 	reportDate = models.DateTimeField('Report Date' , null = True)
 

@@ -293,35 +293,61 @@ def officer(request , slug):
 	reportObjects = InvestigativeReport.objects.filter(subjectOfInvestigation = officerObject , approved = True , public = True)
 
 	reports = []
-	sustainedFindings = []
-	notSustainedFindings = []
-	exoneratedFindings = []
-	unfoundedFindings = []
+	earliestReport = 'Unknown'
+	latestReport = 'Unknown'
+	knownLocations = []
+	knownBadgeNumbers = []
+	sustainedCounter = 0
+	notSustainedCounter = 0
+	exoneratedCounter = 0
+	unfoundedCounter = 0
 	lastUpdated = officerObject.updatedOn
 	for report in reportObjects:
 		if (report.updatedOn > lastUpdated):
 			lastUpdated = report.updatedOn
-
-		reportDate = report.reportDate.strftime('%B %d, %Y')
-		reports.append({'reportID' : report.reportID , 'reportDate' : reportDate})
+		if (earliestReport == 'Unknown'):
+			earliestReport = report.reportDate
+			latestReport = report.reportDate
+		else:
+			if (report.reportDate < earliestReport):
+				earliestReport = report.reportDate
+			if (report.reportDate > latestReport):
+				latestReport = report.reportDate
 
 		reportLocation = (report.cityTown + ', ' + report.get_stateTerritoryProvince_display())
+		reportDict = {'reportID' : report.reportID , 'reportLocation' : reportLocation , 'reportDate' : report.reportDate.strftime('%B %d, %Y') , 'sustained' : set() , 'notSustained' : set() , 'exonerated' : set() , 'unfounded' : set()}
+		knownLocations.append(reportLocation)
+		if (report.officerBadgeNumber):
+			knownBadgeNumbers.append(report.officerBadgeNumber)
+
 		findings = InvestigativeReportFinding.objects.filter(investigativeReport = report , approved = True , public = True)
 		for finding in findings:
 			if (finding.updatedOn > lastUpdated):
 				lastUpdated = finding.updatedOn
 
 			if (finding.finding == '0'):
-				sustainedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'location' : reportLocation , 'date' : reportDate , 'reportID' : report.reportID})
+				sustainedCounter += 1
+				reportDict['sustained'].add(finding.get_findingPolicyCategory_display())
 			elif (finding.finding == '1'):
-				notSustainedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'location' : reportLocation , 'date' : reportDate , 'reportID' : report.reportID})
+				notSustainedCounter += 1
+				reportDict['notSustained'].add(finding.get_findingPolicyCategory_display())
 			elif (finding.finding == '2'):
-				exoneratedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'location' : reportLocation , 'date' : reportDate , 'reportID' : report.reportID})
+				exoneratedCounter += 1
+				reportDict['exonerated'].add(finding.get_findingPolicyCategory_display())
 			elif (finding.finding == '3'):
-				unfoundedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'location' : reportLocation , 'date' : reportDate , 'reportID' : report.reportID})
+				unfoundedCounter += 1
+				reportDict['unfounded'].add(finding.get_findingPolicyCategory_display())
 
+		reports.append(reportDict)
 
-	return render(request , 'officer.html' , {'firstName' : officerObject.firstName , 'middleName' : officerObject.middleName , 'lastName' : officerObject.lastName , 'reports' : reports , 'sustained' : sustainedFindings , 'notSustained' : notSustainedFindings , 'exonerated' : exoneratedFindings , 'unfounded' : unfoundedFindings , 'addedOn' : officerObject.createdOn.strftime('%B %d, %Y') , 'updatedOn' : lastUpdated.strftime('%B %d, %Y')})
+	if (earliestReport == 'Unknown'):
+		earliestReport = _('Unknown')
+		latestReport = _('Unknown')
+	else:
+		earliestReport = earliestReport.strftime('%B %d, %Y')
+		latestReport = latestReport.strftime('%B %d, %Y')
+
+	return render(request , 'officer.html' , {'firstName' : officerObject.firstName , 'middleName' : officerObject.middleName , 'lastName' : officerObject.lastName , 'locations' : knownLocations , 'badgeNumbers' : knownBadgeNumbers , 'addedOn' : officerObject.createdOn.strftime('%B %d, %Y') , 'updatedOn' : lastUpdated.strftime('%B %d, %Y') , 'sustained' : sustainedCounter , 'notSustained' : notSustainedCounter , 'exonerated' : exoneratedCounter , 'unfounded' : unfoundedCounter , 'earliestReport' : earliestReport , 'latestReport' : latestReport , 'reports' : reports})
 
 
 def report(request , slug):
