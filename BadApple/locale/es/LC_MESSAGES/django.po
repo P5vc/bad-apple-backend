@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: BadAppleBackend RC2\n"
-"Report-Msgid-Bugs-To: Priveasy Admin\n"
-"POT-Creation-Date: 2021-03-30 03:38+0000\n"
-"PO-Revision-Date: 2021-03-30 03:52+0000\n"
+"Project-Id-Version: BadAppleBackend\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-30 20:08+0000\n"
+"PO-Revision-Date: 2021-05-01 15:39+0000\n"
 "Last-Translator: Priveasy Admin <Admin@Priveasy.org>\n"
 "Language-Team: Volunteer Spanish Language Translators\n"
 "Language: Spanish\n"
@@ -47,126 +47,355 @@ msgstr "Formulario para Denuncias, en Español"
 msgid "Printable Complaint Form in Spanish"
 msgstr "Formulario Imprimible para Denuncias, en Español"
 
-#: mainSite/extendedModels/modelCodes.py:26
+#: mainSite/extendedModels/modelCodes.py:26 mainSite/templates/officer.html:62
 msgid "Sustained"
 msgstr "Sostenido"
 
-#: mainSite/extendedModels/modelCodes.py:27
+#: mainSite/extendedModels/modelCodes.py:27 mainSite/templates/officer.html:63
 msgid "Not Sustained"
 msgstr "No Sostenido"
 
-#: mainSite/extendedModels/modelCodes.py:28
+#: mainSite/extendedModels/modelCodes.py:28 mainSite/templates/officer.html:64
 msgid "Exonerated"
 msgstr "Exonerado"
 
-#: mainSite/extendedModels/modelCodes.py:29
+#: mainSite/extendedModels/modelCodes.py:29 mainSite/templates/officer.html:65
 msgid "Unfounded"
 msgstr "Infundado"
 
 #: mainSite/extendedModels/modelCodes.py:34
+msgid "Use of Force"
+msgstr "Uso de la Fuerza"
+
+#: mainSite/extendedModels/modelCodes.py:35
+msgid "Handcuffing and Restraints"
+msgstr "Esposar y las Correas"
+
+#: mainSite/extendedModels/modelCodes.py:36
+msgid "Control Devices and Techniques"
+msgstr "Dispositivos y Técnicas de Control"
+
+#: mainSite/extendedModels/modelCodes.py:37
+msgid "Conducted Energy Device"
+msgstr "Dispositivo de Energía Conducida "
+
+#: mainSite/extendedModels/modelCodes.py:38
+msgid "Officer-Involved Shooting"
+msgstr "Tiroteo que Involucra a Oficiales"
+
+#: mainSite/extendedModels/modelCodes.py:39
+msgid "Firearms and Qualification"
+msgstr "Armas de Fuego y Calificación "
+
+#: mainSite/extendedModels/modelCodes.py:40
+msgid "Response/Vehicle Pursuit"
+msgstr "Respuesta/Persecución de Vehículos "
+
+#: mainSite/extendedModels/modelCodes.py:41
+msgid "Response to Emergency Calls"
+msgstr "Respuesta a Llamadas de Emergencia"
+
+#: mainSite/extendedModels/modelCodes.py:42
+msgid "Canine Program"
+msgstr "Programa Canino"
+
+#: mainSite/extendedModels/modelCodes.py:43
+msgid "Domestic Violence"
+msgstr "Violencia Doméstica"
+
+#: mainSite/extendedModels/modelCodes.py:44
+msgid "Search and Seizure"
+msgstr "Búsqueda e Incautación"
+
+#: mainSite/extendedModels/modelCodes.py:45
+msgid "Temporary Custody of Juveniles"
+msgstr "Custodia Temporal de Menores "
+
+#: mainSite/extendedModels/modelCodes.py:46
+msgid "Elder Abuse"
+msgstr "Maltrato a Personas Mayores"
+
+#: mainSite/extendedModels/modelCodes.py:47
+msgid "Child Abuse"
+msgstr "Abuso Infantil"
+
+#: mainSite/extendedModels/modelCodes.py:48
+msgid "Missing Person Reporting"
+msgstr "Informar de Personas Desaparecidas"
+
+#: mainSite/extendedModels/modelCodes.py:49
+msgid "Public Alerts"
+msgstr "Alertas Públicas"
+
+#: mainSite/extendedModels/modelCodes.py:50
+msgid "Victim and Witness Assistance"
+msgstr "Asistencia a Víctimas y Testigos"
+
+#: mainSite/extendedModels/modelCodes.py:51
+msgid "Hate Crimes"
+msgstr "Crímenes de Odio"
+
+#: mainSite/extendedModels/modelCodes.py:52
+msgid "Conduct"
+msgstr "Conducta"
+
+#: mainSite/extendedModels/modelCodes.py:53
+msgid "Department Computer Use"
+msgstr "Uso de las Computadoras del Departamento"
+
+#: mainSite/extendedModels/modelCodes.py:54
+msgid "Report Preparation"
+msgstr "Preparación de Informes"
+
+#: mainSite/extendedModels/modelCodes.py:55
+msgid "News Media Relations"
+msgstr "Relaciones con los Medios de Comunicación"
+
+#: mainSite/extendedModels/modelCodes.py:56
+msgid "Court Appearance And Subpoenas"
+msgstr "Comparecencia ante el Tribunal y Citaciones"
+
+#: mainSite/extendedModels/modelCodes.py:57
+msgid "Reserve Officers"
+msgstr "Oficiales de la Reserva"
+
+#: mainSite/extendedModels/modelCodes.py:58
+msgid "Mutual Aid and Outside Agency Assistance"
+msgstr "Ayuda Mutua y Asistencia de Agencias Externas"
+
+#: mainSite/extendedModels/modelCodes.py:59
+msgid "Language Access Services"
+msgstr "Servicios de Acceso Lingüístico"
+
+#: mainSite/extendedModels/modelCodes.py:60
+msgid "Death Investigation"
+msgstr "Investigación de Muerte"
+
+#: mainSite/extendedModels/modelCodes.py:61
+msgid "Identity Theft"
+msgstr "El Robo de Identidad"
+
+#: mainSite/extendedModels/modelCodes.py:62
+msgid "Private Persons Arrests"
+msgstr "El Arresto de Personas Privadas"
+
+#: mainSite/extendedModels/modelCodes.py:63
+msgid "Damage to City Property"
+msgstr "El Daño a la Propiedad de la Ciudad"
+
+#: mainSite/extendedModels/modelCodes.py:64
+msgid "Arrest and Booking Procedures"
+msgstr "Procedimientos de Arresto y Multa"
+
+#: mainSite/extendedModels/modelCodes.py:65
+msgid "Closed Circuit Television/Public Camera System"
+msgstr "Circuito Cerrado de Televisión/Sistema de Cámara Pública"
+
+#: mainSite/extendedModels/modelCodes.py:66
+msgid "Child Safety"
+msgstr "Seguridad Infantil"
+
+#: mainSite/extendedModels/modelCodes.py:67
+msgid "Wanted Persons"
+msgstr "Personas Buscadas"
+
+#: mainSite/extendedModels/modelCodes.py:68
+msgid "Volunteer Program"
+msgstr "Programa de Voluntariado"
+
+#: mainSite/extendedModels/modelCodes.py:69
+msgid "Uniform Regulations"
+msgstr "Regulaciones de los Uniformes"
+
+#: mainSite/extendedModels/modelCodes.py:74
 msgid "Body Worn Cameras"
 msgstr "Cámaras de Cuerpo"
 
-#: mainSite/extendedModels/modelCodes.py:35
+#: mainSite/extendedModels/modelCodes.py:75
 msgid "Unmanned Aerial Vehicles (Drones)"
 msgstr "Vehículos Aéreos No Tripulados (Drones)"
 
-#: mainSite/extendedModels/modelCodes.py:36
+#: mainSite/extendedModels/modelCodes.py:76
 msgid "Facial Recognition"
 msgstr "Reconocimiento Facial"
 
-#: mainSite/extendedModels/modelCodes.py:37
+#: mainSite/extendedModels/modelCodes.py:77
 msgid "Thermographic Cameras (FLIR)"
 msgstr "Cámaras Termográficas (FLIR)"
 
-#: mainSite/extendedModels/modelCodes.py:38
+#: mainSite/extendedModels/modelCodes.py:78
 msgid "License Plate Readers"
 msgstr "Lectores de Matrículas"
 
-#: mainSite/extendedModels/modelCodes.py:39
+#: mainSite/extendedModels/modelCodes.py:79
 msgid "Federal MOUs (Memoranda of Understanding)"
 msgstr "MOUs Federales (Memorandos de Entendimiento)"
 
-#: mainSite/extendedModels/modelCodes.py:40
+#: mainSite/extendedModels/modelCodes.py:80
 msgid "Predictive Policing"
 msgstr "Vigilancia Predictiva"
 
-#: mainSite/extendedModels/modelCodes.py:41
+#: mainSite/extendedModels/modelCodes.py:81
 msgid "Gunshot Detection Microphones (ShotSpotter)"
 msgstr "Micrófonos de Detección de Disparos (ShotSpotter)"
 
-#: mainSite/extendedModels/modelCodes.py:42
+#: mainSite/extendedModels/modelCodes.py:82
 msgid "Social Media Monitoring"
 msgstr "Monitoreo de Redes Sociales"
 
-#: mainSite/extendedModels/modelCodes.py:43
+#: mainSite/extendedModels/modelCodes.py:83
 msgid "IMSI-Catcher Equipment (Stingray)"
 msgstr "Equipo Receptor-IMSI (Stingray)"
 
-#: mainSite/extendedModels/modelCodes.py:44
+#: mainSite/extendedModels/modelCodes.py:84
 msgid "Police Misconduct - Based on the Officer's Name"
 msgstr "Mala Conducta Policial - Basado en el Nombre del Oficial"
 
-#: mainSite/extendedModels/modelCodes.py:45
+#: mainSite/extendedModels/modelCodes.py:85
 msgid "Police Misconduct - Based on the Incident"
 msgstr "Mala Conducta Policial - Basado en el Incidente"
 
-#: mainSite/extendedModels/modelCodes.py:110 mainSite/templates/base.html:32
+#: mainSite/extendedModels/modelCodes.py:150 mainSite/templates/base.html:32
 #: mainSite/templates/documentation.html:21 mainSite/templates/home.html:30
 #: mainSite/templates/pra.html:19
 msgid "PRA Templates"
 msgstr "Plantillas PRA"
 
-#: mainSite/extendedModels/modelCodes.py:111
+#: mainSite/extendedModels/modelCodes.py:151
 #: mainSite/templates/oversight.html:19
 msgid "Oversight Commissions"
 msgstr "Comisiones de Vigilancia"
 
 #. Translators: This is a page title
-#: mainSite/extendedModels/modelCodes.py:112 mainSite/templates/badapple.html:8
+#: mainSite/extendedModels/modelCodes.py:152 mainSite/templates/badapple.html:8
 #: mainSite/templates/badapple.html:19 mainSite/templates/base.html:38
 #: mainSite/templates/documentation.html:40 mainSite/templates/home.html:38
 #: mainSite/templates/home.html:63
 msgid "Bad Apple Database"
 msgstr "Base de Datos Bad Apple"
 
-#: mainSite/extendedModels/modelCodes.py:113
+#: mainSite/extendedModels/modelCodes.py:153
 msgid "Report Police Misconduct"
 msgstr "Denunciar Mala Conducta Policial"
 
-#: mainSite/extendedModels/modelCodes.py:114
+#: mainSite/extendedModels/modelCodes.py:154
 msgid "Ask a Question"
 msgstr "Hacer una Pregunta"
 
-#: mainSite/extendedModels/modelCodes.py:115
+#: mainSite/extendedModels/modelCodes.py:155
 msgid "Media Inquiry"
 msgstr "Solicitudes de los Medios"
 
-#: mainSite/extendedModels/modelCodes.py:116
+#: mainSite/extendedModels/modelCodes.py:156
 msgid "Other"
 msgstr "Otra Cosa"
 
-#: mainSite/forms.py:19
+#: mainSite/forms.py:20
 msgid "City or Town (Optional)"
 msgstr "Ciudad o Pueblo (Opcional)"
 
-#: mainSite/forms.py:27 mainSite/forms.py:38
+#: mainSite/forms.py:28 mainSite/forms.py:39
 msgid "Enter your message here..."
 msgstr "Escriba su mensaje aquí..."
 
-#: mainSite/forms.py:32
+#: mainSite/forms.py:33
 msgid "Enter CAPTCHA text here..."
 msgstr "Introduzca el texto CAPTCHA aquí..."
 
+#: mainSite/forms.py:44
+msgid "First Name"
+msgstr "Primer Nombre"
+
+#: mainSite/forms.py:45
+msgid "Last Name"
+msgstr "Apellido"
+
+#: mainSite/forms.py:46
+msgid "City, Town, or County"
+msgstr "Ciudad, Pueblo o Condado"
+
+#: mainSite/forms.py:47 mainSite/forms.py:49
+msgid "Any"
+msgstr "Cualquier"
+
+#: mainSite/forms.py:48
+msgid "Year of Incident"
+msgstr "Año del Incidente"
+
 #: mainSite/templates/badapple.html:20 mainSite/templates/documentation.html:16
-#: mainSite/templates/oversight.html:20 mainSite/templates/pra.html:20
-#: mainSite/templates/tip.html:20
+#: mainSite/templates/home.html:50 mainSite/templates/oversight.html:20
+#: mainSite/templates/pra.html:20 mainSite/templates/tip.html:20
 msgid "Learn More"
 msgstr "Aprender Más"
 
-#: mainSite/templates/badapple.html:21
-msgid "Coming Soon"
-msgstr "Viene Pronto"
+#: mainSite/templates/badapple.html:26
+msgid "Officer First Name"
+msgstr "Primer Nombre del Oficial"
+
+#: mainSite/templates/badapple.html:32
+msgid "Officer Last Name"
+msgstr "Apellido del Oficial"
+
+#: mainSite/templates/badapple.html:38 mainSite/templates/oversight.html:35
+msgid "City"
+msgstr "Ciudad"
+
+#: mainSite/templates/badapple.html:44 mainSite/templates/oversight.html:29
+#: mainSite/templates/pra.html:29
+msgid "State"
+msgstr "Estado"
+
+#: mainSite/templates/badapple.html:50
+msgid "Year"
+msgstr "Año"
+
+#: mainSite/templates/badapple.html:56
+msgid "Violated Policy"
+msgstr "Política Violada"
+
+#: mainSite/templates/badapple.html:61
+msgid ""
+"Don't know what to put? No problem! You may leave up to four fields blank!"
+msgstr ""
+"¿No sabe qué poner? ¡No hay problema! ¡Puede dejar hasta cuatro campos en "
+"blanco!"
+
+#. Translators: This text appears on a search button
+#: mainSite/templates/badapple.html:66
+msgid "Search"
+msgstr "Buscar"
+
+#: mainSite/templates/badapple.html:80 mainSite/templates/officer.html:84
+#: mainSite/templates/report.html:135
+msgid "Sustained Findings"
+msgstr "Hallazgos Sostenidos"
+
+#: mainSite/templates/badapple.html:86 mainSite/templates/officer.html:90
+#: mainSite/templates/report.html:160
+msgid "Not Sustained Findings"
+msgstr "Hallazgos No Sostenidos"
+
+#: mainSite/templates/badapple.html:92 mainSite/templates/officer.html:96
+#: mainSite/templates/report.html:185
+msgid "Exonerated Findings"
+msgstr "Hallazgos Exonerados"
+
+#: mainSite/templates/badapple.html:98 mainSite/templates/officer.html:102
+#: mainSite/templates/report.html:210
+msgid "Unfounded Findings"
+msgstr "Hallazgos Infundados"
+
+#: mainSite/templates/badapple.html:106 mainSite/templates/officer.html:61
+msgid "Total Findings"
+msgstr "Hallazgos Totales"
+
+#: mainSite/templates/badapple.html:134
+msgid "Report Locations"
+msgstr "Ubicaciones de Informes"
+
+#: mainSite/templates/badapple.html:140 mainSite/templates/officer.html:66
+msgid "Report Dates"
+msgstr "Fechas de Informes"
 
 #: mainSite/templates/base.html:35 mainSite/templates/documentation.html:30
 #: mainSite/templates/home.html:34
@@ -177,6 +406,10 @@ msgstr "Búsqueda de Comisiones"
 #: mainSite/templates/home.html:42 mainSite/templates/tip.html:19
 msgid "Submit a Tip"
 msgstr "Enviar un Soplo"
+
+#: mainSite/templates/base.html:53
+msgid "View Our Code"
+msgstr "Ver Nuestro Código"
 
 #. Translators: This is a page title
 #: mainSite/templates/commission.html:8
@@ -212,7 +445,7 @@ msgstr "Acerca de"
 msgid "There is no summary data available for this oversight commission."
 msgstr "No hay datos resumidos disponibles para esta comisión de vigilancia."
 
-#: mainSite/templates/commission.html:81
+#: mainSite/templates/commission.html:81 mainSite/templates/report.html:104
 msgid "Additional Links"
 msgstr "Otros Enlaces"
 
@@ -446,10 +679,6 @@ msgstr ""
 "herramientas y recursos valiosos con el objetivo de responsabilizar a las "
 "fuerzas del orden y poner fin a la mala conducta policial."
 
-#: mainSite/templates/home.html:50
-msgid "More Details"
-msgstr "Más Detalles"
-
 #: mainSite/templates/home.html:55
 msgid "Public Records Act Templates"
 msgstr "Plantillas Para la Ley de Registros Públicos"
@@ -499,17 +728,67 @@ msgstr ""
 "las comisiones de vigilancia policial."
 
 #. Translators: This is a page title
+#: mainSite/templates/officer.html:8
+msgid "Bad Apple Database - Officer"
+msgstr "Base de Datos Bad Apple - Oficial"
+
+#: mainSite/templates/officer.html:26
+msgid "Details"
+msgstr "Detalles"
+
+#: mainSite/templates/officer.html:31
+msgid "Known Locations"
+msgstr "Ubicaciones Conocidas"
+
+#: mainSite/templates/officer.html:39
+msgid "Known Badge Numbers"
+msgstr "Números de Placa Conocidos"
+
+#: mainSite/templates/officer.html:47
+msgid "Metadata"
+msgstr "Metadatos"
+
+#: mainSite/templates/officer.html:48
+msgid "Added"
+msgstr "Añadido"
+
+#. Translators: A date value will be automatically added after this text
+#: mainSite/templates/officer.html:49 mainSite/templates/oversight.html:74
+msgid "Updated"
+msgstr "Actualizado"
+
+#: mainSite/templates/officer.html:56
+msgid "Overview"
+msgstr "Información General"
+
+#: mainSite/templates/officer.html:67
+msgid "Earliest Report"
+msgstr "Informe Más Temprano"
+
+#: mainSite/templates/officer.html:68
+msgid "Latest Report"
+msgstr "Último Informe"
+
+#: mainSite/templates/officer.html:75
+msgid "Reports"
+msgstr "Informes"
+
+#: mainSite/templates/officer.html:80 mainSite/templates/report.html:25
+msgid "Investigative Report"
+msgstr "Informe Investigativo"
+
+#: mainSite/templates/officer.html:109
+msgid "View Report"
+msgstr "Ver Informe"
+
+#: mainSite/templates/officer.html:116
+msgid "None"
+msgstr "Ninguno"
+
+#. Translators: This is a page title
 #: mainSite/templates/oversight.html:8
 msgid "Bad Apple - Oversight Lookup"
 msgstr "Bad Apple - Búsqueda de Comisiones"
-
-#: mainSite/templates/oversight.html:29 mainSite/templates/pra.html:29
-msgid "State"
-msgstr "Estado"
-
-#: mainSite/templates/oversight.html:35
-msgid "City"
-msgstr "Ciudad"
 
 #. Translators: This text appears on a search button
 #: mainSite/templates/oversight.html:42 mainSite/templates/pra.html:42
@@ -524,11 +803,6 @@ msgstr "No hay ningún resumen de comisión disponible."
 #: mainSite/templates/oversight.html:71
 msgid "No Website"
 msgstr "No Hay Sitio Web"
-
-#. Translators: A date value will be automatically added after this text
-#: mainSite/templates/oversight.html:74
-msgid "Updated"
-msgstr "Actualizado"
 
 #: mainSite/templates/oversight.html:84
 msgid "No Commissions Found"
@@ -556,6 +830,107 @@ msgid "No Matching Template Found"
 msgstr "No Encontramos una Plantilla"
 
 #. Translators: This is a page title
+#: mainSite/templates/report.html:8
+msgid "Bad Apple - Report"
+msgstr "Bad Apple - Informe"
+
+#: mainSite/templates/report.html:36
+msgid "Location"
+msgstr "Lugar"
+
+#: mainSite/templates/report.html:42
+msgid "Subject of Investigation"
+msgstr "Objeto de la Investigación"
+
+#: mainSite/templates/report.html:48
+msgid "Report Date"
+msgstr "Fecha del Informe"
+
+#: mainSite/templates/report.html:55
+msgid "Report Metadata"
+msgstr "Metadatos del Informe"
+
+#: mainSite/templates/report.html:59
+msgid "Client"
+msgstr "Cliente"
+
+#: mainSite/templates/report.html:65
+msgid "Incident Date"
+msgstr "Fecha del Incidente"
+
+#: mainSite/templates/report.html:71
+msgid "Investigator"
+msgstr "Investigador"
+
+#: mainSite/templates/report.html:77
+msgid "Investigator License"
+msgstr "Licencia del Investigador"
+
+#: mainSite/templates/report.html:83
+msgid "Investigator Employer"
+msgstr "Empleador del Investigador"
+
+#: mainSite/templates/report.html:91
+msgid "Findings Summary"
+msgstr "Resumen de Hallazgos"
+
+#: mainSite/templates/report.html:97
+msgid "Findings Conclusion"
+msgstr "Conclusión de los Hallazgos"
+
+#: mainSite/templates/report.html:108
+msgid "Download Full Report"
+msgstr "Descargar Informe Entero"
+
+#: mainSite/templates/report.html:113
+msgid "Download Full Archive"
+msgstr "Descargar Archivo Entero"
+
+#: mainSite/templates/report.html:118
+msgid "Oversight Commission Report"
+msgstr "Informe de la Comisión de Vigilancia"
+
+#: mainSite/templates/report.html:123
+msgid "Source"
+msgstr "Fuente"
+
+#: mainSite/templates/report.html:127
+msgid "This report was added on"
+msgstr "Este informe fue agregado en"
+
+#: mainSite/templates/report.html:136
+msgid ""
+"When the investigation discloses sufficient evidence to establish that the "
+"act occurred and that it constituted misconduct"
+msgstr ""
+"Cuando la investigación revele evidencia suficiente para establecer que el "
+"acto ocurrió y que constituyó mala conducta"
+
+#: mainSite/templates/report.html:161
+msgid ""
+"When the investigation discloses that there is insufficient evidence to "
+"sustain the complaint or fully exonerate the employee"
+msgstr ""
+"Cuando la investigación revela que no hay pruebas suficientes para sustentar "
+"la queja ni exonerar completamente al empleado"
+
+#: mainSite/templates/report.html:186
+msgid ""
+"When the investigation discloses that the alleged act occurred, but the act "
+"was justified and/or proper under the city's policy"
+msgstr ""
+"Cuando la investigación revela que el presunto acto ocurrió, pero el acto "
+"era justo y/o apropiado según la política de la ciudad"
+
+#: mainSite/templates/report.html:211
+msgid ""
+"When the investigation discloses that the alleged act did not occur or did "
+"not involve city personnel"
+msgstr ""
+"Cuando la investigación revela que el presunto acto no ocurrió o no "
+"involucró al personal de la ciudad"
+
+#. Translators: This is a page title
 #: mainSite/templates/tip.html:8
 msgid "Bad Apple - Submit a Tip"
 msgstr "Bad Apple - Enviar un Soplo"
@@ -568,7 +943,7 @@ msgstr "Tema"
 msgid "Message"
 msgstr "Mensaje"
 
-#: mainSite/views.py:95
+#: mainSite/views.py:140
 msgid ""
 "We are unable to accept new tips at the moment, as our tip database is "
 "currently full. Please try again soon."
@@ -576,19 +951,35 @@ msgstr ""
 "No podemos aceptar nuevos soplos por el momento, porque nuestra base de "
 "datos de soplos está llena. Por favor, inténtelo de nuevo pronto."
 
-#: mainSite/views.py:107 mainSite/views.py:137 mainSite/views.py:141
-#: mainSite/views.py:148
+#: mainSite/views.py:153 mainSite/views.py:183 mainSite/views.py:187
+#: mainSite/views.py:194 mainSite/views.py:277
 msgid "Form invalid. Please try again."
 msgstr "Formulario inválido. Por favor, inténtelo de nuevo."
 
-#: mainSite/views.py:114 mainSite/views.py:146
+#: mainSite/views.py:160 mainSite/views.py:192
 msgid "Your tip has been successfully submitted."
 msgstr "Su soplo ha sido enviado con éxito."
 
-#: mainSite/views.py:122
+#: mainSite/views.py:168
 msgid "An unknown error occurred."
 msgstr "Un error desconocido ha ocurrido. "
 
-#: mainSite/views.py:130
+#: mainSite/views.py:176
 msgid "Incorrect CAPTCHA. Please try again."
 msgstr "CAPTCHA incorrecto. Por favor, inténtelo de nuevo."
+
+#: mainSite/views.py:227
+msgid "Please fill in at least two fields."
+msgstr "Por favor complete al menos dos campos."
+
+#: mainSite/views.py:240
+msgid "An error occurred. Please try again."
+msgstr "Ocurrió un error. Por favor, inténtelo de nuevo."
+
+#: mainSite/views.py:274
+msgid "No results found."
+msgstr "No se han encontrado resultados."
+
+#: mainSite/views.py:344 mainSite/views.py:345
+msgid "Unknown"
+msgstr "No sabemos"
