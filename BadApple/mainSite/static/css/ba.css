@@ -1,13 +1,13 @@
 .finding-sustained {
-    color: #d64541;
+    color: #d53e39;
 }
 
 .finding-sustained-border {
-    border-color: #d64541 !important;
+    border-color: #d53e39 !important;
 }
 
 .finding-sustained-background {
-    background-color: #d64541 !important;
+    background-color: #d53e39 !important;
 }
 
 .finding-not-sustained {
@@ -118,11 +118,15 @@
 }
 
 .palette-secondary {
-    color: #6c7a89;
+    color: #4e555a;
+}
+
+.palette-secondary-lighter {
+    color: #aab1b5;
 }
 
 .palette-title {
-    color: #d35400;
+    color: #d43900;
 }
 
 .palette-text {
@@ -130,26 +134,34 @@
 }
 
 .palette-data {
-    color: #9b59b6;
+    color: #763d8a;
+}
+
+.palette-black {
+    color: #000000;
+}
+
+.palette-white {
+    color: #ffffff;
 }
 
 .palette-link {
-    color: #1e90ff;
+    color: #0054A8;
     transition: all 250ms;
 }
 
 .palette-link:hover {
-    color: #1e90ff;
+    color: #0054A8;
     font-weight: bolder;
     transition: all 1000ms;
 }
 
 .palette-link-color {
-    color: #1e90ff;
+    color: #0054A8;
 }
 
 .palette-link-color:hover {
-    color: #1e90ff;
+    color: #0054A8;
 }
 
 .smaller-card-image-top {

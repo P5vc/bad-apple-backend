@@ -17,7 +17,7 @@
         <div class="align-content-center align-items-center container d-flex flex-wrap h-100 justify-content-center min-vh-100 min-vw-100 pb-5 text-dark w-100">
             <div class="justify-content-center mb-4 min-vw-100 row text-center w-100">
                 <div class="col-6 col-lg-3 col-md-4 col-sm-5 col-xl-2 mb-4 mt-4">
-                    <img src="{% static 'img/BadAppleLogo.svg' %}">
+                    <img src="{% static 'img/BadAppleLogo.svg' %}" alt="{% translate 'Bad Apple Logo' %}">
                 </div>
                 <div class="col-11">
                     {# Translators: Please do not modify any tags (text located between the "<" and ">" symbols) or letters with a proceeding backslash ("\") #}
@@ -26,19 +26,19 @@
             </div>
             <div class="justify-content-center min-vw-100 row text-center w-100">
                 <div class="alignRight col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
-                    <a href="{% url 'pra' %}"><img src="{% static 'img/andrej-lisakov-V2OyJtFqEtY-unsplash.jpg' %}" class="imageSquare mh-100 mw-100 w-75"/></a>
+                    <a href="{% url 'pra' %}"><img src="{% static 'img/andrej-lisakov-V2OyJtFqEtY-unsplash.jpg' %}" class="imageSquare mh-100 mw-100 w-75" alt="{% translate 'PRA Templates Background Image' %}"></a>
                     <a href="{% url 'pra' %}"><p class="imageSquareText imageSquareTextL text-light">{% translate 'PRA Templates' %}</p></a>
                 </div>
                 <div class="alignLeft col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
-                    <a href="{% url 'oversight' %}"><img class="imageSquare mh-100 mw-100 w-75" src="{% static 'img/elena-mozhvilo-j06gLuKK0GM-unsplash.jpg' %}"/></a>
+                    <a href="{% url 'oversight' %}"><img class="imageSquare mh-100 mw-100 w-75" src="{% static 'img/elena-mozhvilo-j06gLuKK0GM-unsplash.jpg' %}" alt="{% translate 'Oversight Lookup Background Image' %}"></a>
                     <a href="{% url 'oversight' %}"><p class="imageSquareText imageSquareTextR text-light">{% translate 'Oversight Lookup' %}</p></a>
                 </div>
                 <div class="alignRight col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
-                    <a href="{% url 'badApple' %}"><img src="{% static 'img/stepan-babanin-kx6fpBOm-ss-unsplash.jpg' %}" class="imageSquare mh-100 mw-100 w-75"/></a>
+                    <a href="{% url 'badApple' %}"><img src="{% static 'img/stepan-babanin-kx6fpBOm-ss-unsplash.jpg' %}" class="imageSquare mh-100 mw-100 w-75" alt="{% translate 'Bad Apple Database Background Image' %}"></a>
                     <a href="{% url 'badApple' %}"><p class="imageSquareText imageSquareTextL text-light">{% translate 'Bad Apple Database' %}</p></a>
                 </div>
                 <div class="alignLeft col-md-6 col-sm-12 col-xl-3 pb-2 pt-2">
-                    <a href="{% url 'tip' %}"><img src="{% static 'img/thiago-carlos-machado-oNXGsD7Ibsk-unsplash.jpg' %}" class="imageSquare mh-100 mw-100 w-75"/></a>
+                    <a href="{% url 'tip' %}"><img src="{% static 'img/thiago-carlos-machado-oNXGsD7Ibsk-unsplash.jpg' %}" class="imageSquare mh-100 mw-100 w-75" alt="{% translate 'Submit a Tip Background Image' %}"></a>
                     <a href="{% url 'tip' %}"><p class="imageSquareText imageSquareTextR text-light">{% translate 'Submit a Tip' %}</p></a>
                 </div>
             </div>

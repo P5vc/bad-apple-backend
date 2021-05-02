@@ -128,7 +128,7 @@
 					</div>
 				</div>
 				{% if sustained %}
-				<div class="card finding-sustained-background h-100 mt-4 text-light">
+				<div class="card finding-sustained-background h-100 mt-4 palette-white">
 					<div class="text-center">
 						<div class="mb-2 row">
 							<div class="col-12">
@@ -142,7 +142,7 @@
 					{% for finding in sustained %}
 					<div class="col-11 col-lg-9 col-md-10 col-xl-8 col-xxl-7 ps-0">
 						<div class="card finding-sustained-background h-100">
-							<div class="card-body text-dark">
+							<div class="card-body palette-black">
 								<h3 class="card-title fs-3 mb-0 text-center">{{ finding.category }}</h3>
 								<p class="mb-2 text-black-50 text-center">{{ finding.policy }}</p>
 								<p class="card-text mb-2">{{ finding.summary }}</p>
@@ -153,7 +153,7 @@
 				</div>
 				{% endif %}
 				{% if notSustained %}
-				<div class="card finding-not-sustained-background h-100 mt-4 text-light">
+				<div class="card finding-not-sustained-background h-100 mt-4 palette-white">
 					<div class="text-center">
 						<div class="mb-2 row">
 							<div class="col-12">
@@ -167,7 +167,7 @@
 					{% for finding in notSustained %}
 					<div class="col-11 col-lg-9 col-md-10 col-xl-8 col-xxl-7 ps-0">
 						<div class="card finding-not-sustained-background h-100">
-							<div class="card-body text-dark">
+							<div class="card-body palette-black">
 								<h3 class="card-title fs-3 mb-0 text-center">{{ finding.category }}</h3>
 								<p class="mb-2 text-black-50 text-center">{{ finding.policy }}</p>
 								<p class="card-text mb-2">{{ finding.summary }}</p>
@@ -178,7 +178,7 @@
 				</div>
 				{% endif %}
 				{% if exonerated %}
-				<div class="card finding-exonerated-background h-100 mt-4 text-light">
+				<div class="card finding-exonerated-background h-100 mt-4 palette-white">
 					<div class="text-center">
 						<div class="mb-2 row">
 							<div class="col-12">
@@ -192,7 +192,7 @@
 					{% for finding in exonerated %}
 					<div class="col-11 col-lg-9 col-md-10 col-xl-8 col-xxl-7 ps-0">
 						<div class="card finding-exonerated-background h-100">
-							<div class="card-body text-dark">
+							<div class="card-body palette-black">
 								<h3 class="card-title fs-3 mb-0 text-center">{{ finding.category }}</h3>
 								<p class="mb-2 text-black-50 text-center">{{ finding.policy }}</p>
 								<p class="card-text mb-2">{{ finding.summary }}</p>
@@ -203,7 +203,7 @@
 				</div>
 				{% endif %}
 				{% if unfounded %}
-				<div class="card finding-unfounded-background h-100 mt-4 text-light">
+				<div class="card finding-unfounded-background h-100 mt-4 palette-white">
 					<div class="text-center">
 						<div class="mb-2 row">
 							<div class="col-12">
@@ -217,7 +217,7 @@
 					{% for finding in unfounded %}
 					<div class="col-11 col-lg-9 col-md-10 col-xl-8 col-xxl-7 ps-0">
 						<div class="card finding-unfounded-background h-100">
-							<div class="card-body text-dark">
+							<div class="card-body palette-black">
 								<h3 class="card-title fs-3 mb-0 text-center">{{ finding.category }}</h3>
 								<p class="mb-2 text-black-50 text-center">{{ finding.policy }}</p>
 								<p class="card-text mb-2">{{ finding.summary }}</p>
@@ -229,4 +229,11 @@
 				{% endif %}
 			</div>
 		</div>
+{% endblock %}
+
+
+{% block footer %}
+{% with textColorClass='palette-secondary-lighter' %}
+{{ block.super }}
+{% endwith %}
 {% endblock %}
