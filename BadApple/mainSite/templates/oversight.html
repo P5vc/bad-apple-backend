@@ -52,23 +52,23 @@
                     {% for commission in commissions %}
                     <div class="col-12 col-lg-4 col-md-6 grow pb-3 pt-3">
                         <div class="card h-100">
-                            <a href="{% url "commission" commission.commissionID %}" class="d-block"><img src="{% static commission.image %}" class="card-img-top"></a>
+                            <a href="{% url "commission" commission.commissionID %}" class="d-block"><img src="{% static commission.image %}" class="card-img-top" alt="{% translate 'Commission Background Image' %}"></a>
                             <div class="card-body">
                                 {% if commission.cityTown %}
-                                <h6 class="text-info"><a href="{% url 'commission' commission.commissionID %}" class="text-decoration-none text-info">{{ commission.cityTown }}</a></h6>
+                                <h6 class="palette-link-color"><a href="{% url 'commission' commission.commissionID %}" class="text-decoration-none palette-link-color">{{ commission.cityTown }}</a></h6>
                                 {% endif %}
                                 <a href="{% url 'commission' commission.commissionID %}" class="text-dark text-decoration-none"><h5 class="card-title">{{ commission.commissionTitle }}</h5></a>
                                 {% if commission.aboutText %}
-                                <p class="card-text text-secondary"><a href="{% url 'commission' commission.commissionID %}" class="text-decoration-none text-secondary">{{ commission.aboutText }}</a></p>
+                                <p class="card-text palette-secondary"><a href="{% url 'commission' commission.commissionID %}" class="text-decoration-none palette-secondary">{{ commission.aboutText }}</a></p>
                                 {% else %}
-                                <p class="card-text text-secondary"><a href="{% url 'commission' commission.commissionID %}" class="text-decoration-none text-secondary">{% blocktranslate %}No commission summary available.{% endblocktranslate %}</a></p>
+                                <p class="card-text palette-secondary"><a href="{% url 'commission' commission.commissionID %}" class="text-decoration-none palette-secondary">{% blocktranslate %}No commission summary available.{% endblocktranslate %}</a></p>
                                 {% endif %}
                             </div>
                             <div class="card-footer d-flex justify-content-between small">
                                 {% if commission.websiteURL %}
-                                <a href="{{ commission.websiteURL }}" class="text-secondary">{% translate 'Website' %}</a>
+                                <a href="{{ commission.websiteURL }}" class="palette-secondary">{% translate 'Website' %}</a>
                                 {% else %}
-                                <a href="." class="text-secondary">{% translate 'No Website' %}</a>
+                                <p class="palette-secondary">{% translate 'No Website' %}</p>
                                 {% endif %}
                                 {# Translators: A date value will be automatically added after this text #}
                                 <span>{% translate 'Updated' %}: {{ commission.modificationDate }}</span>
