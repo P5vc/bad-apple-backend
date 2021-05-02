@@ -76,8 +76,11 @@
                 </div>
                 {% if reports %}
                 {% for report in reports %}
-                <div class="bg-dark col-11 col-md-5 mt-3 rounded">
+                <div class="bg-dark col-11 col-md-5 mt-3 rounded text-center">
                     <a href="{% url 'report' report.reportID %}" class="link-light"><p class="fs-2 mb-0 text-center text-light">{% translate 'Investigative Report' %}</p></a>
+                    {% if report.oversight %}
+                    <small class="mb-0 text-warning">{% translate 'Oversight Commission Investigative Report' %}</small>
+                    {% endif %}
                     <p class="mb-0 text-center text-light">{{ report.reportLocation }}</p>
                     <p class="mb-0 text-center text-light">{{ report.reportDate }}</p>
                     {% if report.sustained %}

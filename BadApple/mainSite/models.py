@@ -164,6 +164,7 @@ class InvestigativeReport(models.Model):
 	investigatorEmployer = models.CharField('Investigator Employer' , max_length = 500 , blank = True)
 
 	# Contents Metadata:
+	reportType = models.CharField('Report Type' , max_length = 2 , choices = choices.REPORT_TYPES , default = '0')
 	client = models.CharField('Client' , max_length = 300 , blank = True)
 	investigationID = models.CharField('Investigation ID' , max_length = 60 , blank = True)
 	officerBadgeNumber = models.CharField('Officer Badge Number' , max_length = 60 , blank = True)
@@ -177,7 +178,6 @@ class InvestigativeReport(models.Model):
 	# References:
 	fullReportURL = models.URLField('Full Report Download URL' , max_length = 300 , blank = True)
 	fullArchiveURL = models.URLField('Full Archive Download URL' , max_length = 300 , blank = True)
-	oversightCommissionReport = models.URLField('Oversight Commission Report Download URL' , max_length = 300 , blank = True)
 	sourceURL = models.URLField('Source URL' , max_length = 300 , blank = True)
 
 	# Administrative:

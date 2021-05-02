@@ -295,8 +295,8 @@ def officer(request , slug):
 	reports = []
 	earliestReport = 'Unknown'
 	latestReport = 'Unknown'
-	knownLocations = []
-	knownBadgeNumbers = []
+	knownLocations = set()
+	knownBadgeNumbers = set()
 	sustainedCounter = 0
 	notSustainedCounter = 0
 	exoneratedCounter = 0
@@ -315,10 +315,12 @@ def officer(request , slug):
 				latestReport = report.reportDate
 
 		reportLocation = (report.cityTown + ', ' + report.get_stateTerritoryProvince_display())
-		reportDict = {'reportID' : report.reportID , 'reportLocation' : reportLocation , 'reportDate' : report.reportDate.strftime('%B %d, %Y') , 'sustained' : set() , 'notSustained' : set() , 'exonerated' : set() , 'unfounded' : set()}
-		knownLocations.append(reportLocation)
+		reportDict = {'reportID' : report.reportID , 'oversight' : False , 'reportLocation' : reportLocation , 'reportDate' : report.reportDate.strftime('%B %d, %Y') , 'sustained' : set() , 'notSustained' : set() , 'exonerated' : set() , 'unfounded' : set()}
+		knownLocations.add(reportLocation)
 		if (report.officerBadgeNumber):
-			knownBadgeNumbers.append(report.officerBadgeNumber)
+			knownBadgeNumbers.add(report.officerBadgeNumber)
+		if (report.reportType == '1'):
+			reportDict['oversight'] = True
 
 		findings = InvestigativeReportFinding.objects.filter(investigativeReport = report , approved = True , public = True)
 		for finding in findings:
@@ -364,16 +366,16 @@ def report(request , slug):
 	unfoundedFindings = []
 	for finding in InvestigativeReportFinding.objects.filter(investigativeReport = reportObject , approved = True , public = True):
 		if (finding.finding == '0'):
-			sustainedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'summary' : finding.findingSummary})
+			sustainedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'summary' : str(finding.findingSummary).strip().split('\n')})
 		elif (finding.finding == '1'):
-			notSustainedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'summary' : finding.findingSummary})
+			notSustainedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'summary' : str(finding.findingSummary).strip().split('\n')})
 		elif (finding.finding == '2'):
-			exoneratedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'summary' : finding.findingSummary})
+			exoneratedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'summary' : str(finding.findingSummary).strip().split('\n')})
 		elif (finding.finding == '3'):
-			unfoundedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'summary' : finding.findingSummary})
+			unfoundedFindings.append({'category' : finding.get_findingPolicyCategory_display() , 'policy' : finding.findingBasis , 'summary' : str(finding.findingSummary).strip().split('\n')})
 
 
 	reportLocation = (reportObject.cityTown + ', ' + reportObject.get_stateTerritoryProvince_display())
 	subjectOfInvestigation = (reportObject.subjectOfInvestigation.firstName + ' ' + reportObject.subjectOfInvestigation.middleName + ' ' + reportObject.subjectOfInvestigation.lastName).strip()
 
-	return render(request , 'report.html' , {'investigationID' : reportObject.investigationID , 'location' : reportLocation , 'subject' : subjectOfInvestigation , 'officerID' : reportObject.subjectOfInvestigation.officerID , 'reportDate' : reportObject.reportDate.strftime('%B %d, %Y') , 'client' : reportObject.client , 'incidentDate' : reportObject.incidentDate.strftime('%B %d, %Y') , 'investigator' : reportObject.investigator , 'license' : reportObject.license , 'employer' : reportObject.investigatorEmployer , 'summary' : reportObject.findingsSummary , 'conclusion' : reportObject.conclusion , 'reportURL' : reportObject.fullReportURL , 'archiveURL' : reportObject.fullArchiveURL , 'commissionReportURL' : reportObject.oversightCommissionReport , 'source' : reportObject.sourceURL , 'added' : reportObject.createdOn.strftime('%B %d, %Y') , 'sustained' : sustainedFindings , 'notSustained' : notSustainedFindings , 'exonerated' : exoneratedFindings , 'unfounded' : unfoundedFindings})
+	return render(request , 'report.html' , {'reportType' : reportObject.get_reportType_display() , 'investigationID' : reportObject.investigationID , 'location' : reportLocation , 'subject' : subjectOfInvestigation , 'officerID' : reportObject.subjectOfInvestigation.officerID , 'reportDate' : reportObject.reportDate.strftime('%B %d, %Y') , 'client' : reportObject.client , 'incidentDate' : reportObject.incidentDate.strftime('%B %d, %Y') , 'investigator' : reportObject.investigator , 'license' : reportObject.license , 'employer' : reportObject.investigatorEmployer , 'summary' : str(reportObject.findingsSummary).strip().split('\n') , 'conclusion' : str(reportObject.conclusion).strip().split('\n') , 'reportURL' : reportObject.fullReportURL , 'archiveURL' : reportObject.fullArchiveURL , 'source' : reportObject.sourceURL , 'added' : reportObject.createdOn.strftime('%B %d, %Y') , 'sustained' : sustainedFindings , 'notSustained' : notSustainedFindings , 'exonerated' : exoneratedFindings , 'unfounded' : unfoundedFindings})
