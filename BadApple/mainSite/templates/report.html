@@ -24,6 +24,9 @@
 							<div class="col-12">
 								<h5 class="card-title display-5 mb-0 palette-primary text-center">{% translate 'Investigative Report' %}</h5>
 							</div>
+                            <div class="col-12 text-center">
+                                <p class="mb-0 palette-secondary">{{ reportType }}</p>
+                            </div>
 							{% if investigationID %}
 							<div class="col-12 text-center">
 								<small class="palette-secondary">{{ investigationID }}</small>
@@ -89,13 +92,17 @@
 							{% if summary %}
 							<div class="col-12">
 								<h4 class="fs-4 fw-normal palette-title">{% translate 'Findings Summary' %}</h4>
-								<p class="mb-0 palette-text smallLineSpacing">{{ summary }}</p>
+                                {% for paragraph in summary %}
+								<p class="mb-0 palette-text smallLineSpacing">{{ paragraph }}</p>
+                                {% endfor %}
 							</div>
 							{% endif %}
 							{% if conclusion %}
 							<div class="col-12 mt-4">
 								<h4 class="fs-4 fw-normal palette-title">{% translate 'Findings Conclusion' %}</h4>
-								<p class="mb-0 palette-text smallLineSpacing">{{ conclusion }}</p>
+                                {% for paragraph in conclusion %}
+								<p class="mb-0 palette-text smallLineSpacing">{{ paragraph }}</p>
+                                {% endfor %}
 							</div>
 							{% endif %}
 						</div>
@@ -111,11 +118,6 @@
 							{% if archiveURL %}
 							<div class="col-12 col-md-4 col-sm-6 col-xl-3">
 								<a href="{{ archiveURL }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Download Full Archive' %}</p></a>
-							</div>
-							{% endif %}
-							{% if commissionReportURL %}
-							<div class="col-12 col-md-4 col-sm-6 col-xl-3">
-								<a href="{{ commissionReportURL }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Oversight Commission Report' %}</p></a>
 							</div>
 							{% endif %}
 							{% if source %}
@@ -145,7 +147,9 @@
 							<div class="card-body palette-black">
 								<h3 class="card-title fs-3 mb-0 text-center">{{ finding.category }}</h3>
 								<p class="mb-2 text-black-50 text-center">{{ finding.policy }}</p>
-								<p class="card-text mb-2">{{ finding.summary }}</p>
+                                {% for paragraph in finding.summary %}
+								<p class="card-text mb-2">{{ paragraph }}</p>
+                                {% endfor %}
 							</div>
 						</div>
 					</div>
@@ -170,7 +174,9 @@
 							<div class="card-body palette-black">
 								<h3 class="card-title fs-3 mb-0 text-center">{{ finding.category }}</h3>
 								<p class="mb-2 text-black-50 text-center">{{ finding.policy }}</p>
-								<p class="card-text mb-2">{{ finding.summary }}</p>
+                                {% for paragraph in finding.summary %}
+								<p class="card-text mb-2">{{ paragraph }}</p>
+                                {% endfor %}
 							</div>
 						</div>
 					</div>
@@ -195,7 +201,9 @@
 							<div class="card-body palette-black">
 								<h3 class="card-title fs-3 mb-0 text-center">{{ finding.category }}</h3>
 								<p class="mb-2 text-black-50 text-center">{{ finding.policy }}</p>
-								<p class="card-text mb-2">{{ finding.summary }}</p>
+                                {% for paragraph in finding.summary %}
+								<p class="card-text mb-2">{{ paragraph }}</p>
+                                {% endfor %}
 							</div>
 						</div>
 					</div>
@@ -220,7 +228,9 @@
 							<div class="card-body palette-black">
 								<h3 class="card-title fs-3 mb-0 text-center">{{ finding.category }}</h3>
 								<p class="mb-2 text-black-50 text-center">{{ finding.policy }}</p>
-								<p class="card-text mb-2">{{ finding.summary }}</p>
+                                {% for paragraph in finding.summary %}
+								<p class="card-text mb-2">{{ paragraph }}</p>
+                                {% endfor %}
 							</div>
 						</div>
 					</div>

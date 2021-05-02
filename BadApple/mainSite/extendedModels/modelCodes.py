@@ -85,6 +85,12 @@ PRA_SUBJECTS = [
 				('11' , _('Police Misconduct - Based on the Incident'))
 			]
 
+# Investigative Report Types (By Author):
+REPORT_TYPES = [
+				('0' , _('Internal Affairs Investigative Report')),
+				('1' , _('Oversight Commission Investigative Report'))
+				]
+
 # Alpha-3 Country Codes + Alpha-2 Territory Codes (maximum length = 6):
 STATES_TERRITORIES_PROVINCES = [
 								('USA-AL' , 'Alabama, USA'),
