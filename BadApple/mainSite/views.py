@@ -73,19 +73,21 @@ def pra(request):
 		if (praForm.is_valid()):
 			try:
 				STATES_WITH_PRAS = ['USA-AL' , 'USA-AZ' , 'USA-AR' , 'USA-CA' , 'USA-CO' , 'USA-CT' , 'USA-DE' , 'USA-FL' , 'USA-GA' , 'USA-HI' , 'USA-IL' , 'USA-IN' , 'USA-IA' , 'USA-KS' , 'USA-KY' , 'USA-LA' , 'USA-ME' , 'USA-MD' , 'USA-MA' , 'USA-MI' , 'USA-MN' , 'USA-MS' , 'USA-MO' , 'USA-NE' , 'USA-NJ' , 'USA-NM' , 'USA-NY' , 'USA-NC' , 'USA-ND' , 'USA-OH' , 'USA-OK' , 'USA-PA' , 'USA-RI' , 'USA-SC' , 'USA-SD' , 'USA-TN' , 'USA-TX' , 'USA-UT' , 'USA-VT' , 'USA-VA' , 'USA-WA' , 'USA-WV' , 'USA-WI']
-				if ((praForm.cleaned_data['subject'] != 10) and (praForm.cleaned_data['subject'] != 11)):
-					if (praForm.cleaned_data['stateTerritoryProvince'] in STATES_WITH_PRAS):
-						templateObject = PRATemplate.objects.filter(subject = praForm.cleaned_data['subject'] , approved = True , public = True)[0]
-						resultFound = True
-						letterTitle = str(templateObject.title)
-						letterBody = str(templateObject.letterBody)
-					else:
-						resultFound = False
-				else:
-					templateObject = PRATemplate.objects.get(stateTerritoryProvince = praForm.cleaned_data['stateTerritoryProvince'] , subject = praForm.cleaned_data['subject'] , approved = True , public = True)
+				templateObjects = PRATemplate.objects.filter(stateTerritoryProvince = praForm.cleaned_data['stateTerritoryProvince'] , subject = praForm.cleaned_data['subject'] , approved = True , public = True)
+				# Look for a specific template:
+				if (templateObjects):
+					templateObject = templateObjects[0]
 					resultFound = True
 					letterTitle = str(templateObject.title)
 					letterBody = str(templateObject.letterBody)
+				# If it doesn't exist, return a generic template (code: USA-00):
+				else:
+					if (praForm.cleaned_data['stateTerritoryProvince'] in STATES_WITH_PRAS):
+						templateObject = PRATemplate.objects.get(stateTerritoryProvince = 'USA-00' , subject = praForm.cleaned_data['subject'] , approved = True , public = True)
+						resultFound = True
+						letterTitle = str(templateObject.title)
+						letterBody = str(templateObject.letterBody)
+
 			except:
 				return render(request , 'pra.html' , {'praForm' : praForm , 'showResults' : True , 'resultFound' : False , 'letterTitle' : letterTitle , 'letterBody' : letterBody})
 
