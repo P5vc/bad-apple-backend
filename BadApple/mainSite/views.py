@@ -72,10 +72,20 @@ def pra(request):
 		letterBody = ''
 		if (praForm.is_valid()):
 			try:
-				templateObject = PRATemplate.objects.get(stateTerritoryProvince = praForm.cleaned_data['stateTerritoryProvince'] , subject = praForm.cleaned_data['subject'] , approved = True , public = True)
-				resultFound = True
-				letterTitle = str(templateObject.title)
-				letterBody = str(templateObject.letterBody)
+				STATES_WITH_PRAS = ['USA-AL' , 'USA-AZ' , 'USA-AR' , 'USA-CA' , 'USA-CO' , 'USA-CT' , 'USA-DE' , 'USA-FL' , 'USA-GA' , 'USA-HI' , 'USA-IL' , 'USA-IN' , 'USA-IA' , 'USA-KS' , 'USA-KY' , 'USA-LA' , 'USA-ME' , 'USA-MD' , 'USA-MA' , 'USA-MI' , 'USA-MN' , 'USA-MS' , 'USA-MO' , 'USA-NE' , 'USA-NJ' , 'USA-NM' , 'USA-NY' , 'USA-NC' , 'USA-ND' , 'USA-OH' , 'USA-OK' , 'USA-PA' , 'USA-RI' , 'USA-SC' , 'USA-SD' , 'USA-TN' , 'USA-TX' , 'USA-UT' , 'USA-VT' , 'USA-VA' , 'USA-WA' , 'USA-WV' , 'USA-WI']
+				if ((praForm.cleaned_data['subject'] != 10) and (praForm.cleaned_data['subject'] != 11)):
+					if (praForm.cleaned_data['stateTerritoryProvince'] in STATES_WITH_PRAS):
+						templateObject = PRATemplate.objects.filter(subject = praForm.cleaned_data['subject'] , approved = True , public = True)[0]
+						resultFound = True
+						letterTitle = str(templateObject.title)
+						letterBody = str(templateObject.letterBody)
+					else:
+						resultFound = False
+				else:
+					templateObject = PRATemplate.objects.get(stateTerritoryProvince = praForm.cleaned_data['stateTerritoryProvince'] , subject = praForm.cleaned_data['subject'] , approved = True , public = True)
+					resultFound = True
+					letterTitle = str(templateObject.title)
+					letterBody = str(templateObject.letterBody)
 			except:
 				return render(request , 'pra.html' , {'praForm' : praForm , 'showResults' : True , 'resultFound' : False , 'letterTitle' : letterTitle , 'letterBody' : letterBody})
 
@@ -315,12 +325,10 @@ def officer(request , slug):
 				latestReport = report.reportDate
 
 		reportLocation = (report.cityTown + ', ' + report.get_stateTerritoryProvince_display())
-		reportDict = {'reportID' : report.reportID , 'oversight' : False , 'reportLocation' : reportLocation , 'reportDate' : report.reportDate.strftime('%B %d, %Y') , 'sustained' : set() , 'notSustained' : set() , 'exonerated' : set() , 'unfounded' : set()}
+		reportDict = {'reportID' : report.reportID , 'reportType' : report.get_reportType_display() , 'reportLocation' : reportLocation , 'reportDate' : report.reportDate.strftime('%B %d, %Y') , 'sustained' : set() , 'notSustained' : set() , 'exonerated' : set() , 'unfounded' : set()}
 		knownLocations.add(reportLocation)
 		if (report.officerBadgeNumber):
 			knownBadgeNumbers.add(report.officerBadgeNumber)
-		if (report.reportType == '1'):
-			reportDict['oversight'] = True
 
 		findings = InvestigativeReportFinding.objects.filter(investigativeReport = report , approved = True , public = True)
 		for finding in findings:

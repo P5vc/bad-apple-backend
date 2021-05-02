@@ -17,7 +17,7 @@ class PRATemplate(models.Model):
 	# Filters:
 	country = models.CharField('Country' , max_length = 3 , choices = choices.COUNTRIES , default = 'USA')
 	stateTerritoryProvince = models.CharField('State/Territory/Province' , max_length = 6 , choices = choices.STATES_TERRITORIES_PROVINCES , default = 'USA-CA')
-	subject = models.CharField('Subject' , max_length = 3 , choices = choices.PRA_SUBJECTS , default = '0')
+	subject = models.CharField('Subject' , max_length = 3 , choices = choices.PRA_SUBJECTS , default = '11')
 
 	# Template Contents:
 	title = models.CharField('Title' , max_length = 300 , blank = True)

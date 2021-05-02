@@ -87,8 +87,8 @@ PRA_SUBJECTS = [
 
 # Investigative Report Types (By Author):
 REPORT_TYPES = [
-				('0' , _('Internal Affairs Investigative Report')),
-				('1' , _('Oversight Commission Investigative Report'))
+				('0' , _('Internal Affairs Report')),
+				('1' , _('Oversight Commission Report'))
 				]
 
 # Alpha-3 Country Codes + Alpha-2 Territory Codes (maximum length = 6):
