@@ -120,6 +120,11 @@
 								<a href="{{ archiveURL }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Download Full Archive' %}</p></a>
 							</div>
 							{% endif %}
+                            {% if praURL %}
+							<div class="col-12 col-md-4 col-sm-6 col-xl-3">
+								<a href="{{ praURL }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Download Original PRA' %}</p></a>
+							</div>
+							{% endif %}
 							{% if source %}
 							<div class="col-12 col-md-4 col-sm-6 col-xl-3">
 								<a href="{{ source }}" class="text-decoration-none"><p class="palette-link smallLineSpacing">{% translate 'Source' %}</p></a>

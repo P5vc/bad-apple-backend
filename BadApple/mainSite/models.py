@@ -1,5 +1,6 @@
 # General imports:
 from django.db import models
+from django.utils import timezone
 from uuid import uuid4
 from gnupg import GPG
 
@@ -122,6 +123,7 @@ class Officer(models.Model):
 	lastName = models.CharField('Last Name(s)' , max_length = 150)
 
 	# Administrative:
+	internalNotes = models.TextField('Internal Notes' , max_length = 10000 , blank = True)
 	officerID = models.CharField('Officer ID' , max_length = 36 , default = generateUniqueID)
 	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
 	updatedOn = models.DateTimeField('Record Last Updated On' , auto_now = True)
@@ -132,6 +134,10 @@ class Officer(models.Model):
 	# Permissions:
 	approved = models.BooleanField('Record Approved' , default = False)
 	public = models.BooleanField('Record Public' , default = False)
+
+
+	def __str__(self):
+		return (str(self.id) + ' - ' + self.firstName + ' ' + self.lastName)
 
 
 
@@ -169,7 +175,7 @@ class InvestigativeReport(models.Model):
 	investigationID = models.CharField('Investigation ID' , max_length = 60 , blank = True)
 	officerBadgeNumber = models.CharField('Officer Badge Number' , max_length = 60 , blank = True)
 	incidentDate = models.DateTimeField('Incident Date' , null = True)
-	reportDate = models.DateTimeField('Report Date' , null = True)
+	reportDate = models.DateTimeField('Report Date' , default = timezone.now)
 
 	# Contents:
 	findingsSummary = models.TextField('Summary' , max_length = 10000 , blank = True)
@@ -179,8 +185,10 @@ class InvestigativeReport(models.Model):
 	fullReportURL = models.URLField('Full Report Download URL' , max_length = 300 , blank = True)
 	fullArchiveURL = models.URLField('Full Archive Download URL' , max_length = 300 , blank = True)
 	sourceURL = models.URLField('Source URL' , max_length = 300 , blank = True)
+	praURL = models.URLField('Originating PRA Download URL' , max_length = 300 , blank = True)
 
 	# Administrative:
+	internalNotes = models.TextField('Internal Notes' , max_length = 10000 , blank = True)
 	reportID = models.CharField('Report ID' , max_length = 36 , default = generateUniqueID)
 	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
 	updatedOn = models.DateTimeField('Record Last Updated On' , auto_now = True)
@@ -191,6 +199,10 @@ class InvestigativeReport(models.Model):
 	# Permissions:
 	approved = models.BooleanField('Record Approved' , default = False)
 	public = models.BooleanField('Record Public' , default = False)
+
+
+	def __str__(self):
+		return (str(self.id) + ' - ' + self.reportDate.strftime('%x') + ' ' + self.client)
 
 
 
@@ -212,6 +224,7 @@ class InvestigativeReportFinding(models.Model):
 	finding = models.CharField('Finding' , max_length = 2 , choices = choices.FINDINGS , default = '0')
 
 	# Administrative:
+	internalNotes = models.TextField('Internal Notes' , max_length = 10000 , blank = True)
 	createdOn = models.DateTimeField('Record Created On' , auto_now_add = True)
 	updatedOn = models.DateTimeField('Record Last Updated On' , auto_now = True)
 	lastChangedBy = models.CharField('Last Changed By' , max_length = 50 , blank = True)
