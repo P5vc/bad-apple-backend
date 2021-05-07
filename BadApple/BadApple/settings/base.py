@@ -184,3 +184,4 @@ HOST_SCHEME_ALWAYS_HTTPS = ['badapplesifsmfpeetrmnfdk7jbvgidfcy7f3m64c53mccljw4e
 
 # Database management limitations:
 WEEKLY_TOUCH_LIMIT = 10
+CHANGE_WINDOW_SECONDS = (60 * 60 * 24 * 7)
