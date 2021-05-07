@@ -3,11 +3,13 @@ from django.contrib.auth.models import User , Group
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.utils.html import mark_safe
+from django.utils import timezone
 from django.urls import path , reverse
 from django.conf import settings
 from mainSite.models import *
 from io import BytesIO
 from os import remove
+from datetime import timedelta
 import time
 
 class CustomAdminSite(admin.AdminSite):
@@ -73,10 +75,22 @@ class EncryptedMessageAdmin(admin.ModelAdmin):
 
 
 # Custom save behavior for managed models:
-def customSaveBehavior(request):
+def customSaveBehavior(request , object = None , objectID = None):
 	if (request.method == 'POST'):
 		if (request.POST.__contains__('lastChangedBy')):
 			request.POST = request.POST.copy()
+
+			# Enforce volunteer restrictions:
+			if (request.user.groups.filter(name = 'Volunteer Restrictions').exists()):
+				if ((object) and (objectID)):
+					if (object.objects.get(id = objectID).lastChangedBy != request.user.username):
+						raise PermissionDenied
+					else:
+						changeLimit = (timezone.now() - timedelta(seconds = settings.CHANGE_WINDOW_SECONDS))
+						if (changeLimit > object.objects.get(id = objectID).updatedOn):
+							raise PermissionDenied
+
+
 			dbManagerObj = DatabaseManagerPermissions.objects.get(user = request.user)
 			if (dbManagerObj.changesThisWeek >= settings.WEEKLY_TOUCH_LIMIT):
 				raise PermissionDenied
@@ -106,7 +120,7 @@ class PRATemplateAdmin(admin.ModelAdmin):
 
 
 	def change_view(self , request , object_id , form_url = '' , extra_context = None):
-		return super().changeform_view(customSaveBehavior(request) , object_id , form_url , extra_context)
+		return super().changeform_view(customSaveBehavior(request , object = PRATemplate , objectID = object_id) , object_id , form_url , extra_context)
 
 
 
@@ -122,7 +136,7 @@ class OversightCommissionAdmin(admin.ModelAdmin):
 
 
 	def change_view(self , request , object_id , form_url = '' , extra_context = None):
-		return super().changeform_view(customSaveBehavior(request) , object_id , form_url , extra_context)
+		return super().changeform_view(customSaveBehavior(request , object = OversightCommission , objectID = object_id) , object_id , form_url , extra_context)
 
 
 
@@ -138,7 +152,7 @@ class OfficerAdmin(admin.ModelAdmin):
 
 
 	def change_view(self , request , object_id , form_url = '' , extra_context = None):
-		return super().changeform_view(customSaveBehavior(request) , object_id , form_url , extra_context)
+		return super().changeform_view(customSaveBehavior(request , object = Officer , objectID = object_id) , object_id , form_url , extra_context)
 
 
 
@@ -154,7 +168,7 @@ class InvestigativeReportAdmin(admin.ModelAdmin):
 
 
 	def change_view(self , request , object_id , form_url = '' , extra_context = None):
-		return super().changeform_view(customSaveBehavior(request) , object_id , form_url , extra_context)
+		return super().changeform_view(customSaveBehavior(request , object = InvestigativeReport , objectID = object_id) , object_id , form_url , extra_context)
 
 
 
@@ -170,7 +184,7 @@ class InvestigativeReportFindingAdmin(admin.ModelAdmin):
 
 
 	def change_view(self , request , object_id , form_url = '' , extra_context = None):
-		return super().changeform_view(customSaveBehavior(request) , object_id , form_url , extra_context)
+		return super().changeform_view(customSaveBehavior(request , object = InvestigativeReportFinding , objectID = object_id) , object_id , form_url , extra_context)
 
 
 
