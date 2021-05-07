@@ -66,7 +66,10 @@ POLICY_CATEGORIES = [
 						('32' , _('Child Safety')),
 						('33' , _('Wanted Persons')),
 						('34' , _('Volunteer Program')),
-						('35' , _('Uniform Regulations'))
+						('35' , _('Uniform Regulations')),
+						('36' , _('Performance')),
+						('37' , _('Relationships')),
+						('38' , _('Procedure'))
 					]
 
 # PRA Template Subjects:
