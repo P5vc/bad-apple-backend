@@ -60,7 +60,7 @@ POLICY_CATEGORIES = [
 						('26' , _('Death Investigation')),
 						('27' , _('Identity Theft')),
 						('28' , _('Private Persons Arrests')),
-						('29' , _('Damage to City Property')),
+						('29' , _('Damage to Property')),
 						('30' , _('Arrest and Booking Procedures')),
 						('31' , _('Closed Circuit Television/Public Camera System')),
 						('32' , _('Child Safety')),
