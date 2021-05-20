@@ -25,6 +25,7 @@ class WeeklyStats(models.Model):
 	year = models.IntegerField('Year')
 
 	# Page View Stats:
+	totalViews = models.IntegerField('Total Views' , default = 0)
 	homeViews = models.IntegerField('Home Page Views' , default = 0)
 	documentationViews = models.IntegerField('Learn More Page Views' , default = 0)
 	praViews = models.IntegerField('PRA Templates Page Views' , default = 0)
@@ -36,6 +37,7 @@ class WeeklyStats(models.Model):
 	reportViews = models.IntegerField('Report Page Views' , default = 0)
 
 	# Action Stats:
+	totalInteractions = models.IntegerField('Total Interactions' , default = 0)
 	praSearches = models.IntegerField('PRA Template Searches' , default = 0)
 	commissionSearches = models.IntegerField('Oversight Commission Searches' , default = 0)
 	tipSubmissions = models.IntegerField('Tip Submissions' , default = 0)
