@@ -22,30 +22,43 @@ def incrementStat(originID):
 
 	if (originID == 0):
 		statsObj.homeViews += 1
+		statsObj.totalViews += 1
 	elif (originID == 1):
 		statsObj.documentationViews += 1
+		statsObj.totalViews += 1
 	elif (originID == 2):
 		statsObj.praViews += 1
+		statsObj.totalViews += 1
 	elif (originID == 3):
 		statsObj.oversightViews += 1
+		statsObj.totalViews += 1
 	elif (originID == 4):
 		statsObj.commissionViews += 1
+		statsObj.totalViews += 1
 	elif (originID == 5):
 		statsObj.tipViews += 1
+		statsObj.totalViews += 1
 	elif (originID == 6):
 		statsObj.badAppleViews += 1
+		statsObj.totalViews += 1
 	elif (originID == 7):
 		statsObj.praSearches += 1
+		statsObj.totalInteractions += 1
 	elif (originID == 8):
 		statsObj.commissionSearches += 1
+		statsObj.totalInteractions += 1
 	elif (originID == 9):
 		statsObj.tipSubmissions += 1
+		statsObj.totalInteractions += 1
 	elif (originID == 10):
 		statsObj.badAppleSearches += 1
+		statsObj.totalInteractions += 1
 	elif (originID == 11):
 		statsObj.officerViews += 1
+		statsObj.totalViews += 1
 	elif (originID == 12):
 		statsObj.reportViews += 1
+		statsObj.totalViews += 1
 
 	statsObj.save()
 
@@ -147,7 +160,7 @@ def commission(request , slug):
 
 
 def tip(request):
-	databaseEntries = Tip.objects.filter(archived = False).count()
+	databaseEntries = Tip.objects.filter(processed = False , archived = False).count()
 	if (databaseEntries >= 100):
 		return render(request , 'tip.html' , {'errorMessage' : _('We are unable to accept new tips at the moment, as our tip database is currently full. Please try again soon.') , 'successMessage' : False , 'showForm' : False})
 

@@ -31,9 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '.badapple.tools',
-    '.badapplesifsmfpeetrmnfdk7jbvgidfcy7f3m64c53mccljw4efisad.onion',
-    '.badapple.priveasy.org',
-    '.ba.p5.vc'
+    '.badapplesifsmfpeetrmnfdk7jbvgidfcy7f3m64c53mccljw4efisad.onion'
 ]
 
 
