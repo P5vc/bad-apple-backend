@@ -74,6 +74,12 @@ class EncryptedMessageAdmin(admin.ModelAdmin):
 
 
 
+@admin.register(APIAccount , site = customAdminSite)
+class APIAccountAdmin(admin.ModelAdmin):
+	list_display = ['accountHolder' , 'apiKey' , 'currentWeek' , 'totalQueries']
+
+
+
 # Custom save behavior for managed models:
 def customSaveBehavior(request , object = None , objectID = None):
 	if (request.method == 'POST'):

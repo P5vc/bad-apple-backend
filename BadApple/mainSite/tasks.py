@@ -1,6 +1,6 @@
 from celery.schedules import crontab
 from mainSite.celery import app
-from mainSite.models import DatabaseManagerPermissions , PRATemplate , OversightCommission , Officer , InvestigativeReport , InvestigativeReportFinding , Tip , EncryptedMessage
+from mainSite.models import DatabaseManagerPermissions , PRATemplate , OversightCommission , Officer , InvestigativeReport , InvestigativeReportFinding , Tip , EncryptedMessage , APIAccount
 from gnupg import GPG
 
 
@@ -10,6 +10,7 @@ def setup_periodic_tasks(sender , **kwargs):
 	sender.add_periodic_task(crontab(minute = 0 , hour = 0) , deleteDatabaseEntries.s())
 	sender.add_periodic_task(crontab(minute = 0 , hour = 0 , day_of_week = 'sunday') , databaseManagerRateLimitReset.s())
 	sender.add_periodic_task(crontab(minute = 0 , hour = 0) , archiveTips.s())
+	sender.add_periodic_task(crontab(minute = 0 , hour = 0 , day_of_week = 'sunday') , resetWeeklyAPIQueryCounter.s())
 
 
 # Tasks:
@@ -94,3 +95,10 @@ def archiveTips():
 
 		tipObject.archived = True
 		tipObject.save()
+
+
+@app.task
+def resetWeeklyAPIQueryCounter():
+	for account in APIAccount.objects.filter(approved = True):
+		account.currentWeek = 0
+		account.save()
