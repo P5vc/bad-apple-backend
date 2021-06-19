@@ -311,3 +311,34 @@ class EncryptedMessage(models.Model):
 	class Meta:
 		verbose_name = 'Encrypted Message'
 		verbose_name_plural = 'Encrypted Messages'
+
+
+
+class APIAccount(models.Model):
+	def generateAPIKey():
+		while (True):
+			proposedAPIKey = str(uuid4())
+			if (len(APIAccount.objects.filter(apiKey = proposedAPIKey)) == 0):
+				return proposedAPIKey
+
+
+	# Profile:
+	accountHolder = models.CharField('Account Holder' , max_length = 150)
+
+	# Contents:
+	apiKey = models.CharField('API Key' , max_length = 36 , default = generateAPIKey)
+	weeklyQueryLimit = models.IntegerField('Weekly Query Limit' , default = 500)
+	currentWeek = models.IntegerField('Number of Queries This Week' , default = 0)
+	totalQueries = models.IntegerField('Lifetime Number of Queries' , default = 0)
+
+	# Administrative:
+	createdOn = models.DateTimeField('Account Created On' , auto_now_add = True)
+	updatedOn = models.DateTimeField('Account Last Updated On' , auto_now = True)
+	approved = models.BooleanField('Account Approved' , default = False)
+
+
+
+	# Manage metadata:
+	class Meta:
+		verbose_name = 'API Account'
+		verbose_name_plural = 'API Accounts'
