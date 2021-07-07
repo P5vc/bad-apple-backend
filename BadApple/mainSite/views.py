@@ -457,17 +457,11 @@ def apiQuery(request , slug):
 							praTemplateObjects = PRATemplate.objects.filter(stateTerritoryProvince = state , subject = subject , approved = True , public = True)
 							for praTemplate in praTemplateObjects:
 								tempItem = {}
-								tempItem['country'] = praTemplate.country
-								tempItem['stateTerritoryProvince'] = praTemplate.stateTerritoryProvince
-								tempItem['subject'] = praTemplate.subject
-								if (praTemplate.title):
-									tempItem['title'] = praTemplate.title
-								else:
-									tempItem['title'] = ''
-								if (praTemplate.letterBody):
-									tempItem['letterBody'] = praTemplate.letterBody
-								else:
-									tempItem['letterBody'] = ''
+								tempItem['country'] = praTemplate.get_country_display()
+								tempItem['stateTerritoryProvince'] = praTemplate.get_stateTerritoryProvince_display()
+								tempItem['subject'] = praTemplate.get_subject_display()
+								tempItem['title'] = praTemplate.title
+								tempItem['letterBody'] = praTemplate.letterBody
 								tempItem['createdOn'] = str(praTemplate.createdOn)
 								tempItem['updatedOn'] = str(praTemplate.updatedOn)
 								response['results'].append(tempItem)
@@ -483,7 +477,60 @@ def apiQuery(request , slug):
 						response['statusMessage'] = 'This resource requires the use of "State" and "Subject" filters.'
 						return JsonResponse(jsonExport(response))
 				elif (slug == 'Oversight'):
-					pass
+					if ('State' in request.headers.keys()):
+						state = str(request.headers['State'])
+						if (state in modelCodes.STATES_TERRITORIES_PROVINCES.keys()):
+							if ('City' in request.headers.keys()):
+								city = str(request.headers['City'])
+								if (len(city) < 2):
+									response['statusCode'] = 400
+									response['statusMessage'] = 'The provided "City" filter is invalid.'
+									return JsonResponse(jsonExport(response))
+								commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = state , cityTown__icontains = city , approved = True , public = True)
+							else:
+								commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = state , approved = True , public = True)
+							for commission in commissionObjects:
+								tempItem = {}
+								tempItem['name'] = commission.name
+								tempItem['type'] = commission.get_type_display()
+								tempItem['website'] = commission.website
+								tempItem['country'] = commission.get_country_display()
+								tempItem['stateTerritoryProvince'] = commission.get_stateTerritoryProvince_display()
+								tempItem['cityTown'] = commission.cityTown
+								tempItem['postalCode'] = commission.postalCode
+								tempItem['address1'] = commission.address1
+								tempItem['address2'] = commission.address2
+								tempItem['email'] = commission.email
+								tempItem['phone'] = commission.phone
+								tempItem['phoneTDD'] = commission.phoneTDD
+								tempItem['fax'] = commission.fax
+								tempItem['contactForm'] = commission.contactForm
+								tempItem['pressEmail'] = commission.pressEmail
+								tempItem['pressPhone'] = commission.pressPhone
+								tempItem['pressContactForm'] = commission.pressContactForm
+								tempItem['aboutSummary'] = commission.aboutSummary
+								tempItem['complaintInfo1'] = commission.complaintInfo1
+								tempItem['complaintInfo2'] = commission.complaintInfo2
+								tempItem['complaintForm'] = commission.complaintForm
+								tempItem['alternateComplaintFormType'] = commission.get_alternateComplaintFormType_display()
+								tempItem['alternateComplaintForm'] = commission.alternateComplaintForm
+								tempItem['membersPage'] = commission.membersPage
+								tempItem['faqPage'] = commission.faqPage
+								tempItem['commissionID'] = commission.commissionID
+								tempItem['createdOn'] = str(commission.createdOn)
+								tempItem['updatedOn'] = str(commission.updatedOn)
+								response['results'].append(tempItem)
+							response['statusCode'] = 200
+							response['statusMessage'] = 'Success'
+							return JsonResponse(jsonExport(response))
+						else:
+							response['statusCode'] = 400
+							response['statusMessage'] = 'The provided "State" filter is invalid.'
+							return JsonResponse(jsonExport(response))
+					else:
+						response['statusCode'] = 400
+						response['statusMessage'] = 'This resource requires the use of the "State" filter.'
+						return JsonResponse(jsonExport(response))
 				elif (slug == 'BA'):
 					pass
 				else:
