@@ -10,5 +10,6 @@ urlpatterns = [
 				path('Tip/' , views.tip , name = 'tip'),
 				path('BadAppleDatabase/' , views.badApple , name = 'badApple'),
 				path('Officer/<slug:slug>/' , views.officer , name = 'officer'),
-				path('Report/<slug:slug>/' , views.report , name = 'report')
+				path('Report/<slug:slug>/' , views.report , name = 'report'),
+				path('API/<slug:slug>/' , views.apiQuery , name = 'apiQuery')
 			]
