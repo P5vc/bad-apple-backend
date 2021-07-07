@@ -106,6 +106,8 @@ Filters must be included with each GET request in the form of HTTP headers. Filt
 
 ### Querying PRA Templates
 
+URL: `https://BadApple.tools/API/PRA/`
+
 #### Filters
 
 | Header | Description | Format |
@@ -133,6 +135,10 @@ Filters must be included with each GET request in the form of HTTP headers. Filt
 
 ### Querying Oversight Commissions
 
+URL: `https://BadApple.tools/API/Oversight/`
+
+#### Filters
+
 | Header | Description | Format |
 |:----------|:----------|:----------|
 | `State` | The state of the desired oversight commission(s) | A six-character code as listed [here](https://github.com/P5vc/BadAppleBackend/blob/main/BadApple/mainSite/extendedModels/modelCodes.py) in `STATES_TERRITORIES_PROVINCES` |
@@ -156,6 +162,10 @@ Filters must be included with each GET request in the form of HTTP headers. Filt
 ```
 
 ### Querying Bad Apple Database
+
+URL: `https://BadApple.tools/API/BA/`
+
+#### Filters
 
 | Header | Description | Format |
 |:----------|:----------|:----------|

@@ -1,10 +1,13 @@
+from django.http import JsonResponse
 from django.utils.translation import gettext as _
 from django.shortcuts import redirect , render
 from django.forms import TextInput
-from mainSite.models import PRATemplate , OversightCommission , Tip , WeeklyStats , Officer , InvestigativeReport , InvestigativeReportFinding
+from mainSite.models import PRATemplate , OversightCommission , Tip , WeeklyStats , Officer , InvestigativeReport , InvestigativeReportFinding , APIAccount
 from mainSite.forms import *
+import mainSite.extendedModels.modelCodes as modelCodes
 from random import choice
 from datetime import datetime
+from json import dumps as jsonExport
 
 # Import and configure BotBlock
 from mainSite import BotBlock
@@ -402,3 +405,94 @@ def report(request , slug):
 	subjectOfInvestigation = (reportObject.subjectOfInvestigation.firstName + ' ' + reportObject.subjectOfInvestigation.middleName + ' ' + reportObject.subjectOfInvestigation.lastName).strip()
 
 	return render(request , 'report.html' , {'reportType' : reportObject.get_reportType_display() , 'investigationID' : reportObject.investigationID , 'location' : reportLocation , 'subject' : subjectOfInvestigation , 'officerID' : reportObject.subjectOfInvestigation.officerID , 'reportDate' : reportObject.reportDate.strftime('%B %d, %Y') , 'client' : reportObject.client , 'incidentDate' : reportObject.incidentDate.strftime('%B %d, %Y') , 'investigator' : reportObject.investigator , 'license' : reportObject.license , 'employer' : reportObject.investigatorEmployer , 'summary' : str(reportObject.findingsSummary).strip().split('\n') , 'conclusion' : str(reportObject.conclusion).strip().split('\n') , 'reportURL' : reportObject.fullReportURL , 'archiveURL' : reportObject.fullArchiveURL , 'praURL' : reportObject.praURL , 'source' : reportObject.sourceURL , 'added' : reportObject.createdOn.strftime('%B %d, %Y') , 'sustained' : sustainedFindings , 'notSustained' : notSustainedFindings , 'exonerated' : exoneratedFindings , 'unfounded' : unfoundedFindings})
+
+
+def apiQuery(request , slug):
+	response = {'statusCode' : 403}
+
+	if (request.method == 'GET'):
+		if (not(slug in ['PRA' , 'Oversight' , 'BA'])):
+			response['statusCode'] = 404
+			return JsonResponse(jsonExport(response))
+
+		if (not('API-Key' in request.headers.keys())):
+			response['statusCode'] = 423
+			return JsonResponse(jsonExport(response))
+		else:
+			providedAPIKey = str(request.headers['API-Key'])
+			if (len(providedKey) == 36):
+				try:
+					correspondingAccount = APIAccount.objects.get(apiKey = providedAPIKey , approved = True)
+					if (correspondingAccount.currentWeek >= correspondingAccount.weeklyQueryLimit):
+						response['statusCode'] = 429
+						response['statusMessage'] = 'You have reached your weekly query limit.'
+						return JsonResponse(jsonExport(response))
+					correspondingAccount.currentWeek += 1
+					correspondingAccount.totalQueries += 1
+					correspondingAccount.save()
+				except:
+					return JsonResponse(jsonExport(response))
+
+				response['statusMessage'] = ''
+				response['results'] = []
+
+				for value in request.headers.values():
+					if (len(str(value)) > 100):
+						response['statusCode'] = 400
+						response['statusMessage'] = 'Invalid header: too long'
+						return JsonResponse(jsonExport(response))
+					elif (len(str(value)) <= 0):
+						response['statusCode'] = 400
+						response['statusMessage'] = 'Invalid header: too short'
+						return JsonResponse(jsonExport(response))
+
+				if (slug == 'PRA'):
+					if (('State' in request.headers.keys()) and ('Subject' in request.headers.keys())):
+						state = str(request.headers['State'])
+						subject = str(request.headers['Subject'])
+						if ((state in modelCodes.STATES_TERRITORIES_PROVINCES.keys()) and (subject in modelCodes.PRA_SUBJECTS.keys())):
+							STATES_WITH_PRAS = ['USA-AL' , 'USA-AZ' , 'USA-AR' , 'USA-CA' , 'USA-CO' , 'USA-CT' , 'USA-DE' , 'USA-FL' , 'USA-GA' , 'USA-HI' , 'USA-IL' , 'USA-IN' , 'USA-IA' , 'USA-KS' , 'USA-KY' , 'USA-LA' , 'USA-ME' , 'USA-MD' , 'USA-MA' , 'USA-MI' , 'USA-MN' , 'USA-MS' , 'USA-MO' , 'USA-NE' , 'USA-NJ' , 'USA-NM' , 'USA-NY' , 'USA-NC' , 'USA-ND' , 'USA-OH' , 'USA-OK' , 'USA-PA' , 'USA-RI' , 'USA-SC' , 'USA-SD' , 'USA-TN' , 'USA-TX' , 'USA-UT' , 'USA-VT' , 'USA-VA' , 'USA-WA' , 'USA-WV' , 'USA-WI']
+							if (not(state in STATES_WITH_PRAS)):
+								state = 'USA-00'
+							praTemplateObjects = PRATemplate.objects.filter(stateTerritoryProvince = state , subject = subject , approved = True , public = True)
+							for praTemplate in praTemplateObjects:
+								tempItem = {}
+								tempItem['country'] = praTemplate.country
+								tempItem['stateTerritoryProvince'] = praTemplate.stateTerritoryProvince
+								tempItem['subject'] = praTemplate.subject
+								if (praTemplate.title):
+									tempItem['title'] = praTemplate.title
+								else:
+									tempItem['title'] = ''
+								if (praTemplate.letterBody):
+									tempItem['letterBody'] = praTemplate.letterBody
+								else:
+									tempItem['letterBody'] = ''
+								tempItem['createdOn'] = str(praTemplate.createdOn)
+								tempItem['updatedOn'] = str(praTemplate.updatedOn)
+								response['results'].append(tempItem)
+							response['statusCode'] = 200
+							response['statusMessage'] = 'Success'
+							return JsonResponse(jsonExport(response))
+						else:
+							response['statusCode'] = 400
+							response['statusMessage'] = 'The provided "State" and "Subject" filters are invalid.'
+							return JsonResponse(jsonExport(response))
+					else:
+						response['statusCode'] = 400
+						response['statusMessage'] = 'This resource requires the use of "State" and "Subject" filters.'
+						return JsonResponse(jsonExport(response))
+				elif (slug == 'Oversight'):
+					pass
+				elif (slug == 'BA'):
+					pass
+				else:
+					response['statusCode'] = 404
+					return JsonResponse(jsonExport(response))
+
+			else:
+				response['statusCode'] = 400
+				return JsonResponse(jsonExport(response))
+	else:
+		response['statusCode'] = 405
+		return JsonResponse(jsonExport(response))
