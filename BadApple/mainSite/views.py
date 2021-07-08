@@ -435,6 +435,7 @@ def apiQuery(request , slug):
 
 				response['statusMessage'] = ''
 				response['results'] = []
+				response['remainingQueries'] = (correspondingAccount.weeklyQueryLimit - correspondingAccount.currentWeek)
 
 				for value in request.headers.values():
 					if (len(str(value)) > 100):

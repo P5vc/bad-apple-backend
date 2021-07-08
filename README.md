@@ -64,7 +64,9 @@ This repository contains all of the production code powering the Bad Apple web a
 
 ## API Overview
 
-Bad Apple does have an API available for use by other human rights organizations and developers looking for programmatic access to our databases. This API is simple to use, easy to implement, and follows many design standards: it accepts RESTful queries and returns beautifully-formatted JSON. If you would like an API key, send a request to [Admin@BadApple.tools](mailto:Admin@BadApple.tools), and let us know who you are or what organization you represent, why you need access, what you plan to use our API for, and how many queries per week you expect to make.
+Bad Apple does have an API available for use by other human rights organizations and developers looking for programmatic access to our databases. This API is simple to use, easy to implement, and follows many design standards: it accepts RESTful queries and returns beautifully-formatted JSON.
+
+If you would like an API key, send a request to [Admin@BadApple.tools](mailto:Admin@BadApple.tools), and let us know who you are or what organization you represent, why you need access, what you plan to use our API for, and how many queries per week you expect to make.
 
 Bad Apple provides rate-limited API access for free to qualifying developers of our choosing. However, if your use case requires making an extensive number of API queries, we may ask you to help cover the cost of the extra load placed on our servers. We may also require you to adhere to other security measures, such as providing us with a static IP address that we may pre-authorize to send a large number of queries.
 
@@ -98,11 +100,15 @@ print(response.json())
 
 Filters must be included with each GET request in the form of HTTP headers. Filters allow us to reduce network bandwidth, memory usage, and processing power, in order to keep our services quick and efficient for everyone. Under each service heading below, you will find a full list of each filter available, along with the corresponding HTTP header, accepted input format, examples, and any extra notes that may be necessary.
 
-###### *Please Note:*
+> **Please Note:** For a filter to be valid, unless a separate format has been explicitly defined, it must contain a minimum of two URL-safe characters, and no more than 100.
 
-- For a filter to be valid, unless a separate format has been explicitly defined, assume that it must contain a minimum of two URL-safe characters, and no more than 100.
-- Queries made to the `PRA Template Database` and `Bad Apple Database` must contain at least two, valid filters.
-- Queries made to the `Oversight Commissions Database` must include at least one, valid filter.
+### Responses
+
+All responses will be returned in JSON format, and contain the `statusCode` key. If a query is made successfully, a response containing a status code equal to `200` will be returned. If you receive a response containing any status code other than `200`, it is likely that your request contained an error, and should be examined before being resent.
+
+Properly-authenticated requests will also receive `statusMessage` and `remainingQueries` items in their response. For successful requests, the status message will always be `Success`. If any error occurs while processing your request, the status message is a great place look for information on what went wrong. `remainingQueries` will show you how many queries you have left before your weekly cap is met. Keep in mind that even unsuccessful queries will count against your query limit.
+
+All authenticated requests will contain a `results` list containing all of the objects matching their query. If no objects match your query, or your request was invalid, this list will be empty.
 
 ### Querying PRA Templates
 
@@ -110,10 +116,10 @@ URL: `https://BadApple.tools/API/PRA/`
 
 #### Filters
 
-| Header | Description | Format |
-|:----------|:----------|:----------|
-| `State` | The state of the desired PRA template(s) | A six-character code as listed [here](https://github.com/P5vc/BadAppleBackend/blob/main/BadApple/mainSite/extendedModels/modelCodes.py) in `STATES_TERRITORIES_PROVINCES` |
-| `Subject` | The subject of the desired PRA template(s) | A one-character or two-character code as listed [here](https://github.com/P5vc/BadAppleBackend/blob/main/BadApple/mainSite/extendedModels/modelCodes.py) in `PRA_SUBJECTS` |
+| Header | Inclusion | Description | Format |
+|:----------|:----------|:----------|:----------|
+| `State` | **Required** | The state of the desired PRA template(s) | A six-character code as listed [here](https://github.com/P5vc/BadAppleBackend/blob/main/BadApple/mainSite/extendedModels/modelCodes.py) in `STATES_TERRITORIES_PROVINCES` |
+| `Subject` | **Required** | The subject of the desired PRA template(s) | A one-character or two-character code as listed [here](https://github.com/P5vc/BadAppleBackend/blob/main/BadApple/mainSite/extendedModels/modelCodes.py) in `PRA_SUBJECTS` |
 
 #### Example Query Headers
 
@@ -133,16 +139,18 @@ URL: `https://BadApple.tools/API/PRA/`
 }
 ```
 
+#### Example Response
+
 ### Querying Oversight Commissions
 
 URL: `https://BadApple.tools/API/Oversight/`
 
 #### Filters
 
-| Header | Description | Format |
-|:----------|:----------|:----------|
-| `State` | The state of the desired oversight commission(s) | A six-character code as listed [here](https://github.com/P5vc/BadAppleBackend/blob/main/BadApple/mainSite/extendedModels/modelCodes.py) in `STATES_TERRITORIES_PROVINCES` |
-| `City` | The city of the desired oversight commission(s) | String |
+| Header | Inclusion | Description | Format |
+|:----------|:----------|:----------|:----------|
+| `State` | **Required** | The state of the desired oversight commission(s) | A six-character code as listed [here](https://github.com/P5vc/BadAppleBackend/blob/main/BadApple/mainSite/extendedModels/modelCodes.py) in `STATES_TERRITORIES_PROVINCES` |
+| `City` | *Optional* | The city of the desired oversight commission(s) | String |
 
 #### Example Query Headers
 
@@ -160,6 +168,8 @@ URL: `https://BadApple.tools/API/Oversight/`
 	"State" : "USA-CA",
 }
 ```
+
+#### Example Response
 
 ### Querying Bad Apple Database
 
