@@ -141,6 +141,34 @@ URL: `https://BadApple.tools/API/PRA/`
 
 #### Example Response
 
+###### Request (Python)
+
+```python3
+requests.get('https://BadApple.tools/API/PRA/' , headers = {'API-Key' : 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' , 'State' : 'USA-CA' , 'Subject' : '11'})
+```
+
+###### Response
+
+```json
+{
+	"statusCode": 200,
+	"statusMessage": "Success",
+	"results": [
+		{
+			"country": "United States of America",
+			"stateTerritoryProvince": "California, USA",
+			"subject": "Police Misconduct - Based on the Incident",
+			"title": "CALIFORNIA PUBLIC RECORDS REQUEST - POLICE MISCONDUCT (INCIDENT)",
+			"letterBody": "Per the Senate Bill 1421, I am writing to request the following information from your office:\\r\\n\\r\\n - All investigatory records stemming from the incident (brief description goes here) that occurred\\r\\non DATE PLACE where a police misconduct finding was sustained.\\r\\n\\r\\n - For this specific incident, please send me any available investigatory materials on any of the\\r\\nofficers involved including any sustained findings of misconduct related to the specific incident\\r\\nor to previous incidents involving the same officers.\\r\\n\\r\\nPlease notify me when this information is available.\\r\\n\\r\\nThank you for your attention to this request and for your prompt reply within 10 days.",
+			"createdOn": "2021-02-21 07:05:05.412317+00:00",
+			"updatedOn": "2021-05-02 21:38:29.327429+00:00"
+		}
+	],
+	"remainingQueries": 455
+}
+```
+
+
 ### Querying Oversight Commissions
 
 URL: `https://BadApple.tools/API/Oversight/`
@@ -170,6 +198,54 @@ URL: `https://BadApple.tools/API/Oversight/`
 ```
 
 #### Example Response
+
+###### Request (Python)
+
+```python3
+requests.get('https://BadApple.tools/API/Oversight/' , headers = {'API-Key' : 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' , 'State' : 'USA-PR' , 'City' : 'San Juan'})
+```
+
+###### Response
+
+```json
+{
+	"statusCode": 200,
+	"statusMessage": "Success",
+	"results": [
+		{
+			"name": "Superintendencia Auxiliar en Responsabilidad Profesional",
+			"type": "Police Review Boards and Commissions",
+			"website": "https://policia.pr.gov",
+			"country": "United States of America",
+			"stateTerritoryProvince": "Puerto Rico, USA",
+			"cityTown": "San Juan",
+			"postalCode": "00936-8166",
+			"address1": "PO Box 70166",
+			"address2": "",
+			"email": "responsabilidadprofesional@policia.pr.gov",
+			"phone": "1-877-996-6627",
+			"phoneTDD": "",
+			"fax": "1-787-781-7685",
+			"contactForm": "",
+			"pressEmail": "",
+			"pressPhone": "",
+			"pressContactForm": "",
+			"aboutSummary": "Toda persona que desee presentar una querella relacionada con del personal de la Polic\\u00eda de Puerto Rico, lo podr\\u00e1 hacer en cualquier regi\\u00f3n, precinto o distrito de la Polic\\u00eda, las 24 horas del d\\u00eda los 7 d\\u00edas de la semana. La querella se podr\\u00e1 presentar en persona, por tel\\u00e9fono, electr\\u00f3nicamente (v\\u00eda e-mail), correo, fax, por escrito o v\\u00eda WEB. De igual forma, se aceptar\\u00e1n querellas presentadas mediante carta siempre y cuando sea en original (no copia) y contenga la firma. Todas las querellas por conducta impropia por parte del personal ser\\u00e1n evaluadas por el personal de la Superintendencia Auxiliar en Responsabilidad Profesional (SARP).",
+			"complaintInfo1": "https://policia.pr.gov/querellas-administrativas/",
+			"complaintInfo2": "",
+			"complaintForm": "https://serviciosppr.policia.pr.gov/querellaadministrativa/",
+			"alternateComplaintFormType": "Printable Complaint Form",
+			"alternateComplaintForm": "https://docs.google.com/file/d/1t0x-iCNiOkV5JR2nWhzukD1jQakKeVtc/view",
+			"membersPage": "",
+			"faqPage": "",
+			"commissionID": "61af8d57-c2aa-48c0-8f6d-d46de3eb0605",
+			"createdOn": "2021-03-25 21:01:00.322817+00:00",
+			"updatedOn": "2021-03-30 03:16:37.145713+00:00"
+		}
+	],
+	"remainingQueries": 468
+}
+```
 
 ### Querying Bad Apple Database
 
