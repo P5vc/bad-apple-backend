@@ -7,7 +7,6 @@ from mainSite.forms import *
 import mainSite.extendedModels.modelCodes as modelCodes
 from random import choice
 from datetime import datetime
-from json import dumps as jsonExport
 
 # Import and configure BotBlock
 from mainSite import BotBlock
@@ -413,49 +412,63 @@ def apiQuery(request , slug):
 	if (request.method == 'GET'):
 		if (not(slug in ['PRA' , 'Oversight' , 'BA'])):
 			response['statusCode'] = 404
-			return JsonResponse(jsonExport(response))
+			return JsonResponse(response)
 
 		if (not('API-Key' in request.headers.keys())):
 			response['statusCode'] = 423
-			return JsonResponse(jsonExport(response))
+			return JsonResponse(response)
 		else:
 			providedAPIKey = str(request.headers['API-Key'])
-			if (len(providedKey) == 36):
+			if (len(providedAPIKey) == 36):
 				try:
 					correspondingAccount = APIAccount.objects.get(apiKey = providedAPIKey , approved = True)
 					if (correspondingAccount.currentWeek >= correspondingAccount.weeklyQueryLimit):
 						response['statusCode'] = 429
 						response['statusMessage'] = 'You have reached your weekly query limit.'
-						return JsonResponse(jsonExport(response))
+						return JsonResponse(response)
 					correspondingAccount.currentWeek += 1
 					correspondingAccount.totalQueries += 1
 					correspondingAccount.save()
 				except:
-					return JsonResponse(jsonExport(response))
+					return JsonResponse(response)
 
 				response['statusMessage'] = ''
 				response['results'] = []
 				response['remainingQueries'] = (correspondingAccount.weeklyQueryLimit - correspondingAccount.currentWeek)
 
-				for value in request.headers.values():
-					if (len(str(value)) > 100):
+				for item in request.headers.items():
+					if (len(item[1]) > 100):
 						response['statusCode'] = 400
 						response['statusMessage'] = 'Invalid header: too long'
-						return JsonResponse(jsonExport(response))
-					elif (len(str(value)) <= 0):
-						response['statusCode'] = 400
-						response['statusMessage'] = 'Invalid header: too short'
-						return JsonResponse(jsonExport(response))
+						return JsonResponse(response)
+					elif (len(item[1]) <= 0):
+						if ((not(item[0] == 'Content-Type')) and (not(item[0] == 'Content-Length'))):
+							response['statusCode'] = 400
+							response['statusMessage'] = 'Invalid header: too short'
+							return JsonResponse(response)
 
 				if (slug == 'PRA'):
 					if (('State' in request.headers.keys()) and ('Subject' in request.headers.keys())):
 						state = str(request.headers['State'])
 						subject = str(request.headers['Subject'])
-						if ((state in modelCodes.STATES_TERRITORIES_PROVINCES.keys()) and (subject in modelCodes.PRA_SUBJECTS.keys())):
-							STATES_WITH_PRAS = ['USA-AL' , 'USA-AZ' , 'USA-AR' , 'USA-CA' , 'USA-CO' , 'USA-CT' , 'USA-DE' , 'USA-FL' , 'USA-GA' , 'USA-HI' , 'USA-IL' , 'USA-IN' , 'USA-IA' , 'USA-KS' , 'USA-KY' , 'USA-LA' , 'USA-ME' , 'USA-MD' , 'USA-MA' , 'USA-MI' , 'USA-MN' , 'USA-MS' , 'USA-MO' , 'USA-NE' , 'USA-NJ' , 'USA-NM' , 'USA-NY' , 'USA-NC' , 'USA-ND' , 'USA-OH' , 'USA-OK' , 'USA-PA' , 'USA-RI' , 'USA-SC' , 'USA-SD' , 'USA-TN' , 'USA-TX' , 'USA-UT' , 'USA-VT' , 'USA-VA' , 'USA-WA' , 'USA-WV' , 'USA-WI']
-							if (not(state in STATES_WITH_PRAS)):
-								state = 'USA-00'
+						stateFound = False
+						for stateCode in modelCodes.STATES_TERRITORIES_PROVINCES:
+							if (state == stateCode[0]):
+								stateFound = True
+								break
+						subjectFound = False
+						for subjectCode in modelCodes.PRA_SUBJECTS:
+							if (subject == subjectCode[0]):
+								subjectFound = True
+								break
+						if ((stateFound) and (subjectFound)):
 							praTemplateObjects = PRATemplate.objects.filter(stateTerritoryProvince = state , subject = subject , approved = True , public = True)
+							if (not(praTemplateObjects)):
+								STATES_WITH_PRAS = ['USA-AL' , 'USA-AZ' , 'USA-AR' , 'USA-CA' , 'USA-CO' , 'USA-CT' , 'USA-DE' , 'USA-FL' , 'USA-GA' , 'USA-HI' , 'USA-IL' , 'USA-IN' , 'USA-IA' , 'USA-KS' , 'USA-KY' , 'USA-LA' , 'USA-ME' , 'USA-MD' , 'USA-MA' , 'USA-MI' , 'USA-MN' , 'USA-MS' , 'USA-MO' , 'USA-NE' , 'USA-NJ' , 'USA-NM' , 'USA-NY' , 'USA-NC' , 'USA-ND' , 'USA-OH' , 'USA-OK' , 'USA-PA' , 'USA-RI' , 'USA-SC' , 'USA-SD' , 'USA-TN' , 'USA-TX' , 'USA-UT' , 'USA-VT' , 'USA-VA' , 'USA-WA' , 'USA-WV' , 'USA-WI']
+								if (state in STATES_WITH_PRAS):
+									praTemplateObjects = PRATemplate.objects.filter(stateTerritoryProvince = 'USA-00' , subject = subject , approved = True , public = True)
+								else:
+									praTemplateObjects = []
 							for praTemplate in praTemplateObjects:
 								tempItem = {}
 								tempItem['country'] = praTemplate.get_country_display()
@@ -468,25 +481,30 @@ def apiQuery(request , slug):
 								response['results'].append(tempItem)
 							response['statusCode'] = 200
 							response['statusMessage'] = 'Success'
-							return JsonResponse(jsonExport(response))
+							return JsonResponse(response)
 						else:
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "State" and "Subject" filters are invalid.'
-							return JsonResponse(jsonExport(response))
+							return JsonResponse(response)
 					else:
 						response['statusCode'] = 400
 						response['statusMessage'] = 'This resource requires the use of "State" and "Subject" filters.'
-						return JsonResponse(jsonExport(response))
+						return JsonResponse(response)
 				elif (slug == 'Oversight'):
 					if ('State' in request.headers.keys()):
 						state = str(request.headers['State'])
-						if (state in modelCodes.STATES_TERRITORIES_PROVINCES.keys()):
+						stateFound = False
+						for stateCode in modelCodes.STATES_TERRITORIES_PROVINCES:
+							if (state == stateCode[0]):
+								stateFound = True
+								break
+						if (stateFound):
 							if ('City' in request.headers.keys()):
 								city = str(request.headers['City'])
 								if (len(city) < 2):
 									response['statusCode'] = 400
 									response['statusMessage'] = 'The provided "City" filter is invalid.'
-									return JsonResponse(jsonExport(response))
+									return JsonResponse(response)
 								commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = state , cityTown__icontains = city , approved = True , public = True)
 							else:
 								commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = state , approved = True , public = True)
@@ -523,24 +541,23 @@ def apiQuery(request , slug):
 								response['results'].append(tempItem)
 							response['statusCode'] = 200
 							response['statusMessage'] = 'Success'
-							return JsonResponse(jsonExport(response))
+							return JsonResponse(response)
 						else:
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "State" filter is invalid.'
-							return JsonResponse(jsonExport(response))
+							return JsonResponse(response)
 					else:
 						response['statusCode'] = 400
 						response['statusMessage'] = 'This resource requires the use of the "State" filter.'
-						return JsonResponse(jsonExport(response))
+						return JsonResponse(response)
 				elif (slug == 'BA'):
 					pass
 				else:
 					response['statusCode'] = 404
-					return JsonResponse(jsonExport(response))
-
+					return JsonResponse(response)
 			else:
 				response['statusCode'] = 400
-				return JsonResponse(jsonExport(response))
+				return JsonResponse(response)
 	else:
 		response['statusCode'] = 405
-		return JsonResponse(jsonExport(response))
+		return JsonResponse(response)
