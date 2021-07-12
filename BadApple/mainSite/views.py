@@ -8,16 +8,18 @@ import mainSite.extendedModels.modelCodes as modelCodes
 from random import choice
 from datetime import datetime
 
-# Import and configure BotBlock
+# Import and configure BotBlock:
 from mainSite import BotBlock
 BotBlock.encryptText = True
 
 
 # Global Variables:
+
 backgroundImages = ['img/andrew-ridley-jR4Zf-riEjI-unsplash.jpg' , 'img/ashkan-forouzani-5nwog4xjpNY-unsplash.jpg' , 'img/billy-huynh-W8KTS-mhFUE-unsplash.jpg' , 'img/bradley-jasper-ybanez-a1xlQq3HoJ0-unsplash.jpg' , 'img/clem-onojeghuo-Ud4GcZW3rOY-unsplash.jpg' , 'img/danist-bviex5lwf3s-unsplash.jpg' , 'img/denise-chan-pXmbsF70ulM-unsplash.jpg' , 'img/derek-thomson-NqJYQ3m_rVA-unsplash.jpg' , 'img/erfan-moradi-wKc-i5zwfok-unsplash.jpg' , 'img/fabio-ballasina-wEL2zPX3jDg-unsplash.jpg' , 'img/genessa-panainte-sBvK15KlpYk-unsplash.jpg' , 'img/henrik-donnestad-V6Qd6zA85ck-unsplash.jpg' , 'img/joel-filipe-WjnF1Tp-p3I-unsplash.jpg' , 'img/jr-korpa-SFT9G3pAxLY-unsplash.jpg' , 'img/kai-dahms-t--2nGjWLXc-unsplash.jpg' , 'img/lucas-benjamin-R79qkPYvrcM-unsplash.jpg' , 'img/lucas-benjamin-wQLAGv4_OYs-unsplash.jpg' , 'img/markus-spiske-Z7n-qSootxg-unsplash.jpg' , 'img/munmun-singh-xRwj5q7vSJ4-unsplash.jpg' , 'img/nareeta-martin-QP24FRmqDEc-unsplash.jpg' , 'img/paola-galimberti-Cawp7im-QMY-unsplash.jpg' , 'img/pawel-czerwinski-8PqU9b_cpbg-unsplash.jpg' , 'img/pawel-czerwinski-l8DUam8vtbc-unsplash.jpg' , 'img/rene-bohmer-YeUVDKZWSZ4-unsplash.jpg' , 'img/robert-katzki-jbtfM0XBeRc-unsplash.jpg' , 'img/rodion-kutsaev-pVoEPpLw818-unsplash.jpg' , 'img/sandro-katalina-k1bO_VTiZSs-unsplash.jpg' , 'img/scott-webb-FEQEQrF5M10-unsplash.jpg' , 'img/scott-webb-INeZJfQxMLE-unsplash.jpg' , 'img/scott-webb-l-TNipQzhRQ-unsplash.jpg' , 'img/scott-webb-lNxbROqJ8zo-unsplash.jpg' , 'img/scott-webb-wqh7V-nzhYo-unsplash.jpg' , 'img/sean-sinclair-C_NJKfnTR5A-unsplash.jpg' , 'img/sean-sinclair-FQ7cRFUU1y0-unsplash.jpg' , 'img/sora-sagano-C8lJ6WE5RNw-unsplash.jpg' , 'img/steve-johnson-ctRJMubyj4o-unsplash.jpg' , 'img/sylvia-szekely-YPW_SVDfJxk-unsplash.jpg' , 'img/thor-alvis-sgrCLKYdw5g-unsplash.jpg' , 'img/vinicius-amnx-amano-OHPdgstNFGs-unsplash.jpg' , 'img/wrongtog-PTIHdN4NDI8-unsplash.jpg' , 'img/zak-7wBFsHWQDlk-unsplash.jpg']
 
 
 # Support Functions:
+
 def incrementStat(originID):
 	dateObj = datetime.today().isocalendar()
 	statsObj = WeeklyStats.objects.get_or_create(week = dateObj[1] , year = dateObj[0])[0]
@@ -422,12 +424,20 @@ def apiQuery(request , slug):
 			if (len(providedAPIKey) == 36):
 				try:
 					correspondingAccount = APIAccount.objects.get(apiKey = providedAPIKey , approved = True)
-					if (correspondingAccount.currentWeek >= correspondingAccount.weeklyQueryLimit):
-						response['statusCode'] = 429
-						response['statusMessage'] = 'You have reached your weekly query limit.'
-						return JsonResponse(response)
-					correspondingAccount.currentWeek += 1
-					correspondingAccount.totalQueries += 1
+					if (slug == 'BA'):
+						if ((correspondingAccount.currentWeek + 2) >= correspondingAccount.weeklyQueryLimit):
+							response['statusCode'] = 429
+							response['statusMessage'] = 'You have reached your weekly query limit.'
+							return JsonResponse(response)
+						correspondingAccount.currentWeek += 3
+						correspondingAccount.totalQueries += 3
+					else:
+						if (correspondingAccount.currentWeek >= correspondingAccount.weeklyQueryLimit):
+							response['statusCode'] = 429
+							response['statusMessage'] = 'You have reached your weekly query limit.'
+							return JsonResponse(response)
+						correspondingAccount.currentWeek += 1
+						correspondingAccount.totalQueries += 1
 					correspondingAccount.save()
 				except:
 					return JsonResponse(response)
@@ -551,7 +561,144 @@ def apiQuery(request , slug):
 						response['statusMessage'] = 'This resource requires the use of the "State" filter.'
 						return JsonResponse(response)
 				elif (slug == 'BA'):
-					pass
+					if ('First' in request.headers.keys()):
+						firstName = request.headers['First']
+						if (not(len(firstName) >= 2)):
+							response['statusCode'] = 400
+							response['statusMessage'] = 'The provided "First" filter is invalid.'
+							return JsonResponse(response)
+					else:
+						firstName = ''
+
+					if ('Last' in request.headers.keys()):
+						lastName = request.headers['Last']
+						if (not(len(lastName) >= 2)):
+							response['statusCode'] = 400
+							response['statusMessage'] = 'The provided "Last" filter is invalid.'
+							return JsonResponse(response)
+					else:
+						lastName = ''
+
+					if ('City' in request.headers.keys()):
+						city = request.headers['City']
+						if (not(len(city) >= 2)):
+							response['statusCode'] = 400
+							response['statusMessage'] = 'The provided "City" filter is invalid.'
+							return JsonResponse(response)
+					else:
+						city = ''
+
+					if ('State' in request.headers.keys()):
+						state = str(request.headers['State'])
+						stateFound = False
+						for stateCode in modelCodes.STATES_TERRITORIES_PROVINCES:
+							if (state == stateCode[0]):
+								stateFound = True
+								break
+						if (not(stateFound)):
+							response['statusCode'] = 400
+							response['statusMessage'] = 'The provided "State" filter is invalid.'
+							return JsonResponse(response)
+					else:
+						state = ''
+
+					if ('Incident-Year' in request.headers.keys()):
+						try:
+							incidentYear = int(request.headers['Incident-Year'])
+							if (not((incidentYear > 1800) and (incidentYear < 2100))):
+								response['statusCode'] = 400
+								response['statusMessage'] = 'The provided "Incident-Year" filter is invalid.'
+								return JsonResponse(response)
+						except:
+							response['statusCode'] = 400
+							response['statusMessage'] = 'The provided "Incident-Year" filter is invalid.'
+							return JsonResponse(response)
+					else:
+						incidentYear = False
+
+					if ('Policy' in request.headers.keys()):
+						policy = str(request.headers['Policy'])
+						policyFound = False
+						for policyCode in modelCodes.POLICY_CATEGORIES:
+							if (policy == policyCode[0]):
+								policyFound = True
+								break
+						if (not(policyFound)):
+							response['statusCode'] = 400
+							response['statusMessage'] = 'The provided "Policy" filter is invalid.'
+							return JsonResponse(response)
+					else:
+						policy = ''
+
+					if ('Report-ID' in request.headers.keys()):
+						reportID = request.headers['Report-ID']
+						if (len(reportID) != 36):
+							response['statusCode'] = 400
+							response['statusMessage'] = 'The provided "Report-ID" filter is invalid.'
+							return JsonResponse(response)
+					else:
+						reportID = ''
+
+					try:
+						applicableOfficers = Officer.objects.filter(firstName__icontains = firstName , lastName__icontains = lastName , public = True , approved = True)
+
+						applicableReports = []
+						if (incidentYear):
+							applicableReports = InvestigativeReport.objects.filter(cityTown__icontains = city , stateTerritoryProvince__icontains = state , reportID__icontains = reportID , incidentDate__year = incidentYear , subjectOfInvestigation__in = applicableOfficers , public = True , approved = True)
+						else:
+							applicableReports = InvestigativeReport.objects.filter(cityTown__icontains = city , stateTerritoryProvince__icontains = state , reportID__icontains = reportID , subjectOfInvestigation__in = applicableOfficers , public = True , approved = True)
+
+						applicableFindings = InvestigativeReportFinding.objects.filter(findingPolicyCategory__icontains = policy , investigativeReport__in = applicableReports , public = True , approved = True)
+					except:
+						response['statusCode'] = 400
+						response['statusMessage'] = 'The query could not be completed.'
+						return JsonResponse(response)
+
+					reports = set()
+					for finding in applicableFindings:
+						reports.add(finding.investigativeReport)
+
+					for report in reports:
+						tempResult = {}
+						tempResult['officerFirstName'] = report.subjectOfInvestigation.firstName
+						tempResult['officerMiddleName'] = report.subjectOfInvestigation.middleName
+						tempResult['officerLastName'] = report.subjectOfInvestigation.lastName
+						tempResult['officerID'] = report.subjectOfInvestigation.officerID
+						tempResult['country'] = report.get_country_display()
+						tempResult['state'] = report.get_stateTerritoryProvince_display()
+						tempResult['city'] = report.cityTown
+						tempResult['investigator'] = report.investigator
+						tempResult['investigatorLicense'] = report.license
+						tempResult['investigatorEmployer'] = report.investigatorEmployer
+						tempResult['reportType'] = report.get_reportType_display()
+						tempResult['investigationID'] = report.investigationID
+						tempResult['officerBadgeNumber'] = report.officerBadgeNumber
+						tempResult['incidentDate'] = str(report.incidentDate)
+						tempResult['reportDate'] = str(report.reportDate)
+						tempResult['findingsSummary'] = report.findingsSummary
+						tempResult['conclusion'] = report.conclusion
+						tempResult['fullReportURL'] = report.fullReportURL
+						tempResult['fullArchiveURL'] = report.fullArchiveURL
+						tempResult['sourceURL'] = report.sourceURL
+						tempResult['praURL'] = report.praURL
+						tempResult['reportID'] = report.reportID
+						tempResult['createdOn'] = str(report.createdOn)
+						tempResult['updatedOn'] = str(report.updatedOn)
+						tempResult['findings'] = []
+						for finding in InvestigativeReportFinding.objects.filter(investigativeReport = report , public = True , approved = True):
+							tempFinding = {}
+							tempFinding['findingPolicyCategory'] = finding.get_findingPolicyCategory_display()
+							tempFinding['findingSummary'] = finding.findingSummary
+							tempFinding['findingBasis'] = finding.findingBasis
+							tempFinding['finding'] = finding.get_finding_display()
+							tempFinding['createdOn'] = str(finding.createdOn)
+							tempFinding['updatedOn'] = str(finding.updatedOn)
+							tempResult['findings'].append(tempFinding)
+						response['results'].append(tempResult)
+
+					response['statusCode'] = 200
+					response['statusMessage'] = 'Success'
+					return JsonResponse(response)
 				else:
 					response['statusCode'] = 404
 					return JsonResponse(response)

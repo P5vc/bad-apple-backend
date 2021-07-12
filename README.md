@@ -259,20 +259,25 @@ requests.get('https://BadApple.tools/API/Oversight/' , headers = {'API-Key' : 'x
 }
 ```
 
-### Querying Bad Apple Database
+### Querying Bad Apple Database Reports
+
+> **Please Note:** Each Bad Apple Database report query will use three query credits, as each query requires the backend to perform a minimum of three, separate database lookups.
 
 URL: `https://BadApple.tools/API/BA/`
 
 #### Filters
 
-| Header | Description | Format |
-|:----------|:----------|:----------|
-| `First` | The first name of the officer about whom the report is written | String |
-| `Last` | The last name of the officer about whom the report is written | String |
-| `City` | The city for which the report was commissioned | String |
-| `State` | The state in which the report was commissioned | A six-character code as listed [here](https://github.com/P5vc/BadAppleBackend/blob/main/BadApple/mainSite/extendedModels/modelCodes.py) in `STATES_TERRITORIES_PROVINCES` |
-| `Incident-Year` | The year in which the incident occurred | Four, consecutive integers |
-| `Policy` | The category of the policies over which the report contained findings | A one-character or two-character code as listed [here](https://github.com/P5vc/BadAppleBackend/blob/main/BadApple/mainSite/extendedModels/modelCodes.py) in `POLICY_CATEGORIES` |
+> **Please Note:** While any, individual filter is optional, at least two of the following filters must be provided for the query to be valid.
+
+| Header | Inclusion | Description | Format |
+|:----------|:----------|:----------|:----------|
+| `First` | *Optional* | The first name of the officer about whom the report is written | String |
+| `Last` | *Optional* | The last name of the officer about whom the report is written | String |
+| `City` | *Optional* |The city for which the report was commissioned | String |
+| `State` | *Optional* | The state in which the report was commissioned | A six-character code as listed [here](https://github.com/P5vc/BadAppleBackend/blob/main/BadApple/mainSite/extendedModels/modelCodes.py) in `STATES_TERRITORIES_PROVINCES` |
+| `Incident-Year` | *Optional* |The year in which the incident occurred | Four, consecutive integers |
+| `Policy` | *Optional* | The category of the policies over which the report contained findings | A one-character or two-character code as listed [here](https://github.com/P5vc/BadAppleBackend/blob/main/BadApple/mainSite/extendedModels/modelCodes.py) in `POLICY_CATEGORIES` |
+| `Report-ID` | *Optional* | The unique, report ID assigned by Bad Apple | UUID4 |
 
 #### Example Query Headers
 
@@ -298,5 +303,75 @@ URL: `https://BadApple.tools/API/BA/`
 	"Policy" : "38",
 	"City" : "Berk",
 	"State" : "USA-CA"
+}
+```
+
+#### Example Query
+
+###### Request (Curl)
+
+```bash
+curl -H "API-Key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" -H "First: Adam" -H "Last: Coy" -H "State: USA-OH" -H "Policy: 0" https://BadApple.tools/API/BA/
+```
+
+###### Request (Python)
+
+```python3
+requests.get('https://BadApple.tools/API/BA/' , headers = {'API-Key' : 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' , 'First' : 'Adam' , 'Last' : 'Coy' , 'State' : 'USA-OH' , 'Policy' : '0'})
+```
+
+###### Response
+
+```json
+{
+	"statusCode": 200,
+	"statusMessage": "Success",
+	"results": [
+		{
+			"officerFirstName": "Adam",
+			"officerMiddleName": "",
+			"officerLastName": "Coy",
+			"officerID": "c210a38a-bf0d-4da7-bbad-f13e32289647",
+			"country": "United States of America",
+			"state": "Ohio, USA",
+			"city": "Columbus",
+			"investigator": "Thomas Quinlan",
+			"investigatorLicense": "Chief of Police",
+			"investigatorEmployer": "The City of Columbus Division of Police",
+			"reportType": "Internal Affairs Report",
+			"investigationID": "IAB #202012 - 1029",
+			"officerBadgeNumber": "2275",
+			"incidentDate": "2020-12-22 01:42:00+00:00",
+			"reportDate": "2020-12-26 00:00:00+00:00",
+			"findingsSummary": "Officer Coy responded to a very routine and non-emergency call for service. Officer Coy elected to escalate the encounter by drawing his firearm and limiting his other options by having his hands occupied by a flashlight and a firearm. His approach was flawed, his communications lacking, and his actions dire.\r\nThis investigation took into consideration Officer Coy's actions and the ultimate outcome of Officer Coy failures to follow policy and training. The investigation contains sufficient records reviewed, interviews conducted, and observations made that find Officer Coy engaged in incompetent activity for a police officer with 19 years experience and as a result of his out of policy use of deadly force and innocent man has lost his life. I find all allegations sustained by a preponderance of evidence.",
+			"conclusion": "In a letter I wrote in 2008 while Officer Coy's Patrol Lieutenant I made the following observations about Officer Coy: \"If sustained improvements are not fully realized a decision whether Officer Coy is salvageable must follow. Should the interventions described above not produce the desired results a shift towards termination would be warranted, as Officer Coy's service to the Division of Police will have lost all future value.\"\r\nToday, I can state unequivocally Officer Coy has no future value to the Division of Police and should be terminated.",
+			"fullReportURL": "https://archive.org/download/adam-coy_efab6f1b-9ded-42e8-b50b-07cb01c35103/Adam%20Coy%20Investigative%20Report_text.pdf",
+			"fullArchiveURL": "",
+			"sourceURL": "https://abc6onyourside.com/news/local/columbus-police-chief-reports-many-alarms-raised-in-his-investigation-of-adam-coy",
+			"praURL": "",
+			"reportID": "efab6f1b-9ded-42e8-b50b-07cb01c35103",
+			"createdOn": "2021-04-15 02:48:12.498451+00:00",
+			"updatedOn": "2021-05-11 05:06:31.010751+00:00",
+			"findings": [
+				{
+					"findingPolicyCategory": "Conduct",
+					"findingSummary": "There is sufficient evidence to support the allegation; therefore, I recommend a finding of SUSTAINED. This recommendation is based upon ample documentation and statements to demonstrate Officer Coy has performed his assigned duties without exercising sound judgment or decision making, i.e. Incompetence. Further, the incident is currently being investigated by BCI as a homicide and how the U.S. Attorney and the FBI are running a concurrent investigation into a possible federal civil rights violation, thereby amounting to critical misconduct, i.e. Malfeasance. I find Officer Coy to have engaged in Misfeasance regarding his failure to use his BWC. I find Officer Coy to have engaged in Nonfeasance regarding his failure to render aid, i.e. gross neglect of duty.",
+					"findingBasis": "1.04 - Cause for Dismissal",
+					"finding": "Sustained",
+					"createdOn": "2021-04-15 03:57:36.693112+00:00",
+					"updatedOn": "2021-04-15 03:57:36.693142+00:00"
+				},
+				{
+					"findingPolicyCategory": "Use of Force",
+					"findingSummary": "There is sufficient evidence to support the allegation; therefore, I recommend a finding of SUSTAINED. This recommendation is based upon ample documentation, investigation, and personal observation to demonstrate Officer Coy used deadly force that is outside the well-known policies of the Division of Police, outside the professional norms for policing, and is the subject of a criminal investigation by both state and federal officials. Further, his failure to use his body worn camera appropriately or render medical aid has exacerbated the misconduct. His actions have undermined the community trust of officers not only in our city but across America. Most importantly, his failures to follow policies and training have resulted in the death of Andre Hill, an unarmed man who was not known to be committing any crime.",
+					"findingBasis": "ROC 1.19 - DD 2.01 - USE OF FORCE",
+					"finding": "Sustained",
+					"createdOn": "2021-04-15 03:58:27.131187+00:00",
+					"updatedOn": "2021-04-15 16:05:31.044405+00:00"
+				}
+			]
+		}
+	],
+	"remainingQueries": 429
 }
 ```
