@@ -85,14 +85,14 @@ The Bad Apple API only accepts authenticated, HTTP GET requests. To authenticate
 Curl:
 
 ```bash
-curl -X GET -H "API-Key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" "https://BadApple.tools/API/Oversight"
+curl -H "API-Key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" https://BadApple.tools/API/Oversight/
 ```
 
 Python:
 
 ```python3
 import requests
-response = requests.get('https://BadApple.tools/API/Oversight' , headers = {'API-Key' : 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'})
+response = requests.get('https://BadApple.tools/API/Oversight/' , headers = {'API-Key' : 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'})
 print(response.json())
 ```
 
@@ -139,7 +139,13 @@ URL: `https://BadApple.tools/API/PRA/`
 }
 ```
 
-#### Example Response
+#### Example Query
+
+###### Request (Curl)
+
+```bash
+curl -H "API-Key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" -H "State: USA-CA" -H "Subject: 11" https://BadApple.tools/API/PRA/
+```
 
 ###### Request (Python)
 
@@ -197,7 +203,13 @@ URL: `https://BadApple.tools/API/Oversight/`
 }
 ```
 
-#### Example Response
+#### Example Query
+
+###### Request (Curl)
+
+```bash
+curl -H "API-Key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" -H "State: USA-PR" -H "City: San Juan" https://BadApple.tools/API/Oversight/
+```
 
 ###### Request (Python)
 
