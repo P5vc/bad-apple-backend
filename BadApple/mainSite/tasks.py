@@ -89,11 +89,12 @@ def archiveTips():
 			message = encryptedMessageObject.encryptedMessage
 			for recipient in fingerprints:
 				dualyEncryptedMessage = str(gpg.encrypt(message , recipient , always_trust = True))
-				EncryptedMessage.objects.create(parentTip = tipObject , messageIsArchiged = True , primaryPubKeyFingerprint = encryptedMessageObject.primaryPubKeyFingerprint , secondaryPubKeyFingerprint = recipient , encryptedMessage = dualyEncryptedMessage)
+				EncryptedMessage.objects.create(parentTip = tipObject , messageIsArchived = True , primaryPubKeyFingerprint = encryptedMessageObject.primaryPubKeyFingerprint , secondaryPubKeyFingerprint = recipient , encryptedMessage = dualyEncryptedMessage)
 
 			encryptedMessageObject.delete()
 
 		tipObject.archived = True
+		tipObject.archive = False
 		tipObject.save()
 
 
