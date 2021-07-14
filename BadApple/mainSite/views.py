@@ -63,6 +63,9 @@ def incrementStat(originID):
 	elif (originID == 12):
 		statsObj.reportViews += 1
 		statsObj.totalViews += 1
+	elif (originID == 13):
+		statsObj.apiDocumentationViews += 1
+		statsObj.totalViews += 1
 
 	statsObj.save()
 
@@ -406,6 +409,11 @@ def report(request , slug):
 	subjectOfInvestigation = (reportObject.subjectOfInvestigation.firstName + ' ' + reportObject.subjectOfInvestigation.middleName + ' ' + reportObject.subjectOfInvestigation.lastName).strip()
 
 	return render(request , 'report.html' , {'reportType' : reportObject.get_reportType_display() , 'investigationID' : reportObject.investigationID , 'location' : reportLocation , 'subject' : subjectOfInvestigation , 'officerID' : reportObject.subjectOfInvestigation.officerID , 'reportDate' : reportObject.reportDate.strftime('%B %d, %Y') , 'client' : reportObject.client , 'incidentDate' : reportObject.incidentDate.strftime('%B %d, %Y') , 'investigator' : reportObject.investigator , 'license' : reportObject.license , 'employer' : reportObject.investigatorEmployer , 'summary' : str(reportObject.findingsSummary).strip().split('\n') , 'conclusion' : str(reportObject.conclusion).strip().split('\n') , 'reportURL' : reportObject.fullReportURL , 'archiveURL' : reportObject.fullArchiveURL , 'praURL' : reportObject.praURL , 'source' : reportObject.sourceURL , 'added' : reportObject.createdOn.strftime('%B %d, %Y') , 'sustained' : sustainedFindings , 'notSustained' : notSustainedFindings , 'exonerated' : exoneratedFindings , 'unfounded' : unfoundedFindings})
+
+
+def apiDocumentation(request):
+	incrementStat(13)
+	return render(request , 'api.html' , {})
 
 
 def apiQuery(request , slug):

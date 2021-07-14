@@ -11,5 +11,6 @@ urlpatterns = [
 				path('BadAppleDatabase/' , views.badApple , name = 'badApple'),
 				path('Officer/<slug:slug>/' , views.officer , name = 'officer'),
 				path('Report/<slug:slug>/' , views.report , name = 'report'),
+				path('API/' , views.apiDocumentation , name = 'apiDocumentation'),
 				path('API/<slug:slug>/' , views.apiQuery , name = 'apiQuery')
 			]
