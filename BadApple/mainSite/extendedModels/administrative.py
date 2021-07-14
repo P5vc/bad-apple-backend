@@ -35,6 +35,7 @@ class WeeklyStats(models.Model):
 	badAppleViews = models.IntegerField('Bad Apple Database Page Views' , default = 0)
 	officerViews = models.IntegerField('Officer Page Views' , default = 0)
 	reportViews = models.IntegerField('Report Page Views' , default = 0)
+	apiDocumentationViews = models.IntegerField('API Documentation Page Views' , default = 0)
 
 	# Action Stats:
 	totalInteractions = models.IntegerField('Total Interactions' , default = 0)
