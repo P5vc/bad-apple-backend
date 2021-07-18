@@ -124,16 +124,20 @@ def oversight(request):
 		oversightForm = OversightCommissionForm(request.POST)
 
 		resultFound = False
+		commissions = []
 		if (oversightForm.is_valid()):
-			if (len(oversightForm.cleaned_data['cityTown']) > 0):
-				commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = oversightForm.cleaned_data['stateTerritoryProvince'] , cityTown__icontains = oversightForm.cleaned_data['cityTown'] , completed = True , approved = True , public = True).order_by('cityTown')
-			else:
-				commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = oversightForm.cleaned_data['stateTerritoryProvince'] , completed = True , approved = True , public = True).order_by('cityTown')
+			try:
+				if (len(oversightForm.cleaned_data['cityTown']) > 0):
+					commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = oversightForm.cleaned_data['stateTerritoryProvince'] , cityTown__icontains = oversightForm.cleaned_data['cityTown'] , completed = True , approved = True , public = True).order_by('cityTown')
+				else:
+					commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = oversightForm.cleaned_data['stateTerritoryProvince'] , completed = True , approved = True , public = True).order_by('cityTown')
+			except:
+				oversightForm = OversightCommissionForm()
+				return render(request , 'oversight.html' , {'oversightForm' : oversightForm , 'showResults' : True , 'resultFound' : False , 'commissions' : commissions})
 
 			if (len(commissionObjects) > 0):
 				resultFound = True
 
-			commissions = []
 			for commissionObject in commissionObjects:
 				commission = {'image' : choice(backgroundImages) , 'commissionID' : '' , 'cityTown' : '' , 'commissionTitle' : '' , 'aboutText' : '' , 'websiteURL' : '.' , 'modificationDate' : ''}
 				commission['commissionID'] = str(commissionObject.commissionID)
