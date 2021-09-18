@@ -76,6 +76,8 @@ Once you receive your API key, be sure to store it in a secure location. This ke
 
 ## API Documentation
 
+> Note: Example scripts utilizing the Bad Apple API can be found, [here](https://github.com/P5vc/BadAppleBackend/tree/main/Scripts).
+
 ### Authenticating a Request
 
 The Bad Apple API only accepts authenticated, HTTP GET requests. To authenticate a request, you must provide an HTTP header with the key `API-Key` and a value matching that of your API key.
