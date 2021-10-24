@@ -91,7 +91,7 @@ for response in allResponses:
 if (unexpectedResponses):
 	resultsString = (str(len(unexpectedResponses)) + ' commissions\' websites did not respond with a 200 ("Success") status code.\n\nThis could be because the page was removed, moved to a different location,\nenforces "https" or "www" when the URL in our database only has "http", etc.\nIt could also be a false positive.\nManual review is requested for these websites.\n\nRESULTS:\n')
 	for site in unexpectedResponses:
-		resultsString += ('\nCommission Name:\t\t' + site[0] + '\nCommission Page URL:\t\thttps://BadApple.tools/Commission/' + site[1] + '/\nPages With Unexcpected Responses:\n')
+		resultsString += ('\nCommission Name:\t\t' + site[0] + '\nCommission Page URL:\t\thttps://BadApple.tools/Commission/' + site[1] + '/\nPages With Unexpected Responses:\n')
 		for page in site[2]:
 			resultsString += ('\t' + page[0] + ' (' + page[1] + '):\t\t' + page[2] + '\n')
 
