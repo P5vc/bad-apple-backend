@@ -423,7 +423,7 @@ def apiQuery(request , slug):
 							if (subject == subjectCode[0]):
 								subjectFound = True
 								break
-						if ((stateFound) and (subjectFound)):
+						if stateFound and subjectFound:
 							praTemplateObjects = PRATemplate.objects.filter(stateTerritoryProvince = state , subject = subject , approved = True , public = True)
 							if (not(praTemplateObjects)):
 								STATES_WITH_PRAS = ['USA-AL' , 'USA-AZ' , 'USA-AR' , 'USA-CA' , 'USA-CO' , 'USA-CT' , 'USA-DE' , 'USA-FL' , 'USA-GA' , 'USA-HI' , 'USA-IL' , 'USA-IN' , 'USA-IA' , 'USA-KS' , 'USA-KY' , 'USA-LA' , 'USA-ME' , 'USA-MD' , 'USA-MA' , 'USA-MI' , 'USA-MN' , 'USA-MS' , 'USA-MO' , 'USA-NE' , 'USA-NJ' , 'USA-NM' , 'USA-NY' , 'USA-NC' , 'USA-ND' , 'USA-OH' , 'USA-OK' , 'USA-PA' , 'USA-RI' , 'USA-SC' , 'USA-SD' , 'USA-TN' , 'USA-TX' , 'USA-UT' , 'USA-VT' , 'USA-VA' , 'USA-WA' , 'USA-WV' , 'USA-WI']
