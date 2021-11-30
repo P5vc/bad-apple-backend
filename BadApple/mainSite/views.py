@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse as DjangoJsonResponse
 from django.utils.translation import gettext as _
 from django.shortcuts import redirect , render
 from django.forms import TextInput
@@ -84,6 +84,10 @@ def incrementStat(originID):
 		statsObj.totalViews += 1
 
 	statsObj.save()
+
+
+def JsonResponse(response):
+	return DjangoJsonResponse(response, status=response['statusCode'])
 
 
 # Request Handlers:
@@ -442,11 +446,11 @@ def apiQuery(request , slug):
 	if (request.method == 'GET'):
 		if (not(slug in ['PRA' , 'Oversight' , 'BA'])):
 			response['statusCode'] = 404
-			return JsonResponse(response, status=response['statusCode'])
+			return JsonResponse(response)
 
 		if 'API-Key' not in request.headers.keys():
 			response['statusCode'] = 423
-			return JsonResponse(response, status=response['statusCode'])
+			return JsonResponse(response)
 		else:
 			providedAPIKey = str(request.headers['API-Key'])
 			if (len(providedAPIKey) == 36):
@@ -456,19 +460,19 @@ def apiQuery(request , slug):
 						if ((correspondingAccount.currentWeek + 2) >= correspondingAccount.weeklyQueryLimit):
 							response['statusCode'] = 429
 							response['statusMessage'] = 'You have reached your weekly query limit.'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 						correspondingAccount.currentWeek += 3
 						correspondingAccount.totalQueries += 3
 					else:
 						if (correspondingAccount.currentWeek >= correspondingAccount.weeklyQueryLimit):
 							response['statusCode'] = 429
 							response['statusMessage'] = 'You have reached your weekly query limit.'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 						correspondingAccount.currentWeek += 1
 						correspondingAccount.totalQueries += 1
 					correspondingAccount.save()
 				except:
-					return JsonResponse(response, status=response['statusCode'])
+					return JsonResponse(response)
 
 				response['statusMessage'] = ''
 				response['results'] = []
@@ -478,12 +482,12 @@ def apiQuery(request , slug):
 					if (len(item[1]) > 100):
 						response['statusCode'] = 400
 						response['statusMessage'] = 'Invalid header: too long'
-						return JsonResponse(response, status=response['statusCode'])
+						return JsonResponse(response)
 					elif (len(item[1]) <= 0):
 						if ((not(item[0] == 'Content-Type')) and (not(item[0] == 'Content-Length'))):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'Invalid header: too short'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 
 				if (slug == 'PRA'):
 					if (('State' in request.headers.keys()) and ('Subject' in request.headers.keys())):
@@ -519,15 +523,15 @@ def apiQuery(request , slug):
 								response['results'].append(tempItem)
 							response['statusCode'] = 200
 							response['statusMessage'] = 'Success'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 						else:
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "State" and "Subject" filters are invalid.'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 					else:
 						response['statusCode'] = 400
 						response['statusMessage'] = 'This resource requires the use of "State" and "Subject" filters.'
-						return JsonResponse(response, status=response['statusCode'])
+						return JsonResponse(response)
 				elif (slug == 'Oversight'):
 					if ('State' in request.headers.keys()):
 						state = str(request.headers['State'])
@@ -542,7 +546,7 @@ def apiQuery(request , slug):
 								if (len(city) < 2):
 									response['statusCode'] = 400
 									response['statusMessage'] = 'The provided "City" filter is invalid.'
-									return JsonResponse(response, status=response['statusCode'])
+									return JsonResponse(response)
 								commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = state , cityTown__icontains = city , approved = True , public = True)
 							else:
 								commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = state , approved = True , public = True)
@@ -579,22 +583,22 @@ def apiQuery(request , slug):
 								response['results'].append(tempItem)
 							response['statusCode'] = 200
 							response['statusMessage'] = 'Success'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 						else:
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "State" filter is invalid.'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 					else:
 						response['statusCode'] = 400
 						response['statusMessage'] = 'This resource requires the use of the "State" filter.'
-						return JsonResponse(response, status=response['statusCode'])
+						return JsonResponse(response)
 				elif (slug == 'BA'):
 					if ('First' in request.headers.keys()):
 						firstName = request.headers['First']
 						if (not(len(firstName) >= 2)):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "First" filter is invalid.'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 					else:
 						firstName = ''
 
@@ -603,7 +607,7 @@ def apiQuery(request , slug):
 						if (not(len(lastName) >= 2)):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "Last" filter is invalid.'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 					else:
 						lastName = ''
 
@@ -612,7 +616,7 @@ def apiQuery(request , slug):
 						if (not(len(city) >= 2)):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "City" filter is invalid.'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 					else:
 						city = ''
 
@@ -626,7 +630,7 @@ def apiQuery(request , slug):
 						if (not(stateFound)):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "State" filter is invalid.'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 					else:
 						state = ''
 
@@ -636,11 +640,11 @@ def apiQuery(request , slug):
 							if (not((incidentYear > 1800) and (incidentYear < 2100))):
 								response['statusCode'] = 400
 								response['statusMessage'] = 'The provided "Incident-Year" filter is invalid.'
-								return JsonResponse(response, status=response['statusCode'])
+								return JsonResponse(response)
 						except:
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "Incident-Year" filter is invalid.'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 					else:
 						incidentYear = False
 
@@ -654,7 +658,7 @@ def apiQuery(request , slug):
 						if (not(policyFound)):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "Policy" filter is invalid.'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 					else:
 						policy = ''
 
@@ -663,7 +667,7 @@ def apiQuery(request , slug):
 						if (len(reportID) != 36):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "Report-ID" filter is invalid.'
-							return JsonResponse(response, status=response['statusCode'])
+							return JsonResponse(response)
 					else:
 						reportID = ''
 
@@ -680,7 +684,7 @@ def apiQuery(request , slug):
 					except:
 						response['statusCode'] = 400
 						response['statusMessage'] = 'The query could not be completed.'
-						return JsonResponse(response, status=response['statusCode'])
+						return JsonResponse(response)
 
 					reports = set()
 					for finding in applicableFindings:
@@ -726,13 +730,13 @@ def apiQuery(request , slug):
 
 					response['statusCode'] = 200
 					response['statusMessage'] = 'Success'
-					return JsonResponse(response, status=response['statusCode'])
+					return JsonResponse(response)
 				else:
 					response['statusCode'] = 404
-					return JsonResponse(response, status=response['statusCode'])
+					return JsonResponse(response)
 			else:
 				response['statusCode'] = 400
-				return JsonResponse(response, status=response['statusCode'])
+				return JsonResponse(response)
 	else:
 		response['statusCode'] = 405
-		return JsonResponse(response, status=response['statusCode'])
+		return JsonResponse(response)
