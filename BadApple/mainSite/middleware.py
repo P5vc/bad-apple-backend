@@ -58,6 +58,8 @@ def simple_stats(get_response):
 		elif name == 'apiQuery':
 			# TODO: Consider logging these
 			pass
+		else:
+			print('Not properly logging request to path `' + name + '`; consider adding `elif name == "' + name + '": ...` to mainSite.middleware.simple_stats')
 
 		statsObj.save()
 
