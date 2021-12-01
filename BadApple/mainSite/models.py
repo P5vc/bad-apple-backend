@@ -46,9 +46,9 @@ class PRATemplate(models.Model):
 
 class OversightCommission(models.Model):
 	def generateUniqueID():
-		while True:
+		while (True):
 			uniqueID = str(uuid4())
-			if len(OversightCommission.objects.filter(commissionID = uniqueID)) == 0:
+			if (len(OversightCommission.objects.filter(commissionID = uniqueID)) == 0):
 				return uniqueID
 
 
@@ -111,9 +111,9 @@ class OversightCommission(models.Model):
 
 class Officer(models.Model):
 	def generateUniqueID():
-		while True:
+		while (True):
 			uniqueID = str(uuid4())
-			if len(Officer.objects.filter(officerID = uniqueID)) == 0:
+			if (len(Officer.objects.filter(officerID = uniqueID)) == 0):
 				return uniqueID
 
 
@@ -137,7 +137,7 @@ class Officer(models.Model):
 
 
 	def __str__(self):
-		return str(self.id) + ' - ' + self.firstName + ' ' + self.lastName
+		return (str(self.id) + ' - ' + self.firstName + ' ' + self.lastName)
 
 
 
@@ -150,9 +150,9 @@ class Officer(models.Model):
 
 class InvestigativeReport(models.Model):
 	def generateUniqueID():
-		while True:
+		while (True):
 			uniqueID = str(uuid4())
-			if len(InvestigativeReport.objects.filter(reportID = uniqueID)) == 0:
+			if (len(InvestigativeReport.objects.filter(reportID = uniqueID)) == 0):
 				return uniqueID
 
 
@@ -202,7 +202,7 @@ class InvestigativeReport(models.Model):
 
 
 	def __str__(self):
-		return str(self.id) + ' - ' + self.reportDate.strftime('%x') + ' ' + self.client
+		return (str(self.id) + ' - ' + self.reportDate.strftime('%x') + ' ' + self.client)
 
 
 
@@ -268,7 +268,7 @@ class Tip(models.Model):
 
 	# Override the default save behavior to prevent unencrypted data from touching the database:
 	def save(self , *args , **kwargs):
-		if self.encrypted:
+		if (self.encrypted):
 			super().save(*args , **kwargs)
 			return
 
@@ -283,9 +283,9 @@ class Tip(models.Model):
 		fingerprints = [key['fingerprint'] for key in gpg.list_keys()]
 
 		for recipient in fingerprints:
-			if len(plaintextMessage) < 10000:
+			if (len(plaintextMessage) < 10000):
 				encryptedMessage = str(gpg.encrypt(str(plaintextMessage) , recipient , always_trust = True))
-				if len(encryptedMessage) < 100000:
+				if (len(encryptedMessage) < 100000):
 					EncryptedMessage.objects.create(parentTip = self , primaryPubKeyFingerprint = recipient , encryptedMessage = encryptedMessage)
 
 
@@ -314,9 +314,9 @@ class EncryptedMessage(models.Model):
 
 class APIAccount(models.Model):
 	def generateAPIKey():
-		while True:
+		while (True):
 			proposedAPIKey = str(uuid4())
-			if len(APIAccount.objects.filter(apiKey = proposedAPIKey)) == 0:
+			if (len(APIAccount.objects.filter(apiKey = proposedAPIKey)) == 0):
 				return proposedAPIKey
 
 
