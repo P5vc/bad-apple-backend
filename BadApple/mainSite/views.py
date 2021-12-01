@@ -1,4 +1,4 @@
-from django.http import JsonResponse as DjangoJsonResponse
+from django.http import JsonResponse
 from django.utils.translation import gettext as _
 from django.shortcuts import redirect , render
 from django.forms import TextInput
@@ -17,18 +17,17 @@ BotBlock.encryptText = True
 
 backgroundImages = ['img/andrew-ridley-jR4Zf-riEjI-unsplash.jpg' , 'img/ashkan-forouzani-5nwog4xjpNY-unsplash.jpg' , 'img/billy-huynh-W8KTS-mhFUE-unsplash.jpg' , 'img/bradley-jasper-ybanez-a1xlQq3HoJ0-unsplash.jpg' , 'img/clem-onojeghuo-Ud4GcZW3rOY-unsplash.jpg' , 'img/danist-bviex5lwf3s-unsplash.jpg' , 'img/denise-chan-pXmbsF70ulM-unsplash.jpg' , 'img/derek-thomson-NqJYQ3m_rVA-unsplash.jpg' , 'img/erfan-moradi-wKc-i5zwfok-unsplash.jpg' , 'img/fabio-ballasina-wEL2zPX3jDg-unsplash.jpg' , 'img/genessa-panainte-sBvK15KlpYk-unsplash.jpg' , 'img/henrik-donnestad-V6Qd6zA85ck-unsplash.jpg' , 'img/joel-filipe-WjnF1Tp-p3I-unsplash.jpg' , 'img/jr-korpa-SFT9G3pAxLY-unsplash.jpg' , 'img/kai-dahms-t--2nGjWLXc-unsplash.jpg' , 'img/lucas-benjamin-R79qkPYvrcM-unsplash.jpg' , 'img/lucas-benjamin-wQLAGv4_OYs-unsplash.jpg' , 'img/markus-spiske-Z7n-qSootxg-unsplash.jpg' , 'img/munmun-singh-xRwj5q7vSJ4-unsplash.jpg' , 'img/nareeta-martin-QP24FRmqDEc-unsplash.jpg' , 'img/paola-galimberti-Cawp7im-QMY-unsplash.jpg' , 'img/pawel-czerwinski-8PqU9b_cpbg-unsplash.jpg' , 'img/pawel-czerwinski-l8DUam8vtbc-unsplash.jpg' , 'img/rene-bohmer-YeUVDKZWSZ4-unsplash.jpg' , 'img/robert-katzki-jbtfM0XBeRc-unsplash.jpg' , 'img/rodion-kutsaev-pVoEPpLw818-unsplash.jpg' , 'img/sandro-katalina-k1bO_VTiZSs-unsplash.jpg' , 'img/scott-webb-FEQEQrF5M10-unsplash.jpg' , 'img/scott-webb-INeZJfQxMLE-unsplash.jpg' , 'img/scott-webb-l-TNipQzhRQ-unsplash.jpg' , 'img/scott-webb-lNxbROqJ8zo-unsplash.jpg' , 'img/scott-webb-wqh7V-nzhYo-unsplash.jpg' , 'img/sean-sinclair-C_NJKfnTR5A-unsplash.jpg' , 'img/sean-sinclair-FQ7cRFUU1y0-unsplash.jpg' , 'img/sora-sagano-C8lJ6WE5RNw-unsplash.jpg' , 'img/steve-johnson-ctRJMubyj4o-unsplash.jpg' , 'img/sylvia-szekely-YPW_SVDfJxk-unsplash.jpg' , 'img/thor-alvis-sgrCLKYdw5g-unsplash.jpg' , 'img/vinicius-amnx-amano-OHPdgstNFGs-unsplash.jpg' , 'img/wrongtog-PTIHdN4NDI8-unsplash.jpg' , 'img/zak-7wBFsHWQDlk-unsplash.jpg']
 
-
 HOME_PAGE_ID              = 0
-DOC_PAGE_ID               = 1
+DOCUMENTATION_PAGE_ID     = 1
 PRA_PAGE_ID               = 2
 OVERSIGHT_PAGE_ID         = 3
 COMMISSION_PAGE_ID        = 4
 TIP_PAGE_ID               = 5
 BAD_APPLE_PAGE_ID         = 6
-PRA_SEARCH_PAGE_ID        = 7
-COMMISSION_SEARCH_PAGE_ID = 8
-TIP_SUBMISSION_PAGE_ID    = 9
-BAD_APPLE_SEARCH_PAGE_ID  = 10
+PRA_SEARCH_ID             = 7
+COMMISSION_SEARCH_ID      = 8
+TIP_SUBMISSION_ID         = 9
+BAD_APPLE_SEARCH_ID       = 10
 OFFICER_PAGE_ID           = 11
 REPORT_PAGE_ID            = 12
 API_DOC_PAGE_ID           = 13
@@ -40,37 +39,37 @@ def incrementStat(originID):
 	dateObj = datetime.today().isocalendar()
 	statsObj = WeeklyStats.objects.get_or_create(week = dateObj[1] , year = dateObj[0])[0]
 
-	if originID == HOME_PAGE_ID:
+	if originID == (HOME_PAGE_ID):
 		statsObj.homeViews += 1
 		statsObj.totalViews += 1
-	elif originID == DOC_PAGE_ID:
+	elif (originID == DOCUMENTATION_PAGE_ID):
 		statsObj.documentationViews += 1
 		statsObj.totalViews += 1
-	elif originID == PRA_PAGE_ID:
+	elif (originID == PRA_PAGE_ID):
 		statsObj.praViews += 1
 		statsObj.totalViews += 1
-	elif originID == OVERSIGHT_PAGE_ID:
+	elif (originID == OVERSIGHT_PAGE_ID):
 		statsObj.oversightViews += 1
 		statsObj.totalViews += 1
-	elif originID == COMMISSION_PAGE_ID:
+	elif (originID == COMMISSION_PAGE_ID):
 		statsObj.commissionViews += 1
 		statsObj.totalViews += 1
-	elif originID == TIP_PAGE_ID:
+	elif (originID == TIP_PAGE_ID):
 		statsObj.tipViews += 1
 		statsObj.totalViews += 1
-	elif originID == BAD_APPLE_PAGE_ID:
+	elif (originID == BAD_APPLE_PAGE_ID):
 		statsObj.badAppleViews += 1
 		statsObj.totalViews += 1
-	elif originID == PRA_SEARCH_PAGE_ID:
+	elif (originID == PRA_SEARCH_ID):
 		statsObj.praSearches += 1
 		statsObj.totalInteractions += 1
-	elif originID == COMMISSION_SEARCH_PAGE_ID:
+	elif (originID == COMMISSION_SEARCH_ID):
 		statsObj.commissionSearches += 1
 		statsObj.totalInteractions += 1
-	elif originID == TIP_SUBMISSION_PAGE_ID:
+	elif (originID == TIP_SUBMISSION_ID):
 		statsObj.tipSubmissions += 1
 		statsObj.totalInteractions += 1
-	elif originID == BAD_APPLE_SEARCH_PAGE_ID:
+	elif (originID == BAD_APPLE_SEARCH_ID):
 		statsObj.badAppleSearches += 1
 		statsObj.totalInteractions += 1
 	elif originID == OFFICER_PAGE_ID:
@@ -86,10 +85,6 @@ def incrementStat(originID):
 	statsObj.save()
 
 
-def JsonResponse(response):
-	return DjangoJsonResponse(response, status=response['statusCode'])
-
-
 # Request Handlers:
 
 def home(request):
@@ -98,13 +93,13 @@ def home(request):
 
 
 def documentation(request):
-	incrementStat(DOC_PAGE_ID)
+	incrementStat(DOCUMENTATION_PAGE_ID)
 	return render(request , 'documentation.html' , {})
 
 
 def pra(request):
 	if (request.method == 'POST'):
-		incrementStat(PRA_SEARCH_PAGE_ID)
+		incrementStat(PRA_SEARCH_ID)
 		praForm = PRATemplateForm(request.POST)
 
 		resultFound = False
@@ -140,7 +135,7 @@ def pra(request):
 
 def oversight(request):
 	if (request.method == 'POST'):
-		incrementStat(COMMISSION_SEARCH_PAGE_ID)
+		incrementStat(COMMISSION_SEARCH_ID)
 		oversightForm = OversightCommissionForm(request.POST)
 
 		resultFound = False
@@ -196,7 +191,7 @@ def tip(request):
 		return render(request , 'tip.html' , {'errorMessage' : _('We are unable to accept new tips at the moment, as our tip database is currently full. Please try again soon.') , 'successMessage' : False , 'showForm' : False})
 
 	if (request.method == 'POST'):
-		incrementStat(TIP_SUBMISSION_PAGE_ID)
+		incrementStat(TIP_SUBMISSION_ID)
 		if (databaseEntries >= 10):
 			tipForm = TipFormCAPTCHA(request.POST)
 			if (not(tipForm.is_valid())):
@@ -267,7 +262,7 @@ def tip(request):
 
 def badApple(request):
 	if (request.method == 'POST'):
-		incrementStat(BAD_APPLE_SEARCH_PAGE_ID)
+		incrementStat(BAD_APPLE_SEARCH_ID)
 		badAppleForm = BadAppleForm(request.POST)
 
 		resultFound = False
@@ -446,11 +441,11 @@ def apiQuery(request , slug):
 	if (request.method == 'GET'):
 		if (not(slug in ['PRA' , 'Oversight' , 'BA'])):
 			response['statusCode'] = 404
-			return JsonResponse(response)
+			return JsonResponse(response , status = response['statusCode'])
 
-		if 'API-Key' not in request.headers.keys():
+		if ('API-Key' not in request.headers.keys()):
 			response['statusCode'] = 423
-			return JsonResponse(response)
+			return JsonResponse(response , status = response['statusCode'])
 		else:
 			providedAPIKey = str(request.headers['API-Key'])
 			if (len(providedAPIKey) == 36):
@@ -460,19 +455,19 @@ def apiQuery(request , slug):
 						if ((correspondingAccount.currentWeek + 2) >= correspondingAccount.weeklyQueryLimit):
 							response['statusCode'] = 429
 							response['statusMessage'] = 'You have reached your weekly query limit.'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 						correspondingAccount.currentWeek += 3
 						correspondingAccount.totalQueries += 3
 					else:
 						if (correspondingAccount.currentWeek >= correspondingAccount.weeklyQueryLimit):
 							response['statusCode'] = 429
 							response['statusMessage'] = 'You have reached your weekly query limit.'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 						correspondingAccount.currentWeek += 1
 						correspondingAccount.totalQueries += 1
 					correspondingAccount.save()
 				except:
-					return JsonResponse(response)
+					return JsonResponse(response , status = response['statusCode'])
 
 				response['statusMessage'] = ''
 				response['results'] = []
@@ -482,12 +477,12 @@ def apiQuery(request , slug):
 					if (len(item[1]) > 100):
 						response['statusCode'] = 400
 						response['statusMessage'] = 'Invalid header: too long'
-						return JsonResponse(response)
+						return JsonResponse(response , status = response['statusCode'])
 					elif (len(item[1]) <= 0):
 						if ((not(item[0] == 'Content-Type')) and (not(item[0] == 'Content-Length'))):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'Invalid header: too short'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 
 				if (slug == 'PRA'):
 					if (('State' in request.headers.keys()) and ('Subject' in request.headers.keys())):
@@ -523,15 +518,15 @@ def apiQuery(request , slug):
 								response['results'].append(tempItem)
 							response['statusCode'] = 200
 							response['statusMessage'] = 'Success'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 						else:
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "State" and "Subject" filters are invalid.'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 					else:
 						response['statusCode'] = 400
 						response['statusMessage'] = 'This resource requires the use of "State" and "Subject" filters.'
-						return JsonResponse(response)
+						return JsonResponse(response , status = response['statusCode'])
 				elif (slug == 'Oversight'):
 					if ('State' in request.headers.keys()):
 						state = str(request.headers['State'])
@@ -546,7 +541,7 @@ def apiQuery(request , slug):
 								if (len(city) < 2):
 									response['statusCode'] = 400
 									response['statusMessage'] = 'The provided "City" filter is invalid.'
-									return JsonResponse(response)
+									return JsonResponse(response , status = response['statusCode'])
 								commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = state , cityTown__icontains = city , approved = True , public = True)
 							else:
 								commissionObjects = OversightCommission.objects.filter(stateTerritoryProvince = state , approved = True , public = True)
@@ -583,22 +578,22 @@ def apiQuery(request , slug):
 								response['results'].append(tempItem)
 							response['statusCode'] = 200
 							response['statusMessage'] = 'Success'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 						else:
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "State" filter is invalid.'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 					else:
 						response['statusCode'] = 400
 						response['statusMessage'] = 'This resource requires the use of the "State" filter.'
-						return JsonResponse(response)
+						return JsonResponse(response , status = response['statusCode'])
 				elif (slug == 'BA'):
 					if ('First' in request.headers.keys()):
 						firstName = request.headers['First']
 						if (not(len(firstName) >= 2)):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "First" filter is invalid.'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 					else:
 						firstName = ''
 
@@ -607,7 +602,7 @@ def apiQuery(request , slug):
 						if (not(len(lastName) >= 2)):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "Last" filter is invalid.'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 					else:
 						lastName = ''
 
@@ -616,7 +611,7 @@ def apiQuery(request , slug):
 						if (not(len(city) >= 2)):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "City" filter is invalid.'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 					else:
 						city = ''
 
@@ -630,7 +625,7 @@ def apiQuery(request , slug):
 						if (not(stateFound)):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "State" filter is invalid.'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 					else:
 						state = ''
 
@@ -640,11 +635,11 @@ def apiQuery(request , slug):
 							if (not((incidentYear > 1800) and (incidentYear < 2100))):
 								response['statusCode'] = 400
 								response['statusMessage'] = 'The provided "Incident-Year" filter is invalid.'
-								return JsonResponse(response)
+								return JsonResponse(response , status = response['statusCode'])
 						except:
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "Incident-Year" filter is invalid.'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 					else:
 						incidentYear = False
 
@@ -658,7 +653,7 @@ def apiQuery(request , slug):
 						if (not(policyFound)):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "Policy" filter is invalid.'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 					else:
 						policy = ''
 
@@ -667,7 +662,7 @@ def apiQuery(request , slug):
 						if (len(reportID) != 36):
 							response['statusCode'] = 400
 							response['statusMessage'] = 'The provided "Report-ID" filter is invalid.'
-							return JsonResponse(response)
+							return JsonResponse(response , status = response['statusCode'])
 					else:
 						reportID = ''
 
@@ -684,7 +679,7 @@ def apiQuery(request , slug):
 					except:
 						response['statusCode'] = 400
 						response['statusMessage'] = 'The query could not be completed.'
-						return JsonResponse(response)
+						return JsonResponse(response , status = response['statusCode'])
 
 					reports = set()
 					for finding in applicableFindings:
@@ -730,13 +725,13 @@ def apiQuery(request , slug):
 
 					response['statusCode'] = 200
 					response['statusMessage'] = 'Success'
-					return JsonResponse(response)
+					return JsonResponse(response , status = response['statusCode'])
 				else:
 					response['statusCode'] = 404
-					return JsonResponse(response)
+					return JsonResponse(response , status = response['statusCode'])
 			else:
 				response['statusCode'] = 400
-				return JsonResponse(response)
+				return JsonResponse(response , status = response['statusCode'])
 	else:
 		response['statusCode'] = 405
-		return JsonResponse(response)
+		return JsonResponse(response , status = response['statusCode'])
