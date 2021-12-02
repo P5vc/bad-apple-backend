@@ -280,9 +280,7 @@ class Tip(models.Model):
 		gpg = GPG(gnupghome = '/home/ubuntu/.gnupg/')
 		gpg.encoding = 'utf-8'
 
-		fingerprints = []
-		for key in gpg.list_keys():
-			fingerprints.append(key['fingerprint'])
+		fingerprints = [key['fingerprint'] for key in gpg.list_keys()]
 
 		for recipient in fingerprints:
 			if (len(plaintextMessage) < 10000):
